@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Dias Games/Climbing System/Scenes/CS Demo Scene.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
