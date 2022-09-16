@@ -382,6 +382,7 @@
 "Assets/Dias Games/Climbing System/Scripts/Mono Behaviour/Ladder.cs"
 "Assets/Dias Games/Climbing System/Scripts/Mono Behaviour/Ledge.cs"
 "Assets/Dias Games/Climbing System/Scripts/Mono Behaviour/WallRunTrigger.cs"
+"Assets/Dias Games/scripts/Swim.cs"
 "Assets/Dias Games/Third Person System/Scripts/CharacterActions.cs"
 "Assets/Dias Games/Third Person System/Scripts/Interfaces/ICapsule.cs"
 "Assets/Dias Games/Third Person System/Scripts/Interfaces/ICharacterTargetPos.cs"

@@ -20,6 +20,8 @@ namespace DiasGames.Components
         Quaternion GetRotationFromDirection(Vector3 direction);
 
         bool IsGrounded();
+
+        //bool Inwater();
         Collider GetGroundCollider();
         void ApplyRootMotion(Vector3 multiplier, bool applyRotation = false);
         void StopRootMotion();

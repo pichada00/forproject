@@ -320,5 +320,10 @@ namespace DiasGames.Components
 
             return relative;
         }
+
+        /*bool IMover.Inwater()
+        {
+            throw new System.NotImplementedException();
+        }*/
     }
 }

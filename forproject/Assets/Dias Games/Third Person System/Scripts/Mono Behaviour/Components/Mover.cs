@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace DiasGames.Components
@@ -28,6 +29,33 @@ namespace DiasGames.Components
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		[SerializeField] private float Gravity = -15.0f;
 
+		[Header("Swim")]
+		float submergence;
+		[SerializeField] private bool Inwater => submergence > 0f;
+		[SerializeField] private bool Swimming => submergence >= swimThreshold;
+		[SerializeField] private float Gravityinwater = -5f;
+		[SerializeField] private Transform chestT;
+		[SerializeField]
+		float submergenceOffset = 0.5f;
+		[SerializeField, Min(0f)]
+		float buoyancy = 1f;
+
+		[SerializeField, Min(0.1f)]
+		float submergenceRange = 1f;
+		[SerializeField, Range(0f, 10f)]
+		float waterDrag = 1f;
+		[SerializeField, Range(0.01f, 1f)]
+		float swimThreshold = 0.5f;
+		RaycastHit hitinfo;
+		public LayerMask waterMask;
+		[SerializeField] private float speedSwim = 1.2f;
+		[SerializeField, Range(0f, 100f)]
+		float
+		maxAcceleration = 10f,
+		maxAirAcceleration = 1f,maxSwimAcceleration = 5f;
+		[SerializeField, Range(0f, 100f)]
+		float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;
+
 		// player
 		private float _speed;
 		private float _animationBlend;
@@ -55,8 +83,14 @@ namespace DiasGames.Components
 		// controls character velocity
 		private Vector3 _velocity;
 		private float _timeoutToResetVars = 0;
+		Vector3 upAxis;
+		LayerMask probeMask = -1;
+		int stepsSinceLastGrounded, stepsSinceLastJump;
+		Vector3 connectionVelocity;
+		Vector3 UpDown;
+		float acceleration, speed;
 
-        private void Awake()
+		private void Awake()
         {
 			_mainCamera = Camera.main.gameObject;
 			_controller = GetComponent<CharacterController>();
@@ -76,6 +110,15 @@ namespace DiasGames.Components
 			GravityControl();
 			GroundedCheck();
 
+			
+			if (Inwater)
+            {
+				UpDown = new Vector3();
+				UpDown.y = Swimming ? Input.GetAxis("updown") : 0f;
+				//Debug.Log(UpDown.y);
+				//_controller.Move(new Vector3(0.0f, UpDown.y, 0.0f));
+            }
+
 			if (_timeoutToResetVars <= 0)
 			{
 				_speed = 0;
@@ -91,10 +134,151 @@ namespace DiasGames.Components
 
 			if (!_controller.enabled) return;
 
+			if (UpDown.y != 0)
+			{
+				Debug.Log(UpDown.y);
+				_controller.Move(new Vector3(0.0f, UpDown.y * speedSwim, 0.0f) * Time.deltaTime);
+			}
+
 			_controller.Move(_velocity * Time.deltaTime);
 		}
 
-        private void OnAnimatorMove()
+		private void FixedUpdate()
+		{
+			
+			//UpDown = new Vector3();
+			//UpDown.y = Swimming ? Input.GetAxis("updown") : 0f;
+			if (Inwater)
+			{
+				_velocity.y *= 1f - waterDrag * submergence * Time.deltaTime;
+			}
+
+			if (Inwater)
+			{
+				_velocity.y +=
+					Gravityinwater * ((1f - buoyancy * submergence) * Time.deltaTime);
+			}
+			
+			ClearState();
+		}
+
+		/*void AdjustVelocity()
+		{
+			
+			Vector3 xAxis, zAxis;
+			if (Inwater)
+			{
+				float swimFactor = Mathf.Min(1f, submergence / swimThreshold);
+				acceleration = Mathf.LerpUnclamped(
+					Grounded ? maxAcceleration : maxAirAcceleration,
+					maxSwimAcceleration, swimFactor
+				);
+				speed = Mathf.LerpUnclamped(maxSpeed, maxSwimSpeed, swimFactor);
+				//xAxis = rightAxis;
+				//zAxis = forwardAxis;
+			}
+			Vector3 relativeVelocity = _velocity - connectionVelocity;
+			//float currentX = Vector3.Dot(relativeVelocity, xAxis);
+			//float currentZ = Vector3.Dot(relativeVelocity, zAxis);
+
+			float maxSpeedChange = acceleration * Time.deltaTime;
+
+			//_velocity += xAxis * (newX - currentX) + zAxis * (newZ - currentZ);
+
+			if (Swimming)
+			{
+				float currentY = Vector3.Dot(relativeVelocity, upAxis);
+				float newY = Mathf.MoveTowards(
+					currentY, UpDown.y * speed, maxSpeedChange
+				);
+				_velocity += upAxis * (newY - currentY);
+			}
+		}*/
+		void UpdateState()
+		{
+			stepsSinceLastGrounded += 1;
+			stepsSinceLastJump += 1;
+			//velocity = body.velocity;
+			if ( CheckSwimming() || SnapToGround())
+            {
+
+            }		
+		}
+
+		bool SnapToGround()
+		{
+			if (stepsSinceLastGrounded > 1 || stepsSinceLastJump <= 2)
+			{
+				return false;
+			}
+			if (!Physics.Raycast(this.transform.position, -upAxis, out RaycastHit hit, 0.5f, probeMask, QueryTriggerInteraction.Ignore))
+			{
+				return false;
+			}
+			return true;
+		}
+
+		bool CheckSwimming()
+		{
+			if (Swimming)
+			{
+				//groundContactCount = 0;
+				//contactNormal = upAxis;
+				return true;
+			}
+			return false;
+		}
+
+		void ClearState()
+		{
+			connectionVelocity = Vector3.zero;
+			submergence = 0f;
+		}
+
+		void EvaluateSubmergence()
+		{
+			if (Physics.Raycast(this.transform.position + upAxis * submergenceOffset,	-upAxis, out RaycastHit hit, submergenceRange + 1f,
+			waterMask, QueryTriggerInteraction.Collide))
+			{
+				submergence = 1f - hit.distance / submergenceRange;
+			}
+			else
+			{
+				submergence = 1f;
+			}
+		}
+		void OnTriggerEnter(Collider other)
+		{
+			if ((waterMask & (1 << other.gameObject.layer)) != 0)
+			{
+				Grounded = false;
+				UseGravity = false;
+				EvaluateSubmergence();
+				_animator.CrossFadeInFixedTime("swim.swim idle", 0.1f);
+				Debug.Log(Inwater);
+			}
+		}
+
+		void OnTriggerStay(Collider other)
+		{
+			if ((waterMask & (1 << other.gameObject.layer)) != 0 && Inwater == true)
+			{
+				UseGravity = false;
+				Grounded = false;
+				//Inwater = true;
+				EvaluateSubmergence();
+				Debug.Log("stay");
+			}
+		}
+		void OnTriggerExit(Collider other)
+		{
+			if ((waterMask & (1 << other.gameObject.layer)) != 0 && Inwater == false)
+			{
+				UseGravity = true;
+				
+			}
+		}
+		private void OnAnimatorMove()
         {
 			if (!_useRootMotion) return;
 
@@ -167,11 +351,20 @@ namespace DiasGames.Components
 
 		public void Move(Vector2 moveInput, float targetSpeed, bool rotateCharacter = true)
 		{
-			Move(moveInput, targetSpeed,  _mainCamera.transform.rotation, rotateCharacter);
+            if (Inwater)
+            {
+				Move(moveInput, speedSwim, _mainCamera.transform.rotation, rotateCharacter);
+			}
+            else
+            {
+				Move(moveInput, targetSpeed, _mainCamera.transform.rotation, rotateCharacter);
+			}
+			
 		}
 
 		public void Move(Vector2 moveInput, float targetSpeed, Quaternion cameraRotation, bool rotateCharacter = true)
         {
+			targetSpeed = Inwater ? speedSwim : targetSpeed;
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
 			if (moveInput == Vector2.zero) targetSpeed = 0.0f;
@@ -226,34 +419,77 @@ namespace DiasGames.Components
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 			_velocity = targetDirection.normalized * _speed + new Vector3(0.0f, _velocity.y, 0.0f);
 			_timeoutToResetVars = 0.5f;
+
+			if (Inwater==true)
+			{
+				Debug.Log("MOveMOvemoeve");
+				/*_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+							 new Vector3(_velocity.x, 0.0f, _velocity.z) * Time.deltaTime);*/
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+					_velocity *= -1f;
+					_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+							 new Vector3(0.0f, _velocity.y, 0.0f) * Time.deltaTime);
+					Debug.Log(_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+							 new Vector3(0.0f, _velocity.y, 0.0f) * Time.deltaTime));
+				}
+			}
+
+
 		}
 
 
 		public void Move(Vector3 velocity)
         {
 			Vector3 newVelocity = velocity;
-			if (UseGravity)
+			if (UseGravity == true)
 				newVelocity.y = _velocity.y;
+
+			/*if (Inwater)
+			{
+				_velocity.y +=
+					Gravityinwater * ((1f - buoyancy * submergence) * Time.deltaTime);
+				newVelocity.y = _velocity.y;
+			}*/
 
 			_velocity = newVelocity;
         }
 
 		private void GravityControl()
 		{
-			if (_controller.isGrounded)
+			Gravity =  Inwater? Gravityinwater : -15f;
+			Debug.Log(Gravity);
+
+            /*if (InWater)
 			{
-				// stop our velocity dropping infinitely when grounded
-				if (_velocity.y < 2.0f)
+				velocity *= 1f - waterDrag * submergence * Time.deltaTime;
+			}else if(Inwater)
+			{
+				_velocity.y +=
+					Gravity * ((1f - buoyancy * submergence) * Time.deltaTime);
+			}*/
+            if (UseGravity == true)
+            {
+				if (_controller.isGrounded)
 				{
-					_velocity.y = -5f;
+					Debug.Log("con.gro");
+					// stop our velocity dropping infinitely when grounded
+					if (_velocity.y < 2.0f)
+					{
+						_velocity.y = -5f;
+					}
 				}
 			}
+			
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-			if (UseGravity && _velocity.y < _terminalVelocity)
+			if (UseGravity == true && _velocity.y < _terminalVelocity )
 			{
+				Debug.Log("usegra");
+				Debug.Log(UseGravity);
 				_velocity.y += Gravity * Time.deltaTime;
 			}
+
 		}
 
 		/// <summary>
@@ -373,5 +609,10 @@ namespace DiasGames.Components
 
 			return relative;
         }
+
+        /*bool IMover.Inwater()
+        {
+			return Inwater;
+        }*/
     }
 }
