@@ -379,10 +379,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Dias Games/Editor/SetupProjectSettings.cs"
-"Assets/Dias Games/Third Person System/Scripts/Editor/AbilityInspector.cs"
-"Assets/Dias Games/Third Person System/Scripts/Editor/RagdollInspector.cs"
-"Assets/Dias Games/Third Person System/Scripts/Editor/ReadOnlyPropertyDrawer.cs"
-"Assets/Dias Games/Third Person System/Scripts/Editor/SchedulerInspector.cs"
+"Assets/Dias Games/Third Person System/Scriptsaa/Editor/AbilityInspector.cs"
+"Assets/Dias Games/Third Person System/Scriptsaa/Editor/RagdollInspector.cs"
+"Assets/Dias Games/Third Person System/Scriptsaa/Editor/ReadOnlyPropertyDrawer.cs"
+"Assets/Dias Games/Third Person System/Scriptsaa/Editor/SchedulerInspector.cs"
 -langversion:9.0
 
 /deterministic
