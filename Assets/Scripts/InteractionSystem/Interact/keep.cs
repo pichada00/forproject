@@ -21,7 +21,7 @@ public class keep : MonoBehaviour, IInteractable
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
-        Interactor = GameObject.Find("PlayerArmature").GetComponent<Interactor>();
+        Interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
     }
 
     private void Update()
