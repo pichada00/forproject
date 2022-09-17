@@ -25,16 +25,16 @@ namespace DiasGames.Puzzle
         public void StartDrag()
         {
             _block.EnablePhysics();
-            Interactor.Instance.handLeft = true;
-            Interactor.Instance.handRight = true;
+            //Interactor.Instance.handLeft = true;
+            //Interactor.Instance.handRight = true;
             //characterRefCollider.enabled = true;
         }
 
         public void StopDrag()
         {
             _block.DisablePhysics();
-            Interactor.Instance.handLeft = false;
-            Interactor.Instance.handRight = false;
+            //Interactor.Instance.handLeft = false;
+            //Interactor.Instance.handRight = false;
             characterRefCollider.enabled = false;
         }
 

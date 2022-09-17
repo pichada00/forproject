@@ -29861,6 +29861,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2613911260241676249, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: CameraTurnSpeed.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613911260241676249, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: CameraTurnSpeed.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2942379167806048964, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
