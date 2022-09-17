@@ -46,7 +46,7 @@ public class LighterSystem : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(0) && openlamb == true)
                 {
-                    light.range = 5.00f;
+                    light.range = 0.00f;
                     openlamb = false;
                     return;
                 }

@@ -9,112 +9,113 @@ public enum CheckMethod//เอาระยะหรือเข้าพื้�
 }
 public class Showinvisible : MonoBehaviour
 {
-    public Transform player;//ตำแหน่งผูเล่น
-    public CheckMethod checkMethod;//เลือกว่าจะใช้ระยะทางหรือเข้าพื้นที่
-    public float loadRange;//ระยะกำหนดระหว่างตัวที่จะโชว์กับผู้เล่น
+    public Transform player;
+    public CheckMethod checkMethod;
+    public float loadRange;
 
-    private bool isLoaded;//เช็คว่าโหลดไหม
-    private bool shouldLoad;//ควรโหลดไหม
+    [SerializeField]private bool isLoaded;
+    [SerializeField] private bool shouldLoad;
 
     //add
-    public MeshRenderer renderers;//ไปเอาโค้ดเรนเดอร์เรอร์
-    public LighterSystem lighter;//ไปเอาโค้ดLighter
-    public Collider collider;//ไปเอาโค้ดCollider
+    public MeshRenderer renderers;
+    public LighterSystem lighter;
+    public Collider collider;
 
-    public float t = 5.0f;//เวลา
-    public float speed = .5f;//ความเร็ว
+    public float t = 10.0f;
+    public float speed = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("PlayerArmature").transform;//ไปget ตำแหน่งผู้เล่น        
-        renderers = GetComponent<MeshRenderer>();//ไปget meshrenderของตัวที่ใส่
-        lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();//ไปget โค้ดที่ Tag Lamp 
-        collider = GetComponent<Collider>();//ไปget Colliderของตัวที่ใส่
+        
                                             
     }
 
+    private void Awake()
+    {
+        player = GameObject.Find("CS Character Controller").transform;        
+        renderers = this.gameObject.GetComponent<MeshRenderer>();
+        collider = this.gameObject.GetComponent<Collider>();
+        lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+    }
     // Update is called once per frame
     void Update()
     {
         //Material[] mats = renderers.materials;
 
-        if (lighter.openlamb == true)//ถ้าเปิดตะเกียง
+        if (lighter.openlamb == true)
         {
             Debug.Log(Mathf.Sin(t * speed));
-            collider.enabled = true;//เปิดcollider
-            if (checkMethod == CheckMethod.Distance)//เลือกระยะทาง
+            collider.enabled = true;
+            if (checkMethod == CheckMethod.Distance)
             {
-                DistanceCheck();//เช็คระยะห่าง
+                DistanceCheck();
             }
-            else if (checkMethod == CheckMethod.Trigger)//เลือกพื้นที่
+            else if (checkMethod == CheckMethod.Trigger)
             {
-                TriggerCheck();//เช็คว่าเข้าไหม
+                TriggerCheck();
             }
         }
-        else//ถ้าปิดตะเกียง
+        else
         {
-            collider.enabled = false;//ปิดcollider
+            collider.enabled = false;
         }
         
     }
 
     
 
-    void DistanceCheck()//เช็คระยะห่าง
+    void DistanceCheck()
     {
         //Checking if the player is within the range
-        if (Vector3.Distance(player.position, transform.position) < loadRange)//ระยะห่างผู้เล่นน้อยหว่าจุดที่กำหนดไหม
+        if (Vector3.Distance(player.position, transform.position) < loadRange)
         {
-            if (!isLoaded)//ถ้าเท่ากับจริงให้เข้าเงื่อนไข
+            if (!isLoaded)
             {
-                LoadScene();//โหลก
+                LoadScene();
             }
         }
-        else
+        else 
         {
-            UnLoadScene();//ไม่โหลด
+            UnLoadScene();
         }
     }
-    void TriggerCheck()//เช็คว่าเข้าไหม
+    void TriggerCheck()
     {
         //shouldLoad is set from the Trigger methods
-        if (shouldLoad)//ควรโหลด
+        if (shouldLoad)
         {
-            LoadScene();//โหลก
+            LoadScene();
         }
         else
         {
-            UnLoadScene();//ไม่โหลด
+            UnLoadScene();
         }
     }
     void LoadScene()
     {
-        Material[] mats = renderers.materials;//ประกาศค่า mats
-        renderers.gameObject.SetActive(true);//เปิดกันไว้ก่อน        
-        mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));//Setตัวสลาย
-        t += Time.deltaTime;//เวลาเพิ่มขึ้น
-        if(Mathf.Sin(t*speed) <= 0)//ถ้าคำนวณน้อยกว่า0
-        { mats[0].SetFloat("_Cutoff", 0); }//Setเป็น0        
-        renderers.material = mats[0];//***สำคัญ ต้องประกาศว่า  renderers.material = mats[0]***ไม่งั้นไม่ขึ้น      
-        isLoaded = true;        
-    }
-
-    void UnLoadScene()
-    {
-        if (isLoaded)
+        if (shouldLoad)
         {
+            Debug.Log(Mathf.Sin(t * speed));
             Material[] mats = renderers.materials;
             renderers.gameObject.SetActive(true);
             mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
             t += Time.deltaTime;
-            if (Mathf.Sin(t * speed) >= 0.9f) { mats[0].SetFloat("_Cutoff", 1); }
+            if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("_Cutoff", 0); }
             renderers.material = mats[0];
-            isLoaded = false;
-        }
+            isLoaded = true;
+        } 
     }
 
-    private void OnTriggerEnter(Collider other)//เช็คTrigger
+    void UnLoadScene()
+    {
+        { 
+            
+        }
+            
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -122,11 +123,18 @@ public class Showinvisible : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)//เช็คTrigger
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             shouldLoad = false;
+            /*Material[] mats = renderers.materials;
+        renderers.gameObject.SetActive(true);
+        mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
+        t += Time.deltaTime;
+        if (Mathf.Sin(t * speed) >= 0.9f) { mats[0].SetFloat("_Cutoff", 1); }
+        renderers.material = mats[0];
+        isLoaded = false;*/
         }
     }
 }
