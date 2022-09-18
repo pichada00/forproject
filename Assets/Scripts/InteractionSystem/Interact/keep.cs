@@ -1,4 +1,5 @@
 using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class keep : MonoBehaviour, IInteractable
     [SerializeField]private Transform PickUpPointL = null;
     public Interactor Interactor;
     public bool keeped = false;
+    public bool AIkeeped = false;
     public bool right = false;
     public bool left = false;
 
@@ -43,7 +45,45 @@ public class keep : MonoBehaviour, IInteractable
                 return;
             }
         }
+
+        if(AIkeeped == true)
+        {
+            gameObject.transform.position = PickUpPointL.position;
+            DropFromAI();
+        }
+        
     }
+
+    private void DropFromAI()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && AIkeeped == true)
+        {
+            this.transform.parent = null;
+            Interactor.handRight = false;
+            rb.useGravity = true;
+            collider.enabled = true;
+            AIkeeped = false;
+            Invoke("ChangeBoolPick", 0.1f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("AIFriend"))
+        {
+            PickUpPointL = GameObject.Find("Left_Hand_AI").transform;
+            //interactor.handLeft = true;
+            rb.useGravity = false;
+            collider.enabled = false;
+            this.gameObject.transform.position = PickUpPointL.position;
+            this.transform.parent = GameObject.Find("Left_Hand_AI").transform;
+            //keeped = true;
+            AIkeeped = true;
+            left = true;
+        }
+    }
+
+    
     public string InteractionPrompt => throw new System.NotImplementedException();
 
             

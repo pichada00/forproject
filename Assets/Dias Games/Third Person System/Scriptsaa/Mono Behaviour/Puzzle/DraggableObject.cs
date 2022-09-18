@@ -24,10 +24,22 @@ namespace DiasGames.Puzzle
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
         }
+        public void EnablePhysicsofAI()
+        {
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = false;
+            _rigidbody.velocity = Vector3.zero;
+        }
 
         public virtual void DisablePhysics()
         {
             _rigidbody.isKinematic = true;
+            _rigidbody.velocity = Vector3.zero;
+        }
+        public virtual void DisablePhysicsAI()
+        {
+            _rigidbody.isKinematic = true;
+            _rigidbody.useGravity = true;
             _rigidbody.velocity = Vector3.zero;
         }
     }

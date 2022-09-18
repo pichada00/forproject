@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CheckMethod//เอาระยะหรือเข้าพื้นที่
+public enum CheckMethod
 {
     Distance,
     Trigger
