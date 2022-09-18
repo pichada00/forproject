@@ -21,7 +21,7 @@ public class Showinvisible : MonoBehaviour
     public LighterSystem lighter;
     public Collider collider;
 
-    public float t = 10.0f;
+    public float t = 3f;
     public float speed = 0.5f;
 
     // Start is called before the first frame update
@@ -98,7 +98,7 @@ public class Showinvisible : MonoBehaviour
         {
             Debug.Log(Mathf.Sin(t * speed));
             Material[] mats = renderers.materials;
-            renderers.gameObject.SetActive(true);
+            //renderers.gameObject.SetActive(true);
             mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
             t += Time.deltaTime;
             if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("_Cutoff", 0); }
@@ -108,11 +108,27 @@ public class Showinvisible : MonoBehaviour
     }
 
     void UnLoadScene()
-    {
-        { 
-            
+    {     
+        if(shouldLoad == false)
+        {
+            Material[] mats = renderers.materials;
+            mats[0].SetFloat("_Cutoff", 1);
+            renderers.material = mats[0];
         }
-            
+        /*{
+            Material[] mats = renderers.materials;
+        
+            mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
+            t += Time.deltaTime;
+            if (Mathf.Sin(t * speed) >= 0.9f) 
+            {
+                mats[0].SetFloat("_Cutoff", 1);
+                renderers.gameObject.SetActive(false);
+            }
+            renderers.material = mats[0];
+            isLoaded = false;
+        }*/
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -128,13 +144,7 @@ public class Showinvisible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             shouldLoad = false;
-            /*Material[] mats = renderers.materials;
-        renderers.gameObject.SetActive(true);
-        mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
-        t += Time.deltaTime;
-        if (Mathf.Sin(t * speed) >= 0.9f) { mats[0].SetFloat("_Cutoff", 1); }
-        renderers.material = mats[0];
-        isLoaded = false;*/
+            
         }
     }
 }
