@@ -7368,6 +7368,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.7874227
       objectReference: {fileID: 0}
+    - target: {fileID: 4324628128026115639, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: healthDrain
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324628128026115639, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: healthRegen
+      value: 9.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5371843125450917501, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_Enabled
       value: 0

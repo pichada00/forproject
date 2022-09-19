@@ -6,18 +6,25 @@ namespace DiasGames.Components
 {
     public class Health : MonoBehaviour, IDamage
     {
-        [SerializeField] private int MaxHealthPoints = 100;
+        [SerializeField] private float MaxHealthPoints = 100;
         [Space]
         [SerializeField] private UnityEvent OnCharacterDeath;
 
-        // internal vars
-        private int _currentHP = 100;
+        //add
+        [Range(0, 50)] [SerializeField] private float healthDrain = 0.5f;
+        [Range(0, 50)] [SerializeField] private float healthRegen = 0.5f;
 
-        public int CurrentHP { get { return _currentHP; } }
-        public int MaxHP { get { return MaxHealthPoints; } }
+        // internal vars
+        [SerializeField] private float _currentHP = 100;
+
+        public float CurrentHP { get { return _currentHP; } }
+        public float MaxHP { get { return MaxHealthPoints; } }
 
         public event Action OnHealthChanged;
         public event Action OnDead;
+
+        //add
+        public LighterSystem lighter;
 
         private void Start()
         {
@@ -25,9 +32,29 @@ namespace DiasGames.Components
             OnHealthChanged?.Invoke();
         }
 
+        private void Awake()
+        {
+            
+            lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+        }
+
+        //add
+        private void Update()
+        {
+            OverUesLamp();
+            if (_currentHP <= 0)
+            {
+                _currentHP = 0;
+                OnDead?.Invoke();
+                OnCharacterDeath.Invoke();
+            }
+        }
+
         public void Damage(int damagePoints)
         {
             _currentHP -= damagePoints;
+
+            
 
             if (_currentHP <= 0)
             {
@@ -36,6 +63,22 @@ namespace DiasGames.Components
                 OnCharacterDeath.Invoke();
             }
 
+            OnHealthChanged?.Invoke();
+        }
+        //add
+        public void OverUesLamp()
+        {
+            if (lighter.openlamb == true)
+            {
+                _currentHP -= healthDrain * Time.deltaTime;
+                
+            }
+            else if(_currentHP <= MaxHealthPoints - 0.01)
+            {
+                _currentHP += healthRegen * Time.deltaTime;
+
+            }
+            
             OnHealthChanged?.Invoke();
         }
 
