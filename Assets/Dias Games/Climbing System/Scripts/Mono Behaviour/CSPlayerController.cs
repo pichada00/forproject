@@ -145,6 +145,7 @@ namespace DiasGames.Controller
         private void UpdateCharacterActions()
         {
             _scheduler.characterActions.move = Move;
+            _scheduler.characterActions.sprint = Sprint;
             _scheduler.characterActions.jump = Jump;
             _scheduler.characterActions.walk = Walk;
             _scheduler.characterActions.roll = Roll;
@@ -164,6 +165,7 @@ namespace DiasGames.Controller
         public Vector2 Look = Vector2.zero;
         public bool Jump = false;
         public bool Walk = false;
+        public bool Sprint = false;//
         public bool Roll = false;
         public bool Crouch = false;
         public bool Interact = false;
@@ -189,6 +191,7 @@ namespace DiasGames.Controller
             Look.y = Input.GetAxis("Mouse Y");
 
             Walk = Input.GetButton("Walk");
+            Sprint = Input.GetButton("Sprint");//
             Jump = Input.GetButtonDown("Jump");
             Roll = Input.GetButtonDown("Roll");
             Crouch = Input.GetButton("Crouch");
@@ -210,7 +213,7 @@ namespace DiasGames.Controller
         public void OnMove(Vector2 value)
         {
             Move = value;
-        }
+        }        
         public void OnLook(Vector2 value)
         {
             Look = value;
@@ -222,6 +225,10 @@ namespace DiasGames.Controller
         public void OnWalk(bool value)
         {
             Walk = value;
+        }
+        public void OnSprint(bool value)
+        {
+            Sprint = value;
         }
         public void OnRoll(bool value)
         {
@@ -269,6 +276,10 @@ namespace DiasGames.Controller
         private void OnWalk(InputValue value)
         {
             OnWalk(value.isPressed);
+        }
+        private void OnSprint(InputValue value)
+        {
+            OnSprint(value.isPressed);
         }
 
         private void OnRoll(InputValue value)

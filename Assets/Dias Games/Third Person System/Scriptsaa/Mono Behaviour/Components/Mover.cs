@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DiasGames.Components;
 
 namespace DiasGames.Components
 {
@@ -12,6 +13,7 @@ namespace DiasGames.Components
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 		public bool _useCameraOrientation = true;
+
 
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -28,6 +30,9 @@ namespace DiasGames.Components
 		[SerializeField] private bool UseGravity = true;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		[SerializeField] private float Gravity = -15.0f;
+
+		[Header("Run")]
+		public bool isRun =false;
 
 		[Header("Swim")]
 		float submergence;
@@ -64,6 +69,9 @@ namespace DiasGames.Components
 		private float _terminalVelocity = 53.0f;
 		private float _initialCapsuleHeight = 2f;
 		private float _initialCapsuleRadius = 0.28f;
+		private float walkspeed = 2.65f;
+		private float sprintspeed = 5.26f;
+
 
 		// variables for root motion
 		private bool _useRootMotion = false;
@@ -77,6 +85,7 @@ namespace DiasGames.Components
 		private Animator _animator;
 		private CharacterController _controller;
 		private GameObject _mainCamera;
+		
 
 		private bool _hasAnimator;
 
@@ -110,7 +119,15 @@ namespace DiasGames.Components
 			GravityControl();
 			GroundedCheck();
 
-			
+            if (Input.GetButtonDown("Sprint"))
+			{
+				isRun = true;
+            }
+			else if (Input.GetButtonUp("Sprint"))
+            {
+				isRun = false;
+			}
+			Debug.Log(isRun);
 			if (Inwater)
             {
 				UpDown = new Vector3();
@@ -355,9 +372,13 @@ namespace DiasGames.Components
             {
 				Move(moveInput, speedSwim, _mainCamera.transform.rotation, rotateCharacter);
 			}
+			else if (isRun)
+            {
+				Move(moveInput, sprintspeed, _mainCamera.transform.rotation, rotateCharacter);
+			}
             else
             {
-				Move(moveInput, targetSpeed, _mainCamera.transform.rotation, rotateCharacter);
+				Move(moveInput, walkspeed, _mainCamera.transform.rotation, rotateCharacter);
 			}
 			
 		}
@@ -365,6 +386,8 @@ namespace DiasGames.Components
 		public void Move(Vector2 moveInput, float targetSpeed, Quaternion cameraRotation, bool rotateCharacter = true)
         {
 			targetSpeed = Inwater ? speedSwim : targetSpeed;
+
+			Debug.Log(targetSpeed);
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
 			if (moveInput == Vector2.zero) targetSpeed = 0.0f;
@@ -377,7 +400,6 @@ namespace DiasGames.Components
 
 			if (inputMagnitude > 1)
 				inputMagnitude = 1f;
-
 			// accelerate or decelerate to target speed
 			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
 			{
@@ -392,6 +414,7 @@ namespace DiasGames.Components
 			{
 				_speed = targetSpeed * inputMagnitude;
 			}
+			
 			_animationBlend = Mathf.Lerp(_animationBlend, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
 
 			// normalise input direction
@@ -458,8 +481,8 @@ namespace DiasGames.Components
 		private void GravityControl()
 		{
 			Gravity =  Inwater? Gravityinwater : -15f;
-			Debug.Log(Gravity);
-
+			//Debug.Log(Gravity);
+			
             /*if (InWater)
 			{
 				velocity *= 1f - waterDrag * submergence * Time.deltaTime;
@@ -472,7 +495,7 @@ namespace DiasGames.Components
             {
 				if (_controller.isGrounded)
 				{
-					Debug.Log("con.gro");
+					//Debug.Log("con.gro");
 					// stop our velocity dropping infinitely when grounded
 					if (_velocity.y < 2.0f)
 					{
@@ -485,8 +508,8 @@ namespace DiasGames.Components
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
 			if (UseGravity == true && _velocity.y < _terminalVelocity )
 			{
-				Debug.Log("usegra");
-				Debug.Log(UseGravity);
+				//Debug.Log("usegra");
+				//Debug.Log(UseGravity);
 				_velocity.y += Gravity * Time.deltaTime;
 			}
 
@@ -608,6 +631,11 @@ namespace DiasGames.Components
 				Vector3.Scale(_mainCamera.transform.forward, new Vector3(1, 0, 1)) * input.y;
 
 			return relative;
+        }
+
+        bool IMover.isRun()
+        {
+			return isRun;
         }
 
         /*bool IMover.Inwater()

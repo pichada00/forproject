@@ -206,4 +206,9 @@ public class AIControl : MonoBehaviour, ICapsule, IMover
     {
         throw new System.NotImplementedException();
     }
+
+    public bool isRun()
+    {
+        throw new System.NotImplementedException();
+    }
 }

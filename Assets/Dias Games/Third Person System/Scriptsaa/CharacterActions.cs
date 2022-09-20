@@ -8,6 +8,7 @@ namespace DiasGames.Abilities
 
         public bool jump = false;
         public bool walk = false;
+        public bool sprint = false;
         public bool roll = false;
         public bool crouch = false;
         public bool drop = false;

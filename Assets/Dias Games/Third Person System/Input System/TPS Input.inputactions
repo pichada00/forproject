@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "Crouch",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "ef669f04-b964-432a-b9e6-4e6dade5b104",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -90,6 +90,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "27e45f7f-284b-4494-9acc-6524efa812e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "bff6de90-1ed7-4c43-95fb-e4f8014aa8d0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -254,7 +263,7 @@
                 {
                     "name": "",
                     "id": "8edb77f8-f5e9-4a2c-b6c1-b50ab786d301",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
@@ -303,6 +312,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ff69688-46ca-45de-8475-00291151b053",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

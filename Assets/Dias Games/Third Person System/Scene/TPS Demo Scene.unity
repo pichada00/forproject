@@ -4472,6 +4472,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &825073440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8583427911084253601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+  m_PrefabInstance: {fileID: 1225572359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &825073446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825073440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f420cf917408b40b4413325d623adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityPriority: 1
+  obstaclesMask:
+    serializedVersion: 2
+    m_Bits: 1
+  speed: 5
 --- !u!1 &857340432
 GameObject:
   m_ObjectHideFlags: 0
@@ -7387,6 +7409,10 @@ PrefabInstance:
     - target: {fileID: 8135879614472023987, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 5.787424
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583427911084253594, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: SpeedChangeRate
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9191686232244974987, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_Enabled

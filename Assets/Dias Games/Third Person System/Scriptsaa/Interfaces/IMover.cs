@@ -21,6 +21,8 @@ namespace DiasGames.Components
 
         bool IsGrounded();
 
+        bool isRun();
+
         //bool Inwater();
         Collider GetGroundCollider();
         void ApplyRootMotion(Vector3 multiplier, bool applyRotation = false);
