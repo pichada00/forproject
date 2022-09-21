@@ -21,11 +21,15 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private Image staminaProgressUI = null;
 
     public Mover mover;
+    
+    public LighterSystem lighter;
+
+    private float useLampRun; 
 
     private void Start()
     {
         mover = GetComponent<Mover>();
-        
+        useLampRun = staminaDrain * 1f;
     }
 
     private void Update()
@@ -52,6 +56,12 @@ public class StaminaController : MonoBehaviour
         {
             weAreSprinting = true;
             playerStamina -= staminaDrain * Time.deltaTime;
+
+            if (lighter.openlamb == true)
+            {
+                playerStamina -= useLampRun * Time.deltaTime;
+            }
+
             UpdateStamina();
 
 

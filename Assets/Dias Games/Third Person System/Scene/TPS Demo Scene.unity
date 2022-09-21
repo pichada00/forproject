@@ -7307,12 +7307,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 825073470}
     - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: lighter
+      value: 
+      objectReference: {fileID: 2024390920}
+    - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: staminaDrain
-      value: 19.1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: staminaRegen
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: normalRunSpeed
