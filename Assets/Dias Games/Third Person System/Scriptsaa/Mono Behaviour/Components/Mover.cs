@@ -99,11 +99,14 @@ namespace DiasGames.Components
 		Vector3 UpDown;
 		float acceleration, speed;
 
+		//add Stamina
+		[HideInInspector] public StaminaController _staminaController;
+
 		private void Awake()
         {
+			_staminaController = GetComponent<StaminaController>();
 			_mainCamera = Camera.main.gameObject;
 			_controller = GetComponent<CharacterController>();
-
 			_initialCapsuleHeight = _controller.height;
 			_initialCapsuleRadius = _controller.radius;
 		}
@@ -119,7 +122,10 @@ namespace DiasGames.Components
 			GravityControl();
 			GroundedCheck();
 
-            if (Input.GetButtonDown("Sprint"))
+            
+
+
+			if (Input.GetButtonDown("Sprint"))
 			{
 				isRun = true;
             }
@@ -158,6 +164,11 @@ namespace DiasGames.Components
 			}
 
 			_controller.Move(_velocity * Time.deltaTime);
+
+            if (!isRun)
+            {
+				_staminaController.weAreSprinting = false;
+            }
 		}
 
 		private void FixedUpdate()
@@ -375,12 +386,12 @@ namespace DiasGames.Components
 			else if (isRun)
             {
 				Move(moveInput, sprintspeed, _mainCamera.transform.rotation, rotateCharacter);
+				_staminaController.Sprinting();
 			}
-            else
+            else 
             {
 				Move(moveInput, walkspeed, _mainCamera.transform.rotation, rotateCharacter);
 			}
-			
 		}
 
 		public void Move(Vector2 moveInput, float targetSpeed, Quaternion cameraRotation, bool rotateCharacter = true)
@@ -458,7 +469,7 @@ namespace DiasGames.Components
 				}
 			}
 
-
+			
 		}
 
 
