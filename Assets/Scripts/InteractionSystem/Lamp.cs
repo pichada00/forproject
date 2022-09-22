@@ -10,6 +10,8 @@ public class Lamp : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => prompt;
 
+    public interactsomething interactsomething => throw new System.NotImplementedException();
+
     private Transform _pickUpPoint;
     private Transform _player;
     //[SerializeField]private GameObject lamb;

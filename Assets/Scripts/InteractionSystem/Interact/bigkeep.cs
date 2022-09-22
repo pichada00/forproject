@@ -12,6 +12,7 @@ public class bigkeep : MonoBehaviour, IInteractable
     public Interactor interactor;
 
     [SerializeField] private Transform hip = null;
+    public interactsomething interactsomethingonITEM;
     public bool keeped = false;
     public bool right = false;
     public bool left = false;
@@ -27,6 +28,8 @@ public class bigkeep : MonoBehaviour, IInteractable
         Drop();
     }
     public string InteractionPrompt => throw new System.NotImplementedException();
+
+    public interactsomething interactsomething => interactsomethingonITEM;
 
     public bool Interact(Interactor interactor)
     {

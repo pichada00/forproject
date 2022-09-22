@@ -13,6 +13,7 @@ public class keep : MonoBehaviour, IInteractable
 
     [SerializeField]private Transform PickUpPointR = null;
     [SerializeField]private Transform PickUpPointL = null;
+    public interactsomething interactsomethingonITEM;
     public Interactor Interactor;
     public bool keeped = false;
     public bool AIkeeped = false;
@@ -86,7 +87,8 @@ public class keep : MonoBehaviour, IInteractable
     
     public string InteractionPrompt => throw new System.NotImplementedException();
 
-            
+    interactsomething IInteractable.interactsomething => interactsomethingonITEM;
+
     public bool Interact(Interactor interactor)
     {
         //itemIsPickedR = true;

@@ -16,7 +16,7 @@ public class riseAI : MonoBehaviour
 
     public bool AIclimb = false;
     public float currentpointy;
-    public float range = 5.0f;
+    public float range = 20.0f;
 
     private void Awake()
     {
@@ -69,8 +69,11 @@ public class riseAI : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && AIclimb == false)
         {
-            if(Vector3.Distance(AIOnly.transform.position,transformbottom.position) <= range)
+            Debug.Log("movemfalse");
+            Debug.Log(Vector3.Distance(AIOnly.transform.position, transformbottom.position));
+            if (Vector3.Distance(AIOnly.transform.position,transformbottom.position) <= range)
             {
+                Debug.Log("movemVector3");
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Debug.Log("movem");

@@ -8,7 +8,9 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private string _prompt;
 
     public string InteractionPrompt => _prompt;
-    
+
+    public interactsomething interactsomething => throw new System.NotImplementedException();
+
     public bool Interact(Interactor interactor)
     {
         Debug.Log("Opening door!");

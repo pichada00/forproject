@@ -32,12 +32,35 @@ using UnityEngine.InputSystem;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_interactionPoint.position, _interactionPointRadius);
         }
-        private void LateUpdate()
+    private void LateUpdate()
+    {
+
+        /*InteractL();
+        InteractR();
+        InteractBoth();*/
+        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _interactableMask);
+        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _somethingbigMask);
+        if (_numFound > 0)
         {
-            InteractR();
-            InteractL();
-            InteractBoth();
+            var interactable = _colliders[0].GetComponent<IInteractable>();
+            switch (interactable.interactsomething)
+            {
+                case interactsomething.handright:
+                    InteractR();
+                    InteractL();
+                    break;
+                case interactsomething.handleft:
+                    InteractL();
+                    InteractR();
+                    break;
+                case interactsomething.handboth:
+                    InteractBoth();
+                    break;
+            }
         }
+    }
 
         private void InteractBoth()
         {

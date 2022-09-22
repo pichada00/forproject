@@ -10,6 +10,8 @@ public class openClock : MonoBehaviour, IInteractable
     public GameObject lamb;
     public string InteractionPrompt => throw new System.NotImplementedException();
 
+    public interactsomething interactsomething => throw new System.NotImplementedException();
+
     public bool Interact(Interactor interactor)
     {
         throw new System.NotImplementedException();
