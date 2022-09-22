@@ -9778,7 +9778,7 @@ MonoBehaviour:
   AIrb: {fileID: 0}
   AIclimb: 0
   currentpointy: 0
-  range: 5
+  range: 20
 --- !u!65 &1644227833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9958,6 +9958,7 @@ MonoBehaviour:
   gameObject: {fileID: 1655963235}
   PickUpPointR: {fileID: 63678579}
   PickUpPointL: {fileID: 120164029}
+  interactsomethingonITEM: 0
   Interactor: {fileID: 0}
   keeped: 0
   AIkeeped: 0
