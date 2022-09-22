@@ -11,6 +11,7 @@ public class maskpullAI : MonoBehaviour
     public Transform AI;
     public NavMeshAgent AIOnly;
     public Rigidbody AIrb;
+    public float range = 5.0f;
 
     private void Awake()
     {
@@ -22,13 +23,17 @@ public class maskpullAI : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
+            if (Vector3.Distance(AIOnly.transform.position,transformBottom.position) <=range)
             {
-                //playanimation
-                AIrb.isKinematic = false;
-                AIOnly.SetDestination(transformBottom.position);
-                Invoke("teleporttoTop", 3.0f);
+                if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
+                {
+                    //playanimation
+                    AIrb.isKinematic = false;
+                    AIOnly.SetDestination(transformBottom.position);
+                    Invoke("teleporttoTop", 3.0f);
+                }
             }
+            
         }
     }
 

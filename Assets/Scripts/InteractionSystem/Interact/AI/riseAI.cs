@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class riseAI : MonoBehaviour
 {
     public Transform transformbackplayer;
+    public Transform transformbottom;
     public Transform player;
     public Transform transformTop;
 
@@ -15,10 +16,12 @@ public class riseAI : MonoBehaviour
 
     public bool AIclimb = false;
     public float currentpointy;
+    public float range = 5.0f;
 
     private void Awake()
     {
         transformbackplayer = GameObject.Find("pointtoclimbofAI").GetComponent<Transform>();
+        transformbottom = GameObject.Find("bottom").GetComponent<Transform>();
         player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
         AIOnly = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
@@ -66,15 +69,18 @@ public class riseAI : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && AIclimb == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if(Vector3.Distance(AIOnly.transform.position,transformbottom.position) <= range)
             {
-                Debug.Log("movem");
-                //playanimation
-                AIrb.isKinematic = false;
-                AIrb.useGravity = false;
-                AIclimb = true;
-                //AIOnly.Warp(transformbackplayer.position);
-            }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Debug.Log("movem");
+                    //playanimation
+                    AIrb.isKinematic = false;
+                    AIrb.useGravity = false;
+                    AIclimb = true;
+                    //AIOnly.Warp(transformbackplayer.position);
+                }
+            }            
         }
     }
 
