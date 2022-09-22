@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-
     public class Interactor : MonoBehaviour
     {
         public static Interactor Instance;
