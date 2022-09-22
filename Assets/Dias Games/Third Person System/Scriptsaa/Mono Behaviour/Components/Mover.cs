@@ -133,7 +133,7 @@ namespace DiasGames.Components
             {
 				isRun = false;
 			}
-			Debug.Log(isRun);
+			//Debug.Log(isRun);
 			if (Inwater)
             {
 				UpDown = new Vector3();
@@ -398,7 +398,7 @@ namespace DiasGames.Components
         {
 			targetSpeed = Inwater ? speedSwim : targetSpeed;
 
-			Debug.Log(targetSpeed);
+			//Debug.Log(targetSpeed);
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
 			if (moveInput == Vector2.zero) targetSpeed = 0.0f;
