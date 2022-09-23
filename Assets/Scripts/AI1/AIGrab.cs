@@ -15,12 +15,20 @@ namespace DiasGames.Puzzle
         public Transform Target { get { return targetCharacterTransform; } }
 
         private DragAI _block = null;
-
+        public bool grabAI = false;
         private void Awake()
         {
             _block = GetComponentInParent<DragAI>();
             characterRefCollider.enabled = false;
             //interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
+        }
+
+        private void FixedUpdate()
+        {
+            if(grabAI == true)
+            {
+
+            }
         }
         public Transform GetLeftHandTarget()
         {
@@ -45,12 +53,13 @@ namespace DiasGames.Puzzle
         public void StartDrag()
         {
             _block.EnablePhysicsofAI();
-            
+            grabAI = true;
             //characterRefCollider.enabled = true;
         }
 
         public void StopDrag()
         {
+            grabAI = false;
             _block.DisablePhysicsAI();
             characterRefCollider.enabled = false;
         }

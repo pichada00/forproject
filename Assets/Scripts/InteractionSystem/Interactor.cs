@@ -12,6 +12,7 @@ using UnityEngine.InputSystem;
         [SerializeField] private float _interactionPointRadius = 0.5f;
         [SerializeField] private LayerMask _interactableMask;
         [SerializeField] private LayerMask _somethingbigMask;
+        [SerializeField] private LayerMask _AIMask;
         public int _numFound;
         private readonly Collider[] _colliders = new Collider[3];
 
@@ -36,25 +37,40 @@ using UnityEngine.InputSystem;
         /*InteractL();
         InteractR();
         InteractBoth();*/
-        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+        if(Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask ) >= 1)
+        {
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                                _interactableMask);
-        /*_numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                               _somethingbigMask);*/
+        }else if( Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _somethingbigMask) >= 1)
+        {
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _somethingbigMask);
+        }else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                              _AIMask) >= 1)
+        {
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius + 1.0f, _colliders,
+                               _AIMask);
+        }
+
         if (_numFound > 0)
         {
             var interactable = _colliders[0].GetComponent<IInteractable>();
             switch (interactable.interactsomething)
             {
                 case interactsomething.handright:
-                    InteractR();
+                    TypeInteract(1);
                     InteractL();
                     break;
                 case interactsomething.handleft:
                     InteractL();
-                    InteractR();
+                    TypeInteract(1);
                     break;
                 case interactsomething.handboth:
                     InteractBoth();
+                    break;
+                case interactsomething.mouseright:
+                    TypeInteract(2);
                     break;
             }
         }
@@ -94,38 +110,51 @@ using UnityEngine.InputSystem;
             //ThirdPersonController.Instance._input.InteractR = false;
         }
 
-        private void InteractR()
+        private void TypeInteract(int i)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (handRight == false)
+        switch (i)
+        {
+            case 1:
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("interact");
-                    _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                               _interactableMask);
-                    if (_numFound > 0)
-                    {
-                        var interactable = _colliders[0].GetComponent<IInteractable>();
-                        if (interactable != null)
-                        {
-                            interactable.InteractR(this);
-                            handRight = true;
-                            return;
-                        }
-
-                    }
+                    InteractR(_interactableMask);
                 }
-                else if (handRight == true)
+                break;
+            case 2:
+                if (Input.GetMouseButtonDown(1))
                 {
-                    Debug.Log("full hand");
+                    InteractR(_AIMask);
+                }
+                break;
+        }
+            
+            //ThirdPersonController.Instance._input.InteractR = false;
+        }
+    private void InteractR(LayerMask mask)
+    {
+        if (handRight == false)
+        {
+            Debug.Log("interact");
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                       mask);
+            if (_numFound > 0)
+            {
+                var interactable = _colliders[0].GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactable.InteractR(this);
+                    handRight = true;
                     return;
                 }
 
-
-
             }
-            //ThirdPersonController.Instance._input.InteractR = false;
         }
+        else if (handRight == true)
+        {
+            Debug.Log("full hand");
+            return;
+        }
+    }
         private void InteractL()
         {
             if (Input.GetKeyDown(KeyCode.Q))

@@ -5,7 +5,7 @@ using DiasGames.IK;
 
 namespace DiasGames.Abilities
 {
-    public class PushAbility : AbstractAbility
+    public class PushAIAbility : AbstractAbility
     {
         [SerializeField] private float speed = 2.65f;
         [SerializeField] private float runspeed = 5.3f;
@@ -118,7 +118,8 @@ namespace DiasGames.Abilities
             if (Input.GetButtonDown("Sprint"))
             {
                 speed = runspeed;
-            }else if (Input.GetButtonUp("Sprint"))
+            }
+            else if (Input.GetButtonUp("Sprint"))
             {
                 speed = runspeed / 2;
             }

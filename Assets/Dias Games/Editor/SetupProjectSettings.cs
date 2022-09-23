@@ -122,7 +122,7 @@ namespace DiasGames.ThirdPersonSystem
             AddAxis(new InputAxis() { name = "Crouch", positiveButton = "c" });
             AddAxis(new InputAxis() { name = "Crawl", positiveButton = "q" });
             AddAxis(new InputAxis() { name = "Jump", positiveButton = "space" });
-            AddAxis(new InputAxis() { name = "Zoom", positiveButton = "mouse 1" });
+            AddAxis(new InputAxis() { name = "Zoom", positiveButton = "mouse 2" });
             AddAxis(new InputAxis() { name = "Drop", positiveButton = "x" });
             AddAxis(new InputAxis() { name = "Toggle", positiveButton = "t" });
             AddAxis(new InputAxis() { name = "Switch", axis = 3});
