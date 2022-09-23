@@ -40,8 +40,8 @@ using UnityEngine.InputSystem;
         InteractBoth();*/
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                                _interactableMask);
-        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                               _somethingbigMask);
+        /*_numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _somethingbigMask);*/
         if (_numFound > 0)
         {
             var interactable = _colliders[0].GetComponent<IInteractable>();
