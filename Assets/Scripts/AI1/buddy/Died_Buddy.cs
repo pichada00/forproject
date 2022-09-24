@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
-public class Died_leech : State_leech
+public class Died_Buddy : State_Buddy
 { 
-    public Died_leech(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player, TextMeshProUGUI txtStatus, Animator animator) : base(npc, agent, player,txtStatus,animator)
+    public Died_Buddy(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player,Animator animator,bool aifollow) : base(npc, agent, player,animator,aifollow)
     {
         name = StateStatus.Died;
         agent.speed = 12;

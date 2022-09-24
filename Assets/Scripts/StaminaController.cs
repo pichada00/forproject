@@ -12,6 +12,7 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private float maxStamina = 100.0f;
     public bool hasRegenerated = true;
     public bool weAreSprinting = false;
+    public bool weAreJumping = false;
 
     [Header("Stamina Regen Parameters")]
     [Range(0, 50)] [SerializeField] private float staminaDrain = 0.5f;

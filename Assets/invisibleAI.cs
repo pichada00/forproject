@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class invisibleAI : MonoBehaviour
 {
     public SkinnedMeshRenderer renderers;
+    public NavMeshAgent AITraansform;
+    public Transform PointbehindPlayer;
     public LighterSystem lighter;
     public Collider collider;
+    public AI_Buddy aI;
     float currentCutoff = 0f;
 
     private void Awake()
@@ -14,6 +18,9 @@ public class invisibleAI : MonoBehaviour
         //player = GameObject.Find("CS Character Controller").transform;
         renderers = this.gameObject.GetComponent<SkinnedMeshRenderer>();
         collider = this.gameObject.GetComponent<Collider>();
+        AITraansform = GameObject.Find("AI").GetComponent<NavMeshAgent>();
+        aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
+        PointbehindPlayer = GameObject.Find("aiwalkto").GetComponent<Transform>();
         lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
     }
     // Start is called before the first frame update
@@ -36,6 +43,8 @@ public class invisibleAI : MonoBehaviour
             renderers.material = mats[2];
             if (currentCutoff >= 1)
             {
+                aI.aifollow = false;
+                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
                 currentCutoff = 1f;
             }
         }
@@ -52,6 +61,11 @@ public class invisibleAI : MonoBehaviour
             {
                 currentCutoff = 0f;
             }
+        }
+
+        if (currentCutoff >= 1)
+        {
+            AITraansform.Warp(PointbehindPlayer.position);
         }
     }
 }
