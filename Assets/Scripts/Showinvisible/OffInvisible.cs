@@ -1,19 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CheckMethod
+public enum CheckMethodOff
 {
     Distance,
     Trigger
 }
-public class Showinvisible : MonoBehaviour
+public class OffInvisible : MonoBehaviour
 {
     public Transform player;
-    public CheckMethod checkMethod;
+    public CheckMethodOff checkMethodOff;
     public float loadRange;
 
-    [SerializeField]private bool isLoaded;
+    [SerializeField] private bool isLoaded;
     [SerializeField] private bool shouldLoad;
 
     //add
@@ -24,34 +24,29 @@ public class Showinvisible : MonoBehaviour
     public float t = 3f;
     public float speed = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-                                            
-    }
+    private MeshCollider meshCollider;
 
     private void Awake()
     {
-        player = GameObject.Find("CS Character Controller").transform;        
+        player = GameObject.Find("CS Character Controller").transform;
         renderers = this.gameObject.GetComponent<MeshRenderer>();
         collider = this.gameObject.GetComponent<Collider>();
         lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+        meshCollider = this.gameObject.GetComponent<MeshCollider>();
     }
+
     // Update is called once per frame
     void Update()
     {
-        //Material[] mats = renderers.materials;
-
         if (lighter.openlamb == true)
         {
             Debug.Log(Mathf.Sin(t * speed));
             collider.enabled = true;
-            if (checkMethod == CheckMethod.Distance)
+            if (checkMethodOff == CheckMethodOff.Distance)
             {
                 DistanceCheck();
             }
-            else if (checkMethod == CheckMethod.Trigger)
+            else if (checkMethodOff == CheckMethodOff.Trigger)
             {
                 TriggerCheck();
             }
@@ -59,15 +54,13 @@ public class Showinvisible : MonoBehaviour
         else
         {
             collider.enabled = false;
+            meshCollider.enabled = true;
+            
         }
-        
     }
-
-    
-
     void DistanceCheck()
     {
-        //Checking if the player is within the range
+        
         if (Vector3.Distance(player.position, transform.position) < loadRange)
         {
             if (!isLoaded)
@@ -75,19 +68,19 @@ public class Showinvisible : MonoBehaviour
                 LoadScene();
             }
         }
-        else 
+        else
         {
             UnLoadScene();
         }
     }
     void TriggerCheck()
     {
-        //shouldLoad is set from the Trigger methods
+        
         if (shouldLoad)
         {
             LoadScene();
         }
-        else
+        else 
         {
             UnLoadScene();
         }
@@ -96,40 +89,26 @@ public class Showinvisible : MonoBehaviour
     {
         if (shouldLoad)
         {
-            Debug.Log(Mathf.Sin(t * speed));
-            Material[] mats = renderers.materials;
-            //renderers.gameObject.SetActive(true);
-            mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
-            t += Time.deltaTime;
-            if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("_Cutoff", 0); }
-            renderers.material = mats[0];
-            isLoaded = true;
-        } 
-    }
-
-    void UnLoadScene()
-    {     
-        if(shouldLoad == false)
-        {
             Material[] mats = renderers.materials;
             mats[0].SetFloat("_Cutoff", 1);
             renderers.material = mats[0];
+            isLoaded = true;
+            meshCollider.enabled = false;
         }
-        /*{
-            Material[] mats = renderers.materials;
-        
-            mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
-            t += Time.deltaTime;
-            if (Mathf.Sin(t * speed) >= 0.9f) 
-            {
-                mats[0].SetFloat("_Cutoff", 1);
-                renderers.gameObject.SetActive(false);
-            }
-            renderers.material = mats[0];
-            isLoaded = false;
-        }*/
-
     }
+    void UnLoadScene()
+    {
+        if (shouldLoad == false)
+        {
+
+            Material[] mats = renderers.materials;
+            mats[0].SetFloat("_Cutoff", 0);
+            renderers.material = mats[0];
+
+
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -144,7 +123,7 @@ public class Showinvisible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             shouldLoad = false;
-            
+
         }
     }
 }
