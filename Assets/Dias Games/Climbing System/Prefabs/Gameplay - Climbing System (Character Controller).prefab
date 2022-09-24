@@ -139,6 +139,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1566816476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566816477}
+  m_Layer: 0
+  m_Name: aiwalkto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566816477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566816476}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8583427911084253600}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115546859
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +471,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3993427023184859594}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f74bbf66dada34b86dcec48922db13, type: 3}
   m_Name: 
@@ -1417,6 +1448,10 @@ PrefabInstance:
       propertyPath: waterMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 4093564670402902991, guid: 2778ca67dd3296f4bbc08b63d7a8bd7e, type: 3}
+      propertyPath: speed
+      value: 2.65
+      objectReference: {fileID: 0}
     - target: {fileID: 5219403757011375511, guid: 2778ca67dd3296f4bbc08b63d7a8bd7e, type: 3}
       propertyPath: mover
       value: 
@@ -1685,13 +1720,32 @@ MonoBehaviour:
     m_Bits: 256
   _AIMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   _numFound: 0
   PickUpPointR: {fileID: 1621400354828278892}
   PickUpPointL: {fileID: 2182796355387518396}
   hips: {fileID: 912890658267062789}
   handRight: 0
   handLeft: 0
+--- !u!114 &1524883533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583427911084253601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d472aa86b2d9c68419e3f094343baeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityPriority: 1
+  speed: 2.65
+  runspeed: 5.3
+  positionSmoothnessTime: 0.12
+  pushAnimationBlendState: Push Blend
+  horizontalFloatParam: Horizontal
+  verticalFloatParam: Vertical
 --- !u!95 &8583427911084253607 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3106411278232196490, guid: 2778ca67dd3296f4bbc08b63d7a8bd7e, type: 3}

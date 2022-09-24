@@ -73,7 +73,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620243882}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d4020a4c620a0943acdce6292a7b5cd, type: 3}
   m_Name: 
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors:
   - m_Transform: {fileID: 246837968}
     m_Style:
@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 9080490266429584746}
   - component: {fileID: 9080490266429584747}
   - component: {fileID: 9080490266429584748}
+  - component: {fileID: 9080490266429584751}
   m_Layer: 9
   m_Name: AI
   m_TagString: AIFriend
@@ -686,8 +687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e77d1d10d92f904db1b2d28da8e45c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   player: {fileID: 0}
   animator: {fileID: 2853792679425485835}
+  stamina: {fileID: 0}
+  aifollow: 0
 --- !u!114 &9080490266429584745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +822,21 @@ MonoBehaviour:
   - {fileID: 813810948202485655}
   - {fileID: 2586873385592765197}
   - {fileID: 5607242930722295812}
+--- !u!114 &9080490266429584751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853792679425485837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2968b85bcb3c074e9008f0f9952b417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactsomethingofAI: 4
+  Interactor: {fileID: 0}
+  aI: {fileID: 0}
 --- !u!1 &3022320629891044660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,8 +1880,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderers: {fileID: 0}
+  AITraansform: {fileID: 0}
+  PointbehindPlayer: {fileID: 0}
   lighter: {fileID: 0}
   collider: {fileID: 2853792679425485834}
+  aI: {fileID: 0}
 --- !u!4 &3895288963294949718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 711846306288770562, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
