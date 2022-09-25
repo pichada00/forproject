@@ -34,7 +34,6 @@ namespace DiasGames.Components
 
         private void Awake()
         {
-            
             lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
         }
 
@@ -53,8 +52,6 @@ namespace DiasGames.Components
         public void Damage(int damagePoints)
         {
             _currentHP -= damagePoints;
-
-            
 
             if (_currentHP <= 0)
             {

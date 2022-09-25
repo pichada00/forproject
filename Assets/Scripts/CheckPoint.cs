@@ -1,33 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DiasGames.Components;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private List<GameObject> checkPoint;
+    [SerializeField] private Vector3 vectorPoint;
 
-    private Vector3 _spawnPoint;
-    private void Start()
-    {
-        _spawnPoint = gameObject.transform.position;
-    }
+    public Health health;
+
+    //private Vector3 _spawnPoint;
 
     private void Update()
     {
-        if (player.transform.position.y < -20f)
+        if (health.CurrentHP <= 0)
         {
-            player.transform.position = _spawnPoint;
+            player.transform.position = vectorPoint;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("CheckPoint"))
+        vectorPoint = player.transform.position;
+        Destroy(other.gameObject);
+        
+        /*if (other.gameObject.CompareTag("CheckPoint"))
         {
-            _spawnPoint = gameObject.transform.position;
+            vectorPoint = player.transform.position;
             Destroy(other.gameObject);
-        }
+        }*/
+        
     }
+
 }

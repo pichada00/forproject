@@ -5,16 +5,32 @@ using UnityEngine;
 
 public class Totem : MonoBehaviour
 {
+    public Transform player;
+    
     [SerializeField] private Transform interactionPoint;
     [SerializeField] private float interactionPointRadius = 0.5f;
     [SerializeField] private LayerMask interactableMask;
     
-    [SerializeField] private Renderer myObject;
+    [SerializeField] private Renderer renderer;
+    [SerializeField] private Collider collider;
+    [SerializeField] private MeshCollider meshCollider;
+
+    [SerializeField] private bool isLoaded;
+    [SerializeField] private bool shouldLoad;
+
+    private void Awake()
+    {
+        player = GameObject.Find("CS Character Controller").transform;
+        renderer = this.gameObject.GetComponent<MeshRenderer>();
+        collider = this.gameObject.GetComponent<Collider>();
+        meshCollider = this.gameObject.GetComponent<MeshCollider>();
+    }
     
+    
+    /*
     private int _numFound;
     private readonly Collider[] _colliders = new Collider[2];
     
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -28,13 +44,13 @@ public class Totem : MonoBehaviour
         {
             
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            myObject.material.color = Color.blue;
+            renderer.material.color = Color.blue;
         }
     }
     
@@ -42,7 +58,7 @@ public class Totem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            myObject.material.color = Color.red;
+            renderer.material.color = Color.red;
         }
     }
 }
