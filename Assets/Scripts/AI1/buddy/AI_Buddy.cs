@@ -30,6 +30,7 @@ public class AI_Buddy: MonoBehaviour
     {        
         agent = this.GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
         stamina = GameObject.Find("CS Character Controller").GetComponent<StaminaController>();
     }
 

@@ -17,7 +17,7 @@ public class invisibleAI : MonoBehaviour
     {
         //player = GameObject.Find("CS Character Controller").transform;
         renderers = this.gameObject.GetComponent<SkinnedMeshRenderer>();
-        collider = this.gameObject.GetComponent<Collider>();
+        //collider = this.gameObject.GetComponent<Collider>();
         AITraansform = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
         PointbehindPlayer = GameObject.Find("aiwalkto").GetComponent<Transform>();

@@ -540,8 +540,6 @@ GameObject:
   - component: {fileID: 9080490266429584740}
   - component: {fileID: 9080490266429584741}
   - component: {fileID: 9080490266429584744}
-  - component: {fileID: 9080490266429584745}
-  - component: {fileID: 9080490266429584746}
   - component: {fileID: 9080490266429584747}
   - component: {fileID: 9080490266429584748}
   - component: {fileID: 9080490266429584751}
@@ -692,33 +690,6 @@ MonoBehaviour:
   animator: {fileID: 2853792679425485835}
   stamina: {fileID: 0}
   aifollow: 0
---- !u!114 &9080490266429584745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2853792679425485837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1905d573f872c4bb5746cc0564f8b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceSource: {fileID: 0}
-  effectsSource: {fileID: 0}
---- !u!114 &9080490266429584746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2853792679425485837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db897934ec62897489bf6f8c453c9ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepAudioSource: {fileID: 0}
 --- !u!114 &9080490266429584747
 MonoBehaviour:
   m_ObjectHideFlags: 0

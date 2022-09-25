@@ -21,10 +21,11 @@ public class riseAI : MonoBehaviour
     private void Awake()
     {
         transformbackplayer = GameObject.Find("pointtoclimbofAI").GetComponent<Transform>();
-        transformbottom = GameObject.Find("bottom").GetComponent<Transform>();
+        transformbottom = transform.GetChild(1);
         player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
         AIOnly = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
+        AI = GameObject.Find("AI").GetComponent<Transform>();
     }
     // Start is called before the first frame update
     void Start()

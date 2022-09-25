@@ -670,6 +670,8 @@ GameObject:
   - component: {fileID: 8337700048351960722}
   - component: {fileID: 8337700048351960723}
   - component: {fileID: 8337700048351960724}
+  - component: {fileID: 4889215398543935848}
+  - component: {fileID: 4889215398543935849}
   m_Layer: 9
   m_Name: monster
   m_TagString: AIFriend
@@ -684,7 +686,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3038701180913960949}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 52.26, y: 0.5000019, z: -16.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -918,6 +920,46 @@ MonoBehaviour:
   - {fileID: 502762082748677231}
   - {fileID: 3339274464331354357}
   - {fileID: 4639264454845807612}
+--- !u!114 &4889215398543935848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038701180913960949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eab6ae4fd208645ae7075287b4bb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  range: 0
+  totem: {fileID: 0}
+  player: {fileID: 0}
+  animator: {fileID: 0}
+  fieldOf: {fileID: 0}
+--- !u!114 &4889215398543935849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038701180913960949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95882911ba67954fbc2df6e908e222d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 6.42
+  angle: 100
+  playerRef: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  canSeePlayer: 0
 --- !u!1 &4505360317498216796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,29 +1953,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152907369127904073, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
   m_PrefabInstance: {fileID: 3629675970956231852}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4518995800874482336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 930417375608897036, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
-  m_PrefabInstance: {fileID: 3629675970956231852}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &986595965334239311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4518995800874482336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df1900570eb7484fa440e02a367fafe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers: {fileID: 0}
-  AITraansform: {fileID: 0}
-  PointbehindPlayer: {fileID: 0}
-  lighter: {fileID: 0}
-  collider: {fileID: 3038701180913960946}
-  aI: {fileID: 0}
 --- !u!4 &4596997979043098745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 978655915699041493, guid: b2b28950d9be586429639f403b76fc2e, type: 3}

@@ -17,6 +17,7 @@ public class maskpullAI : MonoBehaviour
     {
         AIOnly = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
+        AI = GameObject.Find("AI").GetComponent<Transform>();
     }
 
     private void OnTriggerStay(Collider other)
