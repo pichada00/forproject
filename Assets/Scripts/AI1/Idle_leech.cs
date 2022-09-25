@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class Idle_leech : State_leech
 {
     //private GameObject[] hides => HideManager.Instance.getHidePosition();
-    public Idle_leech(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player, TextMeshProUGUI txtStatus,Animator animator) : base(npc, agent, player, txtStatus,animator)
+    public Idle_leech(TypeMonster type, RangeMonster range, FieldOfView fieldOf, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, fieldOf, npc, agent, player, totem, animator)
     {
         name = StateStatus.Idle;
         //agent.speed = 12;
         agent.isStopped = false;
         //agent.ResetPath();
-
     }
 
     public override void Enter()
     {
-        txtStatus.text = "Idle";
+        //txtStatus.text = "Idle";
+        
         base.Enter();
     }
 
@@ -26,9 +27,9 @@ public class Idle_leech : State_leech
         //playanimation or patrol
         
         //Hide();
-        if (DistancePlayer() < 10)
+        if (DistancePlayer() < 10 && DistanceTotem() < 10)
         {
-            nextState = new Pursue_leech(npc, agent, player, txtStatus,animator);
+            nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
             stage = EventState.Exit;
         }
     }

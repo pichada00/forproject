@@ -7,11 +7,12 @@ using TMPro;
 public class Attack_leech : State_leech
 {
     //private GameObject[] waypoints => WPManager.Instance.getWPPosition();
-    int currentIndex = 0;
-    public Attack_leech(GameObject npc, NavMeshAgent agent,Transform player, TextMeshProUGUI txtStatus,Animator animator) :base(npc,agent,player,txtStatus,animator)
+    float time = 0;
+
+    public Attack_leech(TypeMonster type, RangeMonster range, FieldOfView fieldOf, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, fieldOf, npc, agent, player, totem, animator)
     {
-        name = StateStatus.Pursue;
-        agent.speed = 2;
+        name = StateStatus.Attack;
+        agent.speed = 0;
         agent.isStopped = false;
         agent.stoppingDistance = 0;
         agent.ResetPath();
@@ -19,7 +20,8 @@ public class Attack_leech : State_leech
 
     public override void Enter()
     {
-        txtStatus.text = "Attack";
+        time = 0;
+        //txtStatus.text = "Attack";
 
         //playanimation
 
@@ -41,6 +43,14 @@ public class Attack_leech : State_leech
 
     public override void Update()
     {
+        if (time < 30)
+        {
+            time += 1f * Time.deltaTime;
+        }else if(time >= 30)
+        {
+            nextState = new Idle_leech(type, range, fieldOf, npc, agent, player, totem, animator);
+            stage = EventState.Exit;
+        }
         /*if(agent.remainingDistance < 1)
         {
             if(currentIndex>=waypoints.Length - 1)
@@ -56,7 +66,7 @@ public class Attack_leech : State_leech
         }*/
         if (DistancePlayer() > 10)//add in state
         {
-            nextState = new Pursue_leech (npc, agent, player, txtStatus,animator);
+            nextState = new Pursue_leech(type, range, fieldOf,npc, agent, player, totem, animator);
             stage = EventState.Exit;
         }
     }

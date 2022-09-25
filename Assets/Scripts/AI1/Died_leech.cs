@@ -5,16 +5,15 @@ using UnityEngine.AI;
 using TMPro;
 
 public class Died_leech : State_leech
-{ 
-    public Died_leech(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player, TextMeshProUGUI txtStatus, Animator animator) : base(npc, agent, player,txtStatus,animator)
+{
+    public Died_leech(TypeMonster type, RangeMonster range, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, npc, agent, player, totem, animator)
     {
         name = StateStatus.Died;
-        agent.speed = 12;
+        agent.speed = 2;
         agent.isStopped = false;
+        agent.stoppingDistance = 0;
         agent.ResetPath();
-
     }
-
     public override void Enter()
     {
         //txtStatus.text = "Died_leech";
