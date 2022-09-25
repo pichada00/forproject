@@ -18,7 +18,7 @@ public class FieldOfView : MonoBehaviour
 
     private void Start()
     {
-        playerRef = GameObject.FindGameObjectWithTag("Player");
+        playerRef= GameObject.Find("CS Character Controller").GetComponent<GameObject>();
         StartCoroutine(FOVRoutine());
     }
 

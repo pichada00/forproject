@@ -6,7 +6,7 @@ using TMPro;
 
 public class Died_leech : State_leech
 {
-    public Died_leech(TypeMonster type, RangeMonster range, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, npc, agent, player, totem, animator)
+    public Died_leech(TypeMonster type, RangeMonster range,FieldOfView fieldOf, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, fieldOf, npc, agent, player, totem, animator)
     {
         name = StateStatus.Died;
         agent.speed = 2;

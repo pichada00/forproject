@@ -56,7 +56,7 @@ public class Pursue_leech : State_leech
                         if (DistancePlayer() < 1)//add in state
                         {
                             animator.SetFloat("Speed", 0f);
-                            nextState = new Attack_leech(type, range, npc, agent, player, totem, animator);
+                            nextState = new Attack_leech(type, range, fieldOf, npc, agent, player, totem, animator);
                             stage = EventState.Exit;
                         }
                         break;
@@ -64,7 +64,7 @@ public class Pursue_leech : State_leech
                         if (DistancePlayer() < 5)//add in state
                         {
                             animator.SetFloat("Speed", 0f);
-                            nextState = new Attack_leech(type, range, npc, agent, player, totem, animator);
+                            nextState = new Attack_leech(type, range, fieldOf, npc, agent, player, totem, animator);
                             stage = EventState.Exit;
                         }
                         break;
@@ -78,7 +78,7 @@ public class Pursue_leech : State_leech
                         if (DistancePlayer() < 1)//add in state
                         {
                             animator.SetFloat("Speed", 0f);
-                            nextState = new Attack_leech(type, range, npc, agent, player, totem, animator);
+                            nextState = new Attack_leech(type, range, fieldOf, npc, agent, player, totem, animator);
                             stage = EventState.Exit;
                         }
                         break;
@@ -86,7 +86,7 @@ public class Pursue_leech : State_leech
                         if (DistancePlayer() < 5)//add in state
                         {
                             animator.SetFloat("Speed", 0f);
-                            nextState = new Attack_leech(type, range, npc, agent, player, totem, animator);
+                            nextState = new Attack_leech(type, range, fieldOf, npc, agent, player, totem, animator);
                             stage = EventState.Exit;
                         }
                         break;
