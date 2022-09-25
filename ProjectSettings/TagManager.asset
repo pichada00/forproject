@@ -8,6 +8,7 @@ TagManager:
   - Ladder
   - Lamp
   - AIFriend
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
