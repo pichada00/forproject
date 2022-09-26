@@ -14,7 +14,6 @@ namespace DiasGames.Components
 		public float SpeedChangeRate = 10.0f;
 		public bool _useCameraOrientation = true;
 
-
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
@@ -134,13 +133,13 @@ namespace DiasGames.Components
 				isRun = false;
 			}
 			//Debug.Log(isRun);
-			if (Inwater)
+			/*if (Inwater)
             {
 				UpDown = new Vector3();
 				UpDown.y = Swimming ? Input.GetAxis("updown") : 0f;
 				//Debug.Log(UpDown.y);
 				//_controller.Move(new Vector3(0.0f, UpDown.y, 0.0f));
-            }
+            }*/
 
 			if (_timeoutToResetVars <= 0)
 			{
@@ -157,11 +156,11 @@ namespace DiasGames.Components
 
 			if (!_controller.enabled) return;
 
-			if (UpDown.y != 0)
+			/*if (UpDown.y != 0)
 			{
 				Debug.Log(UpDown.y);
 				_controller.Move(new Vector3(0.0f, UpDown.y * speedSwim, 0.0f) * Time.deltaTime);
-			}
+			}*/
 
 			_controller.Move(_velocity * Time.deltaTime);
 
@@ -171,7 +170,7 @@ namespace DiasGames.Components
             }
 		}
 
-		private void FixedUpdate()
+		/*private void FixedUpdate()
 		{
 			
 			//UpDown = new Vector3();
@@ -188,7 +187,7 @@ namespace DiasGames.Components
 			}
 			
 			ClearState();
-		}
+		}*/
 
 		/*void AdjustVelocity()
 		{
@@ -222,7 +221,7 @@ namespace DiasGames.Components
 				_velocity += upAxis * (newY - currentY);
 			}
 		}*/
-		void UpdateState()
+		/*void UpdateState()
 		{
 			stepsSinceLastGrounded += 1;
 			stepsSinceLastJump += 1;
@@ -231,7 +230,7 @@ namespace DiasGames.Components
             {
 
             }		
-		}
+		}*/
 
 		bool SnapToGround()
 		{
@@ -275,7 +274,7 @@ namespace DiasGames.Components
 				submergence = 1f;
 			}
 		}
-		void OnTriggerEnter(Collider other)
+		/*void OnTriggerEnter(Collider other)
 		{
 			if ((waterMask & (1 << other.gameObject.layer)) != 0)
 			{
@@ -305,7 +304,7 @@ namespace DiasGames.Components
 				UseGravity = true;
 				
 			}
-		}
+		}*/
 		private void OnAnimatorMove()
         {
 			if (!_useRootMotion) return;
@@ -491,36 +490,18 @@ namespace DiasGames.Components
 
 		private void GravityControl()
 		{
-			Gravity =  Inwater? Gravityinwater : -15f;
-			//Debug.Log(Gravity);
-			
-            /*if (InWater)
+			if (_controller.isGrounded)
 			{
-				velocity *= 1f - waterDrag * submergence * Time.deltaTime;
-			}else if(Inwater)
-			{
-				_velocity.y +=
-					Gravity * ((1f - buoyancy * submergence) * Time.deltaTime);
-			}*/
-            if (UseGravity == true)
-            {
-				if (_controller.isGrounded)
+				// stop our velocity dropping infinitely when grounded
+				if (_velocity.y < 2.0f)
 				{
-					//Debug.Log("con.gro");
-					// stop our velocity dropping infinitely when grounded
-					if (_velocity.y < 2.0f)
-					{
-						_velocity.y = -5f;
-					}
+					_velocity.y = -5f;
 				}
 			}
-			
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-			if (UseGravity == true && _velocity.y < _terminalVelocity )
+			if (UseGravity && _velocity.y < _terminalVelocity)
 			{
-				//Debug.Log("usegra");
-				//Debug.Log(UseGravity);
 				_velocity.y += Gravity * Time.deltaTime;
 			}
 

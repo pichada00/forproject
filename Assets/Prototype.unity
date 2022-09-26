@@ -5191,7 +5191,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27066
+  m_Name: pb_Mesh43470
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6782,6 +6782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2071137110867273297, guid: dd487e82aa79e934b937a16574996293, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2071137110867273302, guid: dd487e82aa79e934b937a16574996293, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -6825,6 +6829,10 @@ PrefabInstance:
     - target: {fileID: 2071137110867273302, guid: dd487e82aa79e934b937a16574996293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071137111388849124, guid: dd487e82aa79e934b937a16574996293, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd487e82aa79e934b937a16574996293, type: 3}
@@ -7631,7 +7639,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26844
+  m_Name: pb_Mesh43250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7989,7 +7997,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26944
+  m_Name: pb_Mesh43350
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8833,10 +8841,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1077747260163750902, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.986928
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077747260163750902, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.6374288
+      objectReference: {fileID: 0}
     - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: lighter
       value: 
       objectReference: {fileID: 2024390920}
+    - target: {fileID: 1911993702340353752, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: ladderMask.m_Bits
+      value: 67584
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969250167308338422, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.650175
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969250167308338422, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.336927
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942379167806048964, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942379168258505202, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.036928
+      objectReference: {fileID: 0}
     - target: {fileID: 2942379168574703600, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_Name
       value: Gameplay - Climbing System (Character Controller)
@@ -8851,7 +8887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2942379168574703601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2
+      value: 4.89
       objectReference: {fileID: 0}
     - target: {fileID: 2942379168574703601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8885,11 +8921,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2942379169030351472, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2200003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942379169238458553, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.036928
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954360895469840376, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.236928
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432989184172378599, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: footMask.m_Bits
+      value: 67584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432989184172378599, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432989184172378599, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: _context.ClimbUp.GroundLayers.m_Bits
+      value: 67584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960634271276902259, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: shortClimbMask.m_Bits
+      value: 133120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135879614472023987, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.036928
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583427911084253594, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583427911084253600, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8583427911084253601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1524883533, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
 --- !u!1 &1291635905
 GameObject:
@@ -12101,7 +12178,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26928
+  m_Name: pb_Mesh43334
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13512,6 +13589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 2071137110867273297, guid: dd487e82aa79e934b937a16574996293, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2071137110867273302, guid: dd487e82aa79e934b937a16574996293, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -13555,6 +13636,10 @@ PrefabInstance:
     - target: {fileID: 2071137110867273302, guid: dd487e82aa79e934b937a16574996293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071137111388849124, guid: dd487e82aa79e934b937a16574996293, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd487e82aa79e934b937a16574996293, type: 3}

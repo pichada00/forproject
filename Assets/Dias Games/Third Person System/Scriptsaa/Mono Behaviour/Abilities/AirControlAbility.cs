@@ -92,7 +92,7 @@ namespace DiasGames.Abilities
 
             if (_mover.IsGrounded())
             {
-                if(_highestPosition - transform.position.y >= heightForHardLand)
+                if (_highestPosition - transform.position.y >= heightForHardLand)
                 {
                     _hardLanding = true;
                     SetAnimationState(animHardLandState, 0.02f);
@@ -101,11 +101,11 @@ namespace DiasGames.Abilities
                     OnLanded.Invoke();
 
                     // call damage clip
-                    if(_audioPlayer)
+                    if (_audioPlayer)
                         _audioPlayer.PlayVoice(hardLandClip);
 
                     // cause damage
-                    if(_damage != null)
+                    if (_damage != null)
                     {
                         // calculate damage
                         float currentHeight = _highestPosition - transform.position.y - heightForHardLand;
