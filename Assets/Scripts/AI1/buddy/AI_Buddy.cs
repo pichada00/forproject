@@ -27,7 +27,7 @@ public class AI_Buddy: MonoBehaviour
 
     }
     private void Awake()
-    {        
+    {
         agent = this.GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
@@ -38,6 +38,10 @@ public class AI_Buddy: MonoBehaviour
     void Update()
     {        
         currentState = currentState.Process();
+        if(Vector3.Distance(player.position,this.transform.position) >= 10)
+        {
+               
+        }
         //anim.SetInteger("Walk", 1);
     }
 }

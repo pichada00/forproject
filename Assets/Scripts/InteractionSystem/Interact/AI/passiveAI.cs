@@ -35,9 +35,6 @@ public class passiveAI : MonoBehaviour, IInteractable
                 aI.aifollow = true;
                 aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
                 break;
-            case true:
-                aI.aifollow = false;
-                break;
         }return true;
         
 
@@ -60,7 +57,7 @@ public class passiveAI : MonoBehaviour, IInteractable
             }*/
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetKeyDown(KeyCode.E) && aI.aifollow == true)
         {
             aI.aifollow = false;
             aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
