@@ -29,7 +29,7 @@ public class AI_leech : MonoBehaviour
         //anim = GetComponent<Animator>();
         agent = this.GetComponent<NavMeshAgent>();
         //txtStatus = this.GetComponentInChildren<TextMeshProUGUI>();
-        player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
+        player = GameObject.Find("AI").GetComponent<Transform>();
         fieldOf = GetComponent<FieldOfView>();
         animator = GetComponent<Animator>();
     }

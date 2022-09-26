@@ -824,7 +824,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3038701180913960949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
   m_Name: 
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3038701180913960949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  range: 0
+  range: 1
   totem: {fileID: 0}
   player: {fileID: 0}
   animator: {fileID: 0}
@@ -950,12 +950,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95882911ba67954fbc2df6e908e222d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6.42
+  radius: 10
   angle: 100
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   obstructionMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -1302,6 +1302,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4946732332415068493, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
+      propertyPath: m_Name
+      value: Right_Hand_Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 6092006379817239324, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1333,6 +1337,10 @@ PrefabInstance:
     - target: {fileID: 8077228628693569834, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292093491381533697, guid: b2b28950d9be586429639f403b76fc2e, type: 3}
+      propertyPath: m_Name
+      value: Left_Hand_monster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b28950d9be586429639f403b76fc2e, type: 3}

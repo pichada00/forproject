@@ -9,22 +9,22 @@ public class FieldOfView : MonoBehaviour
     [Range(0,360)]
     public float angle;
 
-    public GameObject playerRef;
+    public Transform playerRef;
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
-    public bool canSeePlayer;
+    public bool canSeePlayer = false;
 
     private void Start()
     {
-        playerRef= GameObject.Find("CS Character Controller").GetComponent<GameObject>();
+        playerRef = GameObject.FindGameObjectWithTag("AIFriend").GetComponent<Transform>();
         StartCoroutine(FOVRoutine());
     }
 
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        WaitForSeconds wait = new WaitForSeconds(1.0f);
 
         while (true)
         {

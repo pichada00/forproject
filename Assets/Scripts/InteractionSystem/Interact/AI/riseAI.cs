@@ -15,6 +15,7 @@ public class riseAI : MonoBehaviour
     public Rigidbody AIrb;
 
     public bool AIclimb = false;
+    public bool AIcanclimb = false;
     public float currentpointy;
     public float range = 20.0f;
 
@@ -34,7 +35,7 @@ public class riseAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(AIclimb == false)
         {
@@ -43,23 +44,24 @@ public class riseAI : MonoBehaviour
                 currentpointy = player.position.y;
             }
         }
-        
+
+        if (AIcanclimb == true) 
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("movem");
+                //playanimation
+                AIrb.isKinematic = false;
+                AIrb.useGravity = false;
+                AIclimb = true;
+                //AIOnly.Warp(transformbackplayer.position);
+            }
+        }
             
         if (AIclimb == true)
         {
             AIOnly.Warp( new Vector3( player.position.x, player.position.y, player.position.z - 0.83f));
             AIOnly.enabled = false;
-            //transformbackplayer.position = new Vector3(transformbackplayer.position.x, player.position.y, transformbackplayer.position.z);
-            /*if(player.position.y > currentpointy)
-            {
-                AIOnly.transform.position = Vector3.up * Time.deltaTime;
-            }else if(player.position.y < currentpointy)
-            {
-                AIOnly.transform.position = Vector3.down * Time.deltaTime;
-            }else if (player.position.y == currentpointy)
-            {
-                AIOnly.transform.position = Vector3.zero;
-            }*/
             
         }
     }
@@ -74,16 +76,7 @@ public class riseAI : MonoBehaviour
             Debug.Log(Vector3.Distance(AIOnly.transform.position, transformbottom.position));
             if (Vector3.Distance(AIOnly.transform.position,transformbottom.position) <= range)
             {
-                Debug.Log("movemVector3");
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Debug.Log("movem");
-                    //playanimation
-                    AIrb.isKinematic = false;
-                    AIrb.useGravity = false;
-                    AIclimb = true;
-                    //AIOnly.Warp(transformbackplayer.position);
-                }
+                AIcanclimb = true;                
             }            
         }
     }
@@ -94,6 +87,7 @@ public class riseAI : MonoBehaviour
         {
             //playanimation
             AIclimb = false;
+            AIcanclimb = false;
             AIOnly.enabled = true;
             Invoke("teleporttoTop", 3.0f);            
         }

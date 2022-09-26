@@ -117,7 +117,15 @@ using UnityEngine.InputSystem;
             case 1:
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    InteractR(_interactableMask);
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask) >= 1)
+                    {
+                        InteractR(_interactableMask);
+                    }
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                              _AIMask) >= 1)
+                    {
+                        InteractR(_AIMask);
+                    }
                 }
                 break;
             case 2:
