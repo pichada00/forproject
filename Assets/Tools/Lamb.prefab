@@ -251,3 +251,4 @@ MonoBehaviour:
   light: {fileID: 0}
   openlamb: 0
   keepcode: {fileID: 0}
+  particleLight: {fileID: 6896040888323564219, guid: 1c10c1a8f1f2570469868fcf11eb1b05, type: 3}

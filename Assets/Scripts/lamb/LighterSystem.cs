@@ -13,7 +13,7 @@ public class LighterSystem : MonoBehaviour
     public bool openlamb = false;
     public keep keepcode;
     //private StarterAssetsInputs _input;
-
+    public GameObject particleLight;
     //public static LighterSystem lighterSystem;
 
     private void Awake()
@@ -22,6 +22,7 @@ public class LighterSystem : MonoBehaviour
     }
     void Start()
     {
+        
         //_input = GetComponent<StarterAssetsInputs>();
         light = GetComponent<Light>();
         keepcode = GetComponent<keep>();
@@ -43,12 +44,14 @@ public class LighterSystem : MonoBehaviour
                     light.range = 20.00f;
                     openlamb = true;
                     return;
+                    particleLight.gameObject.SetActive(true);
                 }
                 if (Input.GetMouseButtonDown(0) && openlamb == true)
                 {
                     light.range = 0.00f;
                     openlamb = false;
                     return;
+                    particleLight.gameObject.SetActive(false);
                 }
             }else if (keepcode.right)
             {
@@ -57,12 +60,14 @@ public class LighterSystem : MonoBehaviour
                     light.range = 20.00f;
                     openlamb = true;
                     return;
+                    particleLight.gameObject.SetActive(true);
                 }
                 if (Input.GetMouseButtonDown(1) && openlamb == true)
                 {
                     light.range = 0.00f;
                     openlamb = false;
                     return;
+                    particleLight.gameObject.SetActive(false);
                 }
             }
             
