@@ -19,6 +19,8 @@ public class Woodforatk : MonoBehaviour, IInteractable
     public bool right = false;
     public bool left = false;
     public bool shouldUse = false;
+    public bool used = false;
+    private float time = 2f;
     public interactsomething interactsomething => interactwood;
 
     public string InteractionPrompt => throw new System.NotImplementedException();
@@ -32,15 +34,29 @@ public class Woodforatk : MonoBehaviour, IInteractable
     }
     private void Update()
     {
+        
         if (keeped == true)
         {
             if (right == true)
             {
                 gameObject.transform.position = PickUpPointR.position;
-                useItem(1);
+                if (time == 2 && used ==false)
+                {
+                    Debug.Log(time);
+                    useItem(1);
+                }                
                 if (shouldUse == true)
                 {
                     Invoke("afteruseitem", 2.5f);
+                }
+                if (used == true && time > 0)
+                {
+                    time -= 1 * Time.deltaTime;
+                    Debug.Log("time" + time);
+                    if (time <= 0)
+                    {
+                        resetTime();
+                    }
                 }
                 DropR();
                 return;
@@ -56,24 +72,33 @@ public class Woodforatk : MonoBehaviour, IInteractable
                 DropL();
                 return;
             }
+            
 
         }
 
     }
 
+    public void resetTime()
+    {
+        used = false;
+        time = 2;
+    }
+
     private void useItem(int i)
     {
         if (Input.GetMouseButtonDown(i))
-        {
+        {            
             Debug.Log("useItem");
             switch (i)
             {
                 case 0:
                     animator.CrossFadeInFixedTime("Melee Attack Downward left", 0.1f);
+                    used = true;
                     Debug.Log("useItemleft");
                     break;
                 case 1:
                     animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
+                    used = true;
                     Debug.Log("useItemright");
                     break;
             }

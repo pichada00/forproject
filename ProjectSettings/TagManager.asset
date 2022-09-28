@@ -9,6 +9,7 @@ TagManager:
   - Lamp
   - AIFriend
   - CheckPoint
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - AIinteract
   - target
   - obstruct
-  - 
+  - monster
   - 
   - 
   - 

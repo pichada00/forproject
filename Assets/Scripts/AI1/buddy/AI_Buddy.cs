@@ -12,6 +12,7 @@ public class AI_Buddy: MonoBehaviour
     public State_Buddy currentState;
     public StaminaController stamina;
     public bool aifollow;
+    public bool followwithtotem = false;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
 

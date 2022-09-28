@@ -29,15 +29,17 @@ public class passiveAI : MonoBehaviour, IInteractable
 
     public bool InteractR(Interactor interactor)
     {
-        switch (aI.aifollow)
+        if(aI.followwithtotem == false)
         {
-            case false:
-                aI.aifollow = true;
-                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
-                break;
-        }return true;
-        
-
+            switch (aI.aifollow)
+            {
+                case false:
+                    aI.aifollow = true;
+                    aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
+                    break;
+            }
+        }
+        return true;
     }
 
     // Start is called before the first frame update
@@ -47,7 +49,7 @@ public class passiveAI : MonoBehaviour, IInteractable
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if(aI.aifollow == true)
         {

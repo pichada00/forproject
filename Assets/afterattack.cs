@@ -10,7 +10,7 @@ public class afterattack : StateMachineBehaviour
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.CrossFadeInFixedTime("Ground.Idle", 0.1f);
+        //animator.CrossFadeInFixedTime("Ground.Idle", 0.1f);
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
