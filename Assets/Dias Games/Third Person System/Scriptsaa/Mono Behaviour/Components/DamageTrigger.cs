@@ -4,7 +4,7 @@ namespace DiasGames.Components
 {
     public class DamageTrigger : MonoBehaviour
     {
-        [SerializeField] private int DamagePoints = 50;
+        [SerializeField] private int damagePoints = 50;
         [SerializeField] private string ignoreTag = string.Empty;
 
         private void OnTriggerEnter(Collider other)
@@ -13,7 +13,7 @@ namespace DiasGames.Components
 
             IDamage damage;
             if (other.TryGetComponent(out damage))
-                damage.Damage(DamagePoints);
+                damage.Damage(damagePoints);
         }
     }
 }
