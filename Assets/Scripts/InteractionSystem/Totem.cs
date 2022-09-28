@@ -15,36 +15,23 @@ public class Totem : MonoBehaviour
     [SerializeField] private Collider collider;
     [SerializeField] private MeshCollider meshCollider;
 
-    [SerializeField] private bool isLoaded;
-    [SerializeField] private bool shouldLoad;
+    //[SerializeField] private bool isLoaded;
+    //[SerializeField] private bool shouldLoad;
 
     private void Awake()
     {
         player = GameObject.Find("CS Character Controller").transform;
+        interactionPoint = this.gameObject.GetComponent<Transform>();
         renderer = this.gameObject.GetComponent<MeshRenderer>();
         collider = this.gameObject.GetComponent<Collider>();
         meshCollider = this.gameObject.GetComponent<MeshCollider>();
     }
-    
-    
-    /*
-    private int _numFound;
-    private readonly Collider[] _colliders = new Collider[2];
     
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(interactionPoint.position, interactionPointRadius);
     }
-    private void LateUpdate()
-    {
-        _numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, _colliders,
-            interactableMask);
-        if (_numFound > 0)
-        {
-            
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {

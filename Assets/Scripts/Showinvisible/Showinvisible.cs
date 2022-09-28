@@ -35,7 +35,7 @@ public class Showinvisible : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("CS Character Controller").transform;        
+        player = GameObject.Find("CS Character Controller").transform;
         renderers = this.gameObject.GetComponent<MeshRenderer>();
         collider = this.gameObject.GetComponent<Collider>();
         lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
