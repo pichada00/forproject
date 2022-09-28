@@ -19,6 +19,7 @@ public class Pursue_leech : State_leech
 
     public override void Enter()
     {
+        animator.SetFloat("Speed", 2.1f);
         //txtStatus.text = "pursue";
 
         /*float lastDist = Mathf.Infinity;
@@ -38,7 +39,7 @@ public class Pursue_leech : State_leech
 
     public override void Update()
     {
-        animator.SetFloat("Speed", 0.11f);
+        
         agent.SetDestination(player.position);
         if(DistanceTotem() >= 10)
         {

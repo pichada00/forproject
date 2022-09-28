@@ -18,7 +18,7 @@ public class Idle_leech : State_leech
     public override void Enter()
     {
         //txtStatus.text = "Idle";
-        
+        animator.SetFloat("Speed", 0f);
         base.Enter();
     }
 
