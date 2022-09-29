@@ -177,7 +177,9 @@ using UnityEngine.InputSystem;
                     if (_numFound > 0)
                     {
                         var interactable = _colliders[0].GetComponent<IInteractable>();
-                        if (interactable != null)
+
+                    box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                    if (interactable != null)
                         {
                             interactable.InteractL(this);
                             handLeft = true;
