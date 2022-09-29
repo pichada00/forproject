@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum typeTotem { dark, light}
+
 public class Darktotem : MonoBehaviour
 {
     [SerializeField] private AI_Buddy i_Buddy;
@@ -9,6 +11,9 @@ public class Darktotem : MonoBehaviour
     [SerializeField] private AI_leech[] aI_Leeches;
     [SerializeField] private Collider totem;
     [SerializeField] public Collider totem2;
+    public typeTotem _typeTotem;
+
+    private readonly Collider[] _colliders = new Collider[3];
     public int indexTotem;
 
 
@@ -18,25 +23,35 @@ public class Darktotem : MonoBehaviour
     public float radius;
     public bool change = false;
     public int indexmonster = 0;
+    public int indexarray = 0;
 
     private void Start()
     {
-        Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
-        foreach (Collider hit in hitsMonster)
+        switch (_typeTotem)
         {
-
-            if (hit.tag == "Monster")
-            {
-                aI_Leeches = new AI_leech[hitsMonster.Length];
-                //aI_Leeches = GetComponents<AI_leech>();
-                Debug.Log(hitsMonster.Length);
-                if(indexmonster < hitsMonster.Length)
+            case typeTotem.dark:
+                Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
+                indexmonster = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, monster);
+                foreach (Collider hit in hitsMonster)
                 {
-                    //aI_Leeches[indexmonster] = hit.gameObject.GetComponents<AI_leech>();
+
+                    if (hit.tag == "Monster")
+                    {
+                        aI_Leeches = new AI_leech[indexmonster];
+                        if (indexarray < indexmonster)
+                        {
+                            var arrayMons = _colliders[indexarray].GetComponent<AI_leech>();
+                            Debug.Log(_colliders[indexarray]);
+                            indexarray++;
+                        }
+
+                    }
                 }
-                indexmonster++;
-            }
+                break;
+            case typeTotem.light:
+                break;
         }
+        
     }
     private void Awake()
     {
@@ -52,7 +67,7 @@ public class Darktotem : MonoBehaviour
     void Update()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, radius, player, QueryTriggerInteraction.Ignore);
-        Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
+        //Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
 
         if( change == false)
         {
@@ -71,28 +86,42 @@ public class Darktotem : MonoBehaviour
                     i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
                 }
             }
-        }else if( change == true)
+        }
+        else if (change == true)
         {
+            i_Buddy.aifollow = false;
+            i_Buddy.followwithtotem = false;
+            i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+        }
+
+    }
+
+    public void hitDestroyingame()
+    {
+        Debug.Log("hitdestroy");
+        if(change == true)
+        {
+            Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
+            indexmonster = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, monster);
+            indexarray = 0;
             foreach (Collider hit in hitsMonster)
             {
-                Debug.Log(hit + "hit");
-                if (hit.tag == "Player")
+
+                if (hit.tag == "Monster")
                 {
-                    if (i_Buddy.aifollow == true)
+                    
+                    if (indexarray < indexmonster)
                     {
-                        return;
+                        Debug.Log(_colliders[indexarray]);
+                        var arrayMons = _colliders[indexarray].GetComponent<AI_leech>();
+                        _colliders[indexarray].gameObject.SetActive(false);
+                        indexarray++;
                     }
-                    Debug.Log(hit + "hit");
-                    i_Buddy.aifollow = true;
-                    i_Buddy.followwithtotem = true;
-                    i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+
                 }
             }
         }
-        
     }
-
-    
 
     private void OnDrawGizmosSelected()
     {

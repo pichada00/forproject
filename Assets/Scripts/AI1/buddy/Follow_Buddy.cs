@@ -25,7 +25,7 @@ public class Follow_Buddy : State_Buddy
     public override void Update()
     {
         
-        Debug.Log(DistancePlayer());
+        //Debug.Log(DistancePlayer());
         agent.SetDestination(player.position);
         if (DistancePlayer()>=3.5)
         {

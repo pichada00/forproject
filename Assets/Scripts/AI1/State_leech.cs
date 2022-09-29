@@ -10,7 +10,7 @@ public class State_leech
 {
     public enum StateStatus
     {
-        Idle, Pursue, Died, Attack
+        Idle, Pursue, Died, Attack,Stun
     };
 
     public enum EventState

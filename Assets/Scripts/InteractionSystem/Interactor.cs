@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 
         [SerializeField] private Transform _interactionPoint;
         [SerializeField] private float _interactionPointRadius = 0.5f;
+        [SerializeField] private BoxCollider box;
         [SerializeField] private LayerMask _interactableMask;
         [SerializeField] private LayerMask _somethingbigMask;
         [SerializeField] private LayerMask _AIMask;
@@ -148,6 +149,7 @@ using UnityEngine.InputSystem;
             if (_numFound > 0)
             {
                 var interactable = _colliders[0].GetComponent<IInteractable>();
+                box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
                 if (interactable != null)
                 {
                     interactable.InteractR(this);
@@ -192,6 +194,16 @@ using UnityEngine.InputSystem;
             }
             //ThirdPersonController.Instance._input.InteractL = false;
         }
-    }
+    public void Attackstartatinteract()
+    {
+        Debug.Log("start");
+        box.enabled = true;
+    }   
+    public void AttackEndatinteract()
+    {
+        Debug.Log("end");
+        box.enabled = false;
+    }    
+}
 
 

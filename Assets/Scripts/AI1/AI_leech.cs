@@ -9,10 +9,10 @@ public class AI_leech : MonoBehaviour
     public TypeMonster type;
     public RangeMonster range;
     public Transform totem;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     public Transform player;
     public Animator animator;
-    State_leech currentState;
+    public State_leech currentState;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
 
@@ -39,4 +39,6 @@ public class AI_leech : MonoBehaviour
         currentState = currentState.Process();
         //anim.SetInteger("Walk", 1);
     }
+
+    
 }

@@ -10,6 +10,7 @@ TagManager:
   - AIFriend
   - CheckPoint
   - Monster
+  - weapon
   layers:
   - Default
   - TransparentFX

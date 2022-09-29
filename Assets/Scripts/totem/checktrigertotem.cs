@@ -24,8 +24,11 @@ public class checktrigertotem : MonoBehaviour
         if (other.tag == "weapon")
         {
             Debug.Log("hittriger");
+            darktotem.GetComponent<Darktotem>();
+            darktotem.change = true;
             this.gameObject.SetActive(false);
             darktotem.totem2.gameObject.SetActive(true);
         }
     }
+
 }

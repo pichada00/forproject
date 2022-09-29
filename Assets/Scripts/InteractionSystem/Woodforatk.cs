@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum typeMeleeweapon { wood, iron}
 public class Woodforatk : MonoBehaviour, IInteractable
 {
     public Rigidbody rb;
@@ -11,6 +11,8 @@ public class Woodforatk : MonoBehaviour, IInteractable
 
     [SerializeField] private Transform PickUpPointR = null;
     [SerializeField] private Transform PickUpPointL = null;
+    [SerializeField] private BoxCollider boxCollider = null;
+    public typeMeleeweapon _typeMeleeweapon;
     public interactsomething interactwood;
     public Interactor Interactor;
     public Animator animator;
@@ -31,28 +33,30 @@ public class Woodforatk : MonoBehaviour, IInteractable
         collider = GetComponent<Collider>();
         Interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
         animator = GameObject.Find("CS Character Controller").GetComponent<Animator>();
+        boxCollider = this.gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+
     }
     private void Update()
     {
-        
         if (keeped == true)
         {
             if (right == true)
             {
                 gameObject.transform.position = PickUpPointR.position;
-                if (time == 2 && used ==false)
+                if (time == 2 && used == false)
                 {
-                    Debug.Log(time);
+                    //Debug.Log(time);
                     useItem(1);
-                }                
-                if (shouldUse == true)
-                {
-                    Invoke("afteruseitem", 2.5f);
+                    if (shouldUse == true && _typeMeleeweapon == typeMeleeweapon.wood)
+                    {
+                        Invoke("afteruseitem", 2.5f);
+                    }
                 }
+
                 if (used == true && time > 0)
                 {
                     time -= 1 * Time.deltaTime;
-                    Debug.Log("time" + time);
+                    //Debug.Log("time" + time);
                     if (time <= 0)
                     {
                         resetTime();
@@ -72,7 +76,7 @@ public class Woodforatk : MonoBehaviour, IInteractable
                 DropL();
                 return;
             }
-            
+
 
         }
 
@@ -87,7 +91,7 @@ public class Woodforatk : MonoBehaviour, IInteractable
     private void useItem(int i)
     {
         if (Input.GetMouseButtonDown(i))
-        {            
+        {
             Debug.Log("useItem");
             switch (i)
             {
@@ -188,9 +192,10 @@ public class Woodforatk : MonoBehaviour, IInteractable
             left = false;
             return;
         }
-        if(shouldUse == true)
+        if (shouldUse == true)
         {
             Destroy(this.gameObject);
         }
     }
+
 }
