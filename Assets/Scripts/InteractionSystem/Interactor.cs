@@ -179,7 +179,7 @@ using UnityEngine.InputSystem;
                         var interactable = _colliders[0].GetComponent<IInteractable>();
 
                     box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
-                    if (interactable != null)
+                        if (interactable != null)
                         {
                             interactable.InteractL(this);
                             handLeft = true;
@@ -196,12 +196,12 @@ using UnityEngine.InputSystem;
             }
             //ThirdPersonController.Instance._input.InteractL = false;
         }
-    public void Attackstartatinteract()
+    public void AttackStartAtInteract()
     {
         Debug.Log("start");
         box.enabled = true;
     }   
-    public void AttackEndatinteract()
+    public void AttackEndAtInteract()
     {
         Debug.Log("end");
         box.enabled = false;

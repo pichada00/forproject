@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum typeTotem { dark, light}
+public enum typeTotem { Dark, Light}
 
 public class Darktotem : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class Darktotem : MonoBehaviour
     {
         switch (_typeTotem)
         {
-            case typeTotem.dark:
+            case typeTotem.Dark:
                 Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
                 indexmonster = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, monster);
                 foreach (Collider hit in hitsMonster)
@@ -48,7 +48,7 @@ public class Darktotem : MonoBehaviour
                     }
                 }
                 break;
-            case typeTotem.light:
+            case typeTotem.Light:
                 break;
         }
         

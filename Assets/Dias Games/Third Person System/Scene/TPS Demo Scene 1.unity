@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2906,6 +2906,7 @@ GameObject:
   - component: {fileID: 442525785}
   - component: {fileID: 442525783}
   - component: {fileID: 442525788}
+  - component: {fileID: 442525789}
   m_Layer: 0
   m_Name: Totem (1)
   m_TagString: Untagged
@@ -3066,7 +3067,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56534353fa6bd704aa4e650358dee578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darktotem: {fileID: 0}
+  darkTotem: {fileID: 0}
+  totem: {fileID: 442525786}
+--- !u!64 &442525789
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442525781}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &462736435
 GameObject:
   m_ObjectHideFlags: 0
@@ -6947,7 +6963,7 @@ GameObject:
   - component: {fileID: 1021615816}
   - component: {fileID: 1021615817}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8270,7 +8286,7 @@ GameObject:
   - component: {fileID: 1215077484}
   - component: {fileID: 1215077485}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8445,7 +8461,7 @@ GameObject:
   - component: {fileID: 1246525437}
   - component: {fileID: 1246525438}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11095,7 +11111,7 @@ GameObject:
   - component: {fileID: 1655963244}
   m_Layer: 7
   m_Name: stick
-  m_TagString: Lamp
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11213,9 +11229,9 @@ MonoBehaviour:
   PickUpPointR: {fileID: 0}
   PickUpPointL: {fileID: 0}
   boxCollider: {fileID: 0}
-  _typeMeleeweapon: 1
-  interactwood: 0
-  Interactor: {fileID: 0}
+  typeMeleeWeapon: 0
+  interactWood: 0
+  interactor: {fileID: 0}
   animator: {fileID: 0}
   keeped: 0
   AIkeeped: 0
@@ -11437,7 +11453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56534353fa6bd704aa4e650358dee578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darktotem: {fileID: 0}
+  darkTotem: {fileID: 0}
+  totem: {fileID: 0}
 --- !u!108 &1732900751
 Light:
   m_ObjectHideFlags: 0

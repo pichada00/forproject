@@ -16,10 +16,7 @@ public class CheckPoint : MonoBehaviour
 
     private void Update()
     {
-        if (health.CurrentHP <= 0)
-        {
-            player.transform.position = vectorPoint;
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

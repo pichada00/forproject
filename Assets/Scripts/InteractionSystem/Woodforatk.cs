@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum typeMeleeweapon { wood, iron}
-public class Woodforatk : MonoBehaviour, IInteractable
+public enum TypeMeleeWeapon { Wood, Iron}
+public class WoodForAtk : MonoBehaviour, IInteractable
 {
     public Rigidbody rb;
     public Collider collider;
-    public GameObject gameObject;
+    public new GameObject gameObject;
 
     [SerializeField] private Transform PickUpPointR = null;
     [SerializeField] private Transform PickUpPointL = null;
     [SerializeField] private BoxCollider boxCollider = null;
-    public typeMeleeweapon _typeMeleeweapon;
-    public interactsomething interactwood;
-    public Interactor Interactor;
+    public TypeMeleeWeapon typeMeleeWeapon;
+    public interactsomething interactWood;
+    public Interactor interactor;
     public Animator animator;
     public bool keeped = false;
     public bool AIkeeped = false;
@@ -22,8 +22,8 @@ public class Woodforatk : MonoBehaviour, IInteractable
     public bool left = false;
     public bool shouldUse = false;
     public bool used = false;
-    private float time = 2f;
-    public interactsomething interactsomething => interactwood;
+    private float _time = 2f;
+    public interactsomething interactsomething => interactWood;
 
     public string InteractionPrompt => throw new System.NotImplementedException();
 
@@ -31,7 +31,7 @@ public class Woodforatk : MonoBehaviour, IInteractable
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
-        Interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
+        interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
         animator = GameObject.Find("CS Character Controller").GetComponent<Animator>();
         boxCollider = this.gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
 
@@ -43,23 +43,23 @@ public class Woodforatk : MonoBehaviour, IInteractable
             if (right == true)
             {
                 gameObject.transform.position = PickUpPointR.position;
-                if (time == 2 && used == false)
+                if (_time == 2 && used == false)
                 {
                     //Debug.Log(time);
-                    useItem(1);
-                    if (shouldUse == true && _typeMeleeweapon == typeMeleeweapon.wood)
+                    UseItem(1);
+                    if (shouldUse == true && typeMeleeWeapon == TypeMeleeWeapon.Wood)
                     {
-                        Invoke("afteruseitem", 2.5f);
+                        Invoke("AfterUseItem", 2.5f);
                     }
                 }
 
-                if (used == true && time > 0)
+                if (used == true && _time > 0)
                 {
-                    time -= 1 * Time.deltaTime;
+                    _time -= 1 * Time.deltaTime;
                     //Debug.Log("time" + time);
-                    if (time <= 0)
+                    if (_time <= 0)
                     {
-                        resetTime();
+                        ResetTime();
                     }
                 }
                 DropR();
@@ -68,10 +68,10 @@ public class Woodforatk : MonoBehaviour, IInteractable
             if (left == true)
             {
                 gameObject.transform.position = PickUpPointL.position;
-                useItem(0);
+                UseItem(0);
                 if (shouldUse == true)
                 {
-                    useItem(0);
+                    UseItem(0);
                 }
                 DropL();
                 return;
@@ -82,13 +82,13 @@ public class Woodforatk : MonoBehaviour, IInteractable
 
     }
 
-    public void resetTime()
+    public void ResetTime()
     {
         used = false;
-        time = 2;
+        _time = 2;
     }
 
-    private void useItem(int i)
+    private void UseItem(int i)
     {
         if (Input.GetMouseButtonDown(i))
         {
@@ -109,11 +109,11 @@ public class Woodforatk : MonoBehaviour, IInteractable
         }
     }
 
-    public void afteruseitem()
+    public void AfterUseItem()
     {
         this.transform.parent = null;
         Debug.Log("afteruseitem");
-        Interactor.handRight = false;
+        interactor.handRight = false;
         rb.useGravity = true;
         collider.enabled = true;
         keeped = false;
@@ -157,7 +157,7 @@ public class Woodforatk : MonoBehaviour, IInteractable
         {
             this.transform.parent = null;
             Debug.Log("DropR");
-            Interactor.handRight = false;
+            interactor.handRight = false;
             rb.useGravity = true;
             collider.enabled = true;
             keeped = false;
@@ -171,7 +171,7 @@ public class Woodforatk : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.Q) && left == true)
         {
             this.transform.parent = null;
-            Interactor.handLeft = false;
+            interactor.handLeft = false;
             rb.useGravity = true;
             collider.enabled = true;
             keeped = false;
