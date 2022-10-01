@@ -13,8 +13,13 @@ public class LighterSystem : MonoBehaviour
     public bool openlamb = false;
     public keep keepcode;
     //private StarterAssetsInputs _input;
-    public GameObject particleLight;
+    //public GameObject particleLight;
     //public static LighterSystem lighterSystem;
+
+    public LayerMask aiBuddy;
+    private readonly Collider[] _colliders = new Collider[1];
+    public float radius;
+    public int indexAIBuddy = 0;
 
     private void Awake()
     {
@@ -43,15 +48,16 @@ public class LighterSystem : MonoBehaviour
                 {
                     light.range = 20.00f;
                     openlamb = true;
-                    return;
-                    particleLight.gameObject.SetActive(true);
+                    //particleLight.gameObject.SetActive(true);
+                    return;                    
                 }
                 if (Input.GetMouseButtonDown(0) && openlamb == true)
                 {
                     light.range = 0.00f;
                     openlamb = false;
+                    //particleLight.gameObject.SetActive(false);
                     return;
-                    particleLight.gameObject.SetActive(false);
+                    
                 }
             }else if (keepcode.right)
             {
@@ -59,15 +65,17 @@ public class LighterSystem : MonoBehaviour
                 {
                     light.range = 20.00f;
                     openlamb = true;
+                    //particleLight.gameObject.SetActive(true);
                     return;
-                    particleLight.gameObject.SetActive(true);
+                    
                 }
                 if (Input.GetMouseButtonDown(1) && openlamb == true)
                 {
                     light.range = 0.00f;
                     openlamb = false;
+                    //particleLight.gameObject.SetActive(false);
                     return;
-                    particleLight.gameObject.SetActive(false);
+                    
                 }
             }
             
@@ -77,11 +85,45 @@ public class LighterSystem : MonoBehaviour
             openlamb = false;
             light.range = 0.00f;
         }
+        if(openlamb == true)
+        {
+            checkAI();
+        }
 
         
         
     }
-   public IEnumerator RemoveStamina(float value, float time)
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public void checkAI()
+    {
+        Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, aiBuddy, QueryTriggerInteraction.Ignore);
+        indexAIBuddy = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, aiBuddy);
+        if (indexAIBuddy > 0)
+        {
+            var arrayMons = _colliders[0].GetComponent<invisibleAI>();
+            float distanceAILamp = Vector3.Distance(transform.position, arrayMons.transform.position);
+            if (distanceAILamp < radius && arrayMons.follow == false)
+            {
+                Debug.Log(distanceAILamp);
+                arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
+                if(arrayMons.CutofFromLighter < 0)
+                {
+                    arrayMons.CutofFromLighter *= -1.0f;
+                }
+            }else if(arrayMons.follow == true)
+            {
+                arrayMons.CutofFromLighter = 1.0f;
+            }
+        }
+    }
+
+    public IEnumerator RemoveStamina(float value, float time)
     {
         yield return new WaitForSeconds(time);
         if (Stamina > 0)

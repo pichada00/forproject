@@ -19,11 +19,13 @@ public class Darktotem : MonoBehaviour
 
     public LayerMask player;
     public LayerMask monster;
+    public LayerMask aiBuddy;
 
     public float radius;
     public bool change = false;
     public int indexmonster = 0;
     public int indexarray = 0;
+    public int indexAIBuddy = 0;
 
     private void Start()
     {
@@ -48,8 +50,8 @@ public class Darktotem : MonoBehaviour
                     }
                 }
                 break;
-            case typeTotem.Light:
-                break;
+            case typeTotem.Light:                
+                    break;
         }
         
     }
@@ -58,8 +60,8 @@ public class Darktotem : MonoBehaviour
         i_Buddy = GameObject.Find("AI").GetComponent<AI_Buddy>();
         buddy = i_Buddy.gameObject;
         //gameObjecttotem = this.gameObject.GetComponent<GameObject>();
-        totem = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
-        totem2 = this.gameObject.transform.GetChild(1).GetComponent<Collider>();
+        //totem = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
+        //totem2 = this.gameObject.transform.GetChild(1).GetComponent<Collider>();
         
         //totem = 
     }
@@ -93,7 +95,12 @@ public class Darktotem : MonoBehaviour
             i_Buddy.followwithtotem = false;
             i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
         }
-
+        Collider[] hitAI = Physics.OverlapSphere(transform.position, radius, aiBuddy, QueryTriggerInteraction.Ignore);
+        indexAIBuddy = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, aiBuddy);
+        if (indexAIBuddy > 0)
+        {
+            checkAI();
+        }
     }
 
     public void hitDestroyingame()
@@ -120,6 +127,24 @@ public class Darktotem : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    public void checkAI()
+    {
+        var arrayMons = _colliders[0].GetComponent<invisibleAI>();
+        float distanceAILamp = Vector3.Distance(transform.position, arrayMons.transform.position);
+        if (distanceAILamp < radius && arrayMons.follow == false)
+        {
+            arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
+            if (arrayMons.CutofFromLighter < 0)
+            {
+                arrayMons.CutofFromLighter *= -1.0f;
+            }
+        }
+        else if (arrayMons.follow == true)
+        {
+            arrayMons.CutofFromLighter = 1.0f;
         }
     }
 

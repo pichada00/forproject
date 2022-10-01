@@ -15,11 +15,15 @@ public class keep : MonoBehaviour, IInteractable
     [SerializeField]private Transform PickUpPointL = null;
     public interactsomething interactsomethingonITEM;
     public Interactor Interactor;
+
+    
+
     public bool keeped = false;
     public bool AIkeeped = false;
     public bool right = false;
     public bool left = false;
 
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,9 +37,7 @@ public class keep : MonoBehaviour, IInteractable
         {
             if (right == true)
             {
-
                 gameObject.transform.position = PickUpPointR.position;
-
                 DropR();
                 return;
             }
@@ -54,6 +56,8 @@ public class keep : MonoBehaviour, IInteractable
         }
         
     }
+
+    
 
     private void DropFromAI()
     {
