@@ -61,6 +61,10 @@ public class Showinvisible : MonoBehaviour
         }
         else
         {
+
+            Material[] mats = renderers.materials;
+            mats[0].SetFloat("_Cutoff", 1);
+            renderers.material = mats[0];
             collider.enabled = false;
             meshCollider.enabled = false;
         }

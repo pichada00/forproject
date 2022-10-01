@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum TypeMeleeWeapon { Wood, Iron}
-public class WoodForAtk : MonoBehaviour, IInteractable
+public enum TypeMeleeWeapon { Wood, Iron }
+public class WoodForATK1 : MonoBehaviour, IInteractable
 {
     public Rigidbody rb;
     public Collider collider;
-    public new GameObject gameObject;
+    //public GameObject gameObject;
 
     [SerializeField] private Transform PickUpPointR = null;
     [SerializeField] private Transform PickUpPointL = null;
-    [SerializeField] private BoxCollider boxCollider = null;
+    [SerializeField] private Collider boxCollider = null;
     public TypeMeleeWeapon typeMeleeWeapon;
     public interactsomething interactWood;
     public Interactor interactor;
@@ -30,10 +30,11 @@ public class WoodForAtk : MonoBehaviour, IInteractable
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
+        collider =  GetComponent<Collider>();
+        //gameObject = GetComponent<GameObject>();
         interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
         animator = GameObject.Find("CS Character Controller").GetComponent<Animator>();
-        boxCollider = this.gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+        boxCollider = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
 
     }
     private void Update()

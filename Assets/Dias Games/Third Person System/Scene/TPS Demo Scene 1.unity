@@ -3129,6 +3129,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
       propertyPath: m_TagString
       value: Monster
       objectReference: {fileID: 0}
@@ -4076,7 +4080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 713947076}
   - component: {fileID: 713947078}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: triger
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -4753,11 +4757,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &818221776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8583427911084253601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-  m_PrefabInstance: {fileID: 1225572359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &857340432
 GameObject:
   m_ObjectHideFlags: 0
@@ -7903,10 +7902,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1077747260163750902, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.637423
-      objectReference: {fileID: 0}
+    - target: {fileID: 1524883508, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
+      propertyPath: checkPoint.Array.data[0]
+      value: 
+      objectReference: {fileID: 385720510}
     - target: {fileID: 1471914825240355258, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: lighter
       value: 
@@ -7962,18 +7961,6 @@ PrefabInstance:
     - target: {fileID: 2942379168574703601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2942379169030351472, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.7939999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324628128026115639, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-      propertyPath: healthDrain
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583427911084253601, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
@@ -10044,34 +10031,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8583427911084253600, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
   m_PrefabInstance: {fileID: 1225572359}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1524883505 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4324628128026115639, guid: 39edae256b408944cb55526079b8d5d0, type: 3}
-  m_PrefabInstance: {fileID: 1225572359}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818221776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6db947b67a3864c9c2030fde2b26bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1524883508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818221776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a895f4d0c98b5d498fe7ed45cc4554c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 818221776}
-  checkPoint:
-  - {fileID: 385720510}
-  vectorPoint: {x: 0, y: 0, z: 0}
-  health: {fileID: 1524883505}
 --- !u!1 &1583602617
 GameObject:
   m_ObjectHideFlags: 0
@@ -10381,7 +10340,7 @@ GameObject:
   - component: {fileID: 1655963241}
   - component: {fileID: 1655963240}
   - component: {fileID: 1655963244}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: stick
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -10492,16 +10451,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1655963235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953cd96c6091d0b4b8b4a9bac6ce73be, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a0707024ebeb24b9a7d0138ffaaf0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   collider: {fileID: 0}
-  gameObject: {fileID: 1655963235}
   PickUpPointR: {fileID: 0}
   PickUpPointL: {fileID: 0}
   boxCollider: {fileID: 0}
-  typeMeleeWeapon: 0
+  typeMeleeWeapon: 1
   interactWood: 0
   interactor: {fileID: 0}
   animator: {fileID: 0}
@@ -11055,6 +11013,10 @@ PrefabInstance:
     - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
       propertyPath: m_TagString
@@ -13607,6 +13569,10 @@ PrefabInstance:
     - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3038701180913960949, guid: 27e3c1db67ac9d247988076c9ee7ec31, type: 3}
       propertyPath: m_TagString

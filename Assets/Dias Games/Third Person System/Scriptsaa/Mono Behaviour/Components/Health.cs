@@ -11,8 +11,8 @@ namespace DiasGames.Components
         [SerializeField] private UnityEvent OnCharacterDeath;
 
         //add
-        [Range(0, 50)] [SerializeField] private float healthDrain = 0.5f;
-        [Range(0, 50)] [SerializeField] private float healthRegen = 0.5f;
+        [Range(0, 50)] [SerializeField] private float healthDrain = 0.05f;
+        [Range(0, 50)] [SerializeField] private float healthRegen = 0.25f;
 
         // internal vars
         [SerializeField] private float _currentHP = 100;

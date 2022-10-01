@@ -10,9 +10,10 @@ using UnityEngine.InputSystem;
 
         [SerializeField] private Transform _interactionPoint;
         [SerializeField] private float _interactionPointRadius = 0.5f;
-        [SerializeField] private BoxCollider box;
+        [SerializeField] private Collider box;
         [SerializeField] private LayerMask _interactableMask;
         [SerializeField] private LayerMask _somethingbigMask;
+        [SerializeField] private LayerMask _weaponMask;
         [SerializeField] private LayerMask _AIMask;
         public int _numFound;
         private readonly Collider[] _colliders = new Collider[3];
@@ -38,33 +39,39 @@ using UnityEngine.InputSystem;
         /*InteractL();
         InteractR();
         InteractBoth();*/
-        if(Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask ) >= 1)
+        if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask) >= 1)
         {
             _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                                _interactableMask);
-        }else if( Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                               _somethingbigMask) >= 1)
+        } else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                                _somethingbigMask) >= 1)
         {
             _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                                _somethingbigMask);
-        }else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                              _AIMask) >= 1)
+        } else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                               _AIMask) >= 1)
         {
             _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius + 1.0f, _colliders,
                                _AIMask);
         }
+        else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                             _weaponMask) >= 1)
+        {
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius + 1.0f, _colliders,
+                               _weaponMask);
+        }
 
-        if (_numFound > 0)
+            if (_numFound > 0)
         {
             var interactable = _colliders[0].GetComponent<IInteractable>();
             switch (interactable.interactsomething)
             {
                 case interactsomething.handright:
                     TypeInteract(1);
-                    InteractL();
+                    TypeInteract(2);
                     break;
                 case interactsomething.handleft:
-                    InteractL();
+                    TypeInteract(2);
                     TypeInteract(1);
                     break;
                 case interactsomething.handboth:
@@ -122,17 +129,28 @@ using UnityEngine.InputSystem;
                     {
                         InteractR(_interactableMask);
                     }
-                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                              _AIMask) >= 1)
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,_AIMask) >= 1)
                     {
                         InteractR(_AIMask);
+                    }
+
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _weaponMask) >= 1)
+                    {
+                        InteractR(_weaponMask);
                     }
                 }
                 break;
             case 2:
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    InteractR(_AIMask);
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask) >= 1)
+                    {
+                        InteractL(_interactableMask);
+                    }
+                    if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _weaponMask) >= 1)
+                    {
+                        InteractL(_weaponMask);
+                    }
                 }
                 break;
         }
@@ -149,7 +167,10 @@ using UnityEngine.InputSystem;
             if (_numFound > 0)
             {
                 var interactable = _colliders[0].GetComponent<IInteractable>();
-                box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                if(mask == _weaponMask)
+                {
+                    box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                }
                 if (interactable != null)
                 {
                     interactable.InteractR(this);
@@ -165,7 +186,7 @@ using UnityEngine.InputSystem;
             return;
         }
     }
-        private void InteractL()
+        private void InteractL(LayerMask mask)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -173,13 +194,16 @@ using UnityEngine.InputSystem;
                 {
                     Debug.Log("interact");
                     _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
-                               _interactableMask);
+                               mask);
                     if (_numFound > 0)
                     {
                         var interactable = _colliders[0].GetComponent<IInteractable>();
 
-                    box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
-                        if (interactable != null)
+                    if (mask == _weaponMask)
+                    {
+                        box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                    }
+                    if (interactable != null)
                         {
                             interactable.InteractL(this);
                             handLeft = true;
