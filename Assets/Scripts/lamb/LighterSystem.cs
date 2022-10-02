@@ -108,17 +108,18 @@ public class LighterSystem : MonoBehaviour
         {
             var arrayMons = _colliders[0].GetComponent<invisibleAI>();
             float distanceAILamp = Vector3.Distance(transform.position, arrayMons.transform.position);
+            if (arrayMons.currentCutoff < 1)
+            {
+                arrayMons.CutofFromLighter = 0;
+            }            
             if (distanceAILamp < radius && arrayMons.follow == false)
             {
                 Debug.Log(distanceAILamp);
                 arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
                 if(arrayMons.CutofFromLighter < 0)
                 {
-                    arrayMons.CutofFromLighter *= -1.0f;
+                    arrayMons.CutofFromLighter *= -3.0f;
                 }
-            }else if(arrayMons.follow == true)
-            {
-                arrayMons.CutofFromLighter = 1.0f;
             }
         }
     }

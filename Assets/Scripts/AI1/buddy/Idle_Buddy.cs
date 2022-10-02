@@ -6,7 +6,7 @@ using TMPro;
 public class Idle_Buddy : State_Buddy
 {
     //private GameObject[] hides => HideManager.Instance.getHidePosition();
-    public Idle_Buddy(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player,Animator animator, bool aifollow) : base(npc, agent, player,animator, aifollow)
+    public Idle_Buddy(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player,Animator animator, bool aifollow, StaminaController stamina) : base(npc, agent, player,animator, aifollow, stamina)
     {
         name = StateStatus.Idle;
         //agent.speed = 12;
@@ -28,7 +28,7 @@ public class Idle_Buddy : State_Buddy
         //playanimation or patrol
         if (Aifollow == true)
         {
-            nextState = new Follow_Buddy(npc, agent, player, animator, Aifollow);
+            nextState = new Follow_Buddy(npc, agent, player, animator, Aifollow,stamina);
             stage = EventState.Exit;
         }
         //Hide();

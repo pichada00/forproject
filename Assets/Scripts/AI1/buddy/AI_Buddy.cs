@@ -22,7 +22,7 @@ public class AI_Buddy: MonoBehaviour
         //anim = GetComponent<Animator>();
         
         
-        currentState = new Idle_Buddy(this.gameObject, agent, player, animator, aifollow);
+        currentState = new Idle_Buddy(this.gameObject, agent, player, animator, aifollow,stamina);
         //txtStatus = this.GetComponentInChildren<TextMeshProUGUI>();
 
 

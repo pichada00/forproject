@@ -7,11 +7,12 @@ using TMPro;
 public class Follow_Buddy : State_Buddy
 {
     //private GameObject[] waypoints => WPManager.Instance.getWPPosition();
+    
     int currentIndex = 0;
-    public Follow_Buddy(GameObject npc, NavMeshAgent agent,Transform player,Animator animator,bool aifollow) :base(npc,agent,player,animator,aifollow)
+    public Follow_Buddy(GameObject npc, NavMeshAgent agent,Transform player,Animator animator,bool aifollow,StaminaController stamina) :base(npc,agent,player,animator,aifollow,stamina)
     {
         name = StateStatus.Follow;
-        agent.speed = 2.65f;
+        agent.speed = 2.6f;
         agent.isStopped = false;
         agent.stoppingDistance = 1.0f;
         agent.ResetPath();
@@ -19,24 +20,33 @@ public class Follow_Buddy : State_Buddy
 
     public override void Enter()
     {
+        
         base.Enter();
     }
 
     public override void Update()
     {
         
-        //Debug.Log(DistancePlayer());
-        agent.SetDestination(player.position);
-        if (DistancePlayer()>=3.5)
-        {
 
-            
+        //Debug.Log(DistancePlayer());
+
+        if (DistancePlayer() > 1.1)
+        {
+            agent.speed = 2.65f;
+            agent.SetDestination(player.position);
+            animator.SetFloat("Speed", 2.65f);
         }
-        if (DistancePlayer() < 1.1 || Aifollow == false)
+        if(stamina.weAreSprinting == true)
+        {
+            agent.speed = 5.2f;
+            animator.SetFloat("Speed", 5.3f);
+        }
+
+        if (DistancePlayer() < 1.1f || Aifollow == false)
         {
             //agent.isStopped = true;
             animator.SetFloat("Speed", 0f);
-            nextState = new Idle_Buddy(npc, agent, player, animator, Aifollow);
+            nextState = new Idle_Buddy(npc, agent, player, animator, Aifollow,stamina);
             stage = EventState.Exit;
         }
         /*if (DistancePlayer() < 1)//add in state

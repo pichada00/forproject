@@ -6,7 +6,7 @@ using TMPro;
 
 public class Died_Buddy : State_Buddy
 { 
-    public Died_Buddy(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player,Animator animator,bool aifollow) : base(npc, agent, player,animator,aifollow)
+    public Died_Buddy(GameObject npc, UnityEngine.AI.NavMeshAgent agent, Transform player,Animator animator,bool aifollow, StaminaController stamina) : base(npc, agent, player,animator,aifollow, stamina)
     {
         name = StateStatus.Died;
         agent.speed = 12;

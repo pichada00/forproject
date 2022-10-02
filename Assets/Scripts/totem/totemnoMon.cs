@@ -39,14 +39,14 @@ public class totemnoMon : MonoBehaviour
                     Debug.Log(hit + "hit");
                     i_Buddy.aifollow = true;
                     i_Buddy.followwithtotem = true;
-                    i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+                    i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow,i_Buddy.stamina);
                 }
             }
         }else if(change == true)
         {
             i_Buddy.aifollow = false;
             i_Buddy.followwithtotem = false;
-            i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+            i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow, i_Buddy.stamina);
         }
     }
 }

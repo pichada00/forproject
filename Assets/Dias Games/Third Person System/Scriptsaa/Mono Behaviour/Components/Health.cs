@@ -25,6 +25,7 @@ namespace DiasGames.Components
 
         //add
         public LighterSystem lighter;
+        public invisibleAI invisible;
 
         private void Start()
         {
@@ -35,6 +36,7 @@ namespace DiasGames.Components
         private void Awake()
         {
             lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+            invisible = GameObject.Find("AI").GetComponent<invisibleAI>();
         }
 
         //add
@@ -65,10 +67,9 @@ namespace DiasGames.Components
         //add
         public void OverUesLamp()
         {
-            if (lighter.openlamb == true)
+            if ((lighter.openlamb == true && invisible.currentCutoff > 0) || invisible.neartotem == true)
             {
-                _currentHP -= healthDrain * Time.deltaTime;
-                
+                _currentHP -= healthDrain * Time.deltaTime;                
             }
             else if(_currentHP <= MaxHealthPoints - 0.01)
             {

@@ -25,8 +25,9 @@ public class State_Buddy
     //protected TextMeshProUGUI txtStatus;
     protected Animator animator;
     protected bool Aifollow;
+    public StaminaController stamina;
 
-    public State_Buddy(GameObject npc, NavMeshAgent agent, Transform player, Animator animator,bool aifollow)
+    public State_Buddy(GameObject npc, NavMeshAgent agent, Transform player, Animator animator,bool aifollow,StaminaController stamina)
     {
         this.npc = npc;
         this.agent = agent;
@@ -35,6 +36,7 @@ public class State_Buddy
         //this.txtStatus = txtStatus;
         this.animator = animator;
         this.Aifollow = aifollow;
+        this.stamina = stamina;
     }
 
     public virtual void Enter()

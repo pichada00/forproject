@@ -76,7 +76,7 @@ public class Darktotem : MonoBehaviour
             foreach (Collider hit in hits)
             {
                 Debug.Log(hit + "hit");
-                if (hit.tag == "Player")
+                if (hit.tag == "Player" && _typeTotem == typeTotem.Dark)
                 {
                     if (i_Buddy.aifollow == true)
                     {
@@ -85,7 +85,7 @@ public class Darktotem : MonoBehaviour
                     Debug.Log(hit + "hit");
                     i_Buddy.aifollow = true;
                     i_Buddy.followwithtotem = true;
-                    i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+                    i_Buddy.currentState = new Follow_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow, i_Buddy.stamina);
                 }
             }
         }
@@ -93,14 +93,10 @@ public class Darktotem : MonoBehaviour
         {
             i_Buddy.aifollow = false;
             i_Buddy.followwithtotem = false;
-            i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow);
+            i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow, i_Buddy.stamina);
         }
-        Collider[] hitAI = Physics.OverlapSphere(transform.position, radius, aiBuddy, QueryTriggerInteraction.Ignore);
-        indexAIBuddy = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, aiBuddy);
-        if (indexAIBuddy > 0)
-        {
-            checkAI();
-        }
+
+        checkAI();
     }
 
     public void hitDestroyingame()
@@ -132,19 +128,34 @@ public class Darktotem : MonoBehaviour
 
     public void checkAI()
     {
-        var arrayMons = _colliders[0].GetComponent<invisibleAI>();
-        float distanceAILamp = Vector3.Distance(transform.position, arrayMons.transform.position);
-        if (distanceAILamp < radius && arrayMons.follow == false)
+        Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, aiBuddy, QueryTriggerInteraction.Ignore);
+        indexAIBuddy = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, aiBuddy);
+        if (indexAIBuddy > 0)
         {
-            arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
-            if (arrayMons.CutofFromLighter < 0)
+            //transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z);
+            //transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y, transform.position.z);
+            var arrayMons = _colliders[0].GetComponent<invisibleAI>();
+            float distanceAILamp = Vector3.Distance(transform.position, arrayMons.transform.position);
+            if (arrayMons.currentCutoff < 1)
             {
-                arrayMons.CutofFromLighter *= -1.0f;
+                arrayMons.CutofFromLighter = 0;
             }
-        }
-        else if (arrayMons.follow == true)
-        {
-            arrayMons.CutofFromLighter = 1.0f;
+            //Debug.Log(distanceAILamp);
+            if (distanceAILamp < radius && arrayMons.follow == false)
+            {
+                arrayMons.neartotem = true;
+                arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
+                if (arrayMons.CutofFromLighter < 0)
+                {
+                    arrayMons.CutofFromLighter *= -3.0f;
+                }                
+                
+            }
+            else if (distanceAILamp >= radius)
+            {
+                arrayMons.neartotem = false;
+
+            }
         }
     }
 

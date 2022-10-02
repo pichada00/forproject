@@ -12,6 +12,7 @@ public class invisibleAI : MonoBehaviour
     public Collider collider;
     public AI_Buddy aI;
     public bool follow;
+    public bool neartotem;
     //float currentCutoff = 0f;
 
     public float currentCutoff = 0f;
@@ -36,30 +37,14 @@ public class invisibleAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lighter.openlamb == true && follow == false)
-        {
-            Material[] mats = renderers.materials;
-            mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-            mats[1].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-            mats[2].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-            renderers.material = mats[0];
-            renderers.material = mats[1];
-            renderers.material = mats[2];
-            if (currentCutoff >= 0.8f)
-            {
-                aI.aifollow = false;
-                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow);
-                follow = true;
-                mats[0].SetFloat("_Cutoff", 1f);
-                mats[1].SetFloat("_Cutoff", 1f);
-                mats[2].SetFloat("_Cutoff", 1f);
-                renderers.material = mats[0];
-                renderers.material = mats[1];
-                renderers.material = mats[2];
-            }
-        }        
+
+        if ( (lighter.openlamb == true && follow == false) || neartotem == true)
+        {            
+            increaseCutoff();
+        }      
         
-        if (lighter.openlamb == false)
+
+        if (lighter.openlamb == false || neartotem == false)
         {
             follow = false;
             Material[] mats = renderers.materials;
@@ -75,9 +60,28 @@ public class invisibleAI : MonoBehaviour
             }
         }
 
-        if (follow == true)
+        if (currentCutoff >= 1f)
         {
             AITraansform.Warp(PointbehindPlayer.position);
         }
+    }
+
+    public void increaseCutoff()
+    {
+        Material[] mats = renderers.materials;
+        if(currentCutoff >= 1f)
+        {
+            currentCutoff = 1f;
+            follow = true;
+            aI.aifollow = false;
+            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+            
+        }
+        mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+        mats[1].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+        mats[2].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+        renderers.material = mats[0];
+        renderers.material = mats[1];
+        renderers.material = mats[2];
     }
 }
