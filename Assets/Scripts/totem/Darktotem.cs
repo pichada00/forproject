@@ -9,6 +9,7 @@ public class Darktotem : MonoBehaviour
     [SerializeField] private AI_Buddy i_Buddy;
     [SerializeField] private GameObject buddy;
     [SerializeField] private AI_leech[] aI_Leeches;
+    private Darktotem darktotem;
     [SerializeField] private Collider totem;
     [SerializeField] public Collider totem2;
     public typeTotem _typeTotem;
@@ -60,9 +61,9 @@ public class Darktotem : MonoBehaviour
         i_Buddy = GameObject.Find("AI").GetComponent<AI_Buddy>();
         buddy = i_Buddy.gameObject;
         //gameObjecttotem = this.gameObject.GetComponent<GameObject>();
-        //totem = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
-        //totem2 = this.gameObject.transform.GetChild(1).GetComponent<Collider>();
-        
+        totem = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
+        totem2 = this.gameObject.transform.GetChild(1).GetComponent<Collider>();
+        darktotem = GetComponent<Darktotem>();
         //totem = 
     }
     // Update is called once per frame
@@ -94,6 +95,7 @@ public class Darktotem : MonoBehaviour
             i_Buddy.aifollow = false;
             i_Buddy.followwithtotem = false;
             i_Buddy.currentState = new Idle_Buddy(i_Buddy.gameObject, i_Buddy.agent, i_Buddy.player, i_Buddy.animator, i_Buddy.aifollow, i_Buddy.stamina);
+            this.darktotem.enabled = false;
         }
 
         checkAI();
@@ -141,17 +143,17 @@ public class Darktotem : MonoBehaviour
                 arrayMons.CutofFromLighter = 0;
             }
             //Debug.Log(distanceAILamp);
-            if (distanceAILamp < radius && arrayMons.follow == false)
+            if (distanceAILamp < radius && arrayMons.follow == false && change == false)
             {
                 arrayMons.neartotem = true;
                 arrayMons.CutofFromLighter = (distanceAILamp / radius) - 1f;
                 if (arrayMons.CutofFromLighter < 0)
                 {
                     arrayMons.CutofFromLighter *= -3.0f;
-                }                
-                
+                }
+
             }
-            else if (distanceAILamp >= radius)
+            else if (distanceAILamp >= radius || change == true)
             {
                 arrayMons.neartotem = false;
 

@@ -20,6 +20,7 @@ public class Idle_Buddy : State_Buddy
     public override void Enter()
     {
         //txtStatus.text = "Idle";
+        animator.SetFloat("Speed", 0f);
         base.Enter();
     }
 

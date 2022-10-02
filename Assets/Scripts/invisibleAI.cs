@@ -9,6 +9,7 @@ public class invisibleAI : MonoBehaviour
     public NavMeshAgent AITraansform;
     public Transform PointbehindPlayer;
     public LighterSystem lighter;
+    public Interactor interactor;
     public Collider collider;
     public AI_Buddy aI;
     public bool follow;
@@ -27,6 +28,7 @@ public class invisibleAI : MonoBehaviour
         aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
         PointbehindPlayer = GameObject.Find("aiwalkto").GetComponent<Transform>();
         lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+        interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
     }
     // Start is called before the first frame update
     void Start()
@@ -63,6 +65,8 @@ public class invisibleAI : MonoBehaviour
         if (currentCutoff >= 1f)
         {
             AITraansform.Warp(PointbehindPlayer.position);
+            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+            interactor.handRight = false;
         }
     }
 
@@ -74,7 +78,7 @@ public class invisibleAI : MonoBehaviour
             currentCutoff = 1f;
             follow = true;
             aI.aifollow = false;
-            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+            
             
         }
         mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
