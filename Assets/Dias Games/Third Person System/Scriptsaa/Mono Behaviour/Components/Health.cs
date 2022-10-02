@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace DiasGames.Components
@@ -26,6 +27,10 @@ namespace DiasGames.Components
         //add
         public LighterSystem lighter;
         public invisibleAI invisible;
+        public Transform aiBuddy;
+
+        [SerializeField] private RawImage blurdis;
+        [SerializeField] private float alphascore;
 
         private void Start()
         {
@@ -37,6 +42,7 @@ namespace DiasGames.Components
         {
             lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
             invisible = GameObject.Find("AI").GetComponent<invisibleAI>();
+            aiBuddy = GameObject.Find("AI").GetComponent<Transform>();
         }
 
         //add
@@ -49,6 +55,16 @@ namespace DiasGames.Components
                 OnDead?.Invoke();
                 OnCharacterDeath.Invoke();
             }
+            if(Vector3.Distance(transform.position,aiBuddy.position) >= 13)
+            {
+                _currentHP -= healthDrain * Time.deltaTime;
+            }
+            alphascore = _currentHP - MaxHP;
+            if(alphascore <= 0)
+            {
+                alphascore *= -1f;
+            }
+            blurdis.color = new Color32(255, 255, 255, (byte)alphascore);
         }
 
         public void Damage(int damagePoints)
