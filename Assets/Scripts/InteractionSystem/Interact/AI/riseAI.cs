@@ -89,7 +89,7 @@ public class riseAI : MonoBehaviour
             AIclimb = false;
             AIcanclimb = false;
             AIOnly.enabled = true;
-            Invoke("teleporttoTop", 3.0f);            
+            //Invoke("teleporttoTop", 3.0f);            
         }
     }
     private void teleporttoTop()

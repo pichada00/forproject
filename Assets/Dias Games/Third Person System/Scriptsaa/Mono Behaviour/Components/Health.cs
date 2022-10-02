@@ -7,16 +7,16 @@ namespace DiasGames.Components
 {
     public class Health : MonoBehaviour, IDamage
     {
-        [SerializeField] private float MaxHealthPoints = 100;
+        [SerializeField] private float MaxHealthPoints = 175;
         [Space]
         [SerializeField] private UnityEvent OnCharacterDeath;
 
         //add
-        [Range(0, 50)] [SerializeField] private float healthDrain = 0.05f;
-        [Range(0, 50)] [SerializeField] private float healthRegen = 0.25f;
+        [Range(0, 50)] [SerializeField] private float healthDrain = 15f;
+        [Range(0, 50)] [SerializeField] private float healthRegen = 15f;
 
         // internal vars
-        [SerializeField] private float _currentHP = 100;
+        [SerializeField] private float _currentHP = 175;
 
         public float CurrentHP { get { return _currentHP; } }
         public float MaxHP { get { return MaxHealthPoints; } }
@@ -31,6 +31,7 @@ namespace DiasGames.Components
 
         [SerializeField] private RawImage blurdis;
         [SerializeField] private float alphascore;
+        [SerializeField] private bool distance;
 
         private void Start()
         {
@@ -44,7 +45,12 @@ namespace DiasGames.Components
             invisible = GameObject.Find("AI").GetComponent<invisibleAI>();
             aiBuddy = GameObject.Find("AI").GetComponent<Transform>();
         }
-
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+            Gizmos.DrawWireSphere(transform.position, 26);
+        }
         //add
         private void Update()
         {
@@ -57,14 +63,34 @@ namespace DiasGames.Components
             }
             if(Vector3.Distance(transform.position,aiBuddy.position) >= 13)
             {
-                _currentHP -= healthDrain * Time.deltaTime;
-            }
-            alphascore = _currentHP - MaxHP;
-            if(alphascore <= 0)
+                alphascore += 100 * Time.deltaTime;
+
+                if (alphascore <= 0)
+                {
+                    alphascore *= -20f;
+                }
+                if (alphascore >= 200)
+                {
+                    alphascore = 200;
+                }
+            } else
             {
-                alphascore *= -1f;
+                if (alphascore > 0)
+                {
+                    alphascore -= 25 * Time.deltaTime;
+                }
+
             }
+
+            if (Vector3.Distance(transform.position, aiBuddy.position) >= 26)
+            {
+                
+                Damage((int)MaxHP);
+                Debug.Log(_currentHP);
+            }
+            
             blurdis.color = new Color32(255, 255, 255, (byte)alphascore);
+
         }
 
         public void Damage(int damagePoints)

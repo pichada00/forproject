@@ -172,9 +172,9 @@ using UnityEngine.InputSystem;
                     box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
                 }
                 if (interactable != null)
-                {
-                    interactable.InteractR(this);
+                {                    
                     handRight = true;
+                    interactable.InteractR(this);
                     return;
                 }
 
@@ -205,9 +205,10 @@ using UnityEngine.InputSystem;
                     }
                     if (interactable != null)
                         {
-                            interactable.InteractL(this);
-                            handLeft = true;
-                            return;
+                            
+                            handLeft = true; 
+                        interactable.InteractL(this);
+                        return;
                         }
 
                     }
