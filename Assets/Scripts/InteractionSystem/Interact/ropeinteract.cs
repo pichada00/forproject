@@ -19,6 +19,7 @@ public class ropeinteract : MonoBehaviour, IInteractable
     {
         this.gameObject.SetActive(false);
         ropeopen.SetActive(true);
+        interactor.handLeft = false;
         return true;
     }
 
@@ -26,6 +27,7 @@ public class ropeinteract : MonoBehaviour, IInteractable
     {
         this.gameObject.SetActive(false);
         ropeopen.SetActive(true);
+        interactor.handRight = false;
         return true;
     }
 

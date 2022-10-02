@@ -45,22 +45,25 @@ public class invisibleAI : MonoBehaviour
             increaseCutoff();
         }      
         
-
-        if (lighter.openlamb == false || neartotem == false)
+        if(neartotem == false)
         {
-            follow = false;
-            Material[] mats = renderers.materials;
-            mats[0].SetFloat("_Cutoff", currentCutoff -= 0.5f * Time.deltaTime);
-            mats[1].SetFloat("_Cutoff", currentCutoff -= 0.5f * Time.deltaTime);
-            mats[2].SetFloat("_Cutoff", currentCutoff -= 0.5f * Time.deltaTime);
-            renderers.material = mats[0];
-            renderers.material = mats[1];
-            renderers.material = mats[2];
-            if(currentCutoff <= 0)
+            if (lighter.openlamb == false)
             {
-                currentCutoff = 0f;
+                follow = false;
+                Material[] mats = renderers.materials;
+                mats[0].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
+                mats[1].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
+                mats[2].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
+                renderers.material = mats[0];
+                renderers.material = mats[1];
+                renderers.material = mats[2];
+                if (currentCutoff <= 0)
+                {
+                    currentCutoff = 0f;
+                }
             }
         }
+        
 
         if (currentCutoff >= 1f)
         {
@@ -69,7 +72,7 @@ public class invisibleAI : MonoBehaviour
             interactor.handRight = false;
         }
     }
-
+     
     public void increaseCutoff()
     {
         Material[] mats = renderers.materials;
@@ -78,8 +81,6 @@ public class invisibleAI : MonoBehaviour
             currentCutoff = 1f;
             follow = true;
             aI.aifollow = false;
-            
-            
         }
         mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
         mats[1].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);

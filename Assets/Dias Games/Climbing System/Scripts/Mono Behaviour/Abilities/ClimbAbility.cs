@@ -108,6 +108,7 @@ namespace DiasGames.Abilities
         // avoid climb the same ledge when droping
         private Collider _ledgeBlocked;
         private float _timeBlockStarted;
+        public Interactor interactor;
 
         #region State Machine Methods
 
@@ -132,6 +133,8 @@ namespace DiasGames.Abilities
 
             _mainCamera = Camera.main;
 
+            interactor = GetComponent<Interactor>();
+
             CreateTransforms();
         }
 
@@ -150,7 +153,7 @@ namespace DiasGames.Abilities
         public override bool ReadyToRun()
         {
             if (_mover.IsGrounded()) return false;
-
+            
             return HasLedge();
         }
         public override void OnStartAbility()
@@ -161,7 +164,7 @@ namespace DiasGames.Abilities
             _mover.DisableGravity();
 
             _climbIK.RunIK();
-            _climbIK.UpdateIKReferences(climbMask, footMask,_currentHorizontalHit);
+            _climbIK.UpdateIKReferences(climbMask, footMask, _currentHorizontalHit);
 
             _hangWeight = HasWall() ? 0 : 1;
             _animator.SetFloat("HangWeight", _hangWeight);
