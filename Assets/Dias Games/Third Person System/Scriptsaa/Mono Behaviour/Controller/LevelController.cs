@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DiasGames.Components;
 using System.Collections;
@@ -9,6 +10,8 @@ namespace DiasGames.Controller
     {
         [SerializeField] private GameObject player = null;
         [SerializeField] private float delayToRestartLevel = 3f;
+
+        public GameObject currentCheckPoint;
 
         // player components
         private Health _playerHealth;
@@ -38,6 +41,7 @@ namespace DiasGames.Controller
         {
             if (!_isRestartingLevel)
                 StartCoroutine(OnRestart());
+            player.transform.position = currentCheckPoint.transform.position;
         }
 
         public void LoadScene(string name)
