@@ -32,6 +32,10 @@ public class StaminaController : MonoBehaviour
         mover = GetComponent<Mover>();
         useLampRun = staminaDrain * 1f;
     }
+    private void Awake()
+    {
+        lighter = GameObject.Find("Lamp").GetComponent<LighterSystem>();
+    }
 
     private void Update()
     {
