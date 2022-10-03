@@ -43,6 +43,13 @@ namespace DiasGames
 
             enabled = false;
         }
+        public void ConScheduler()
+        {
+            if (CurrentCombat != null)
+                CurrentCombat.StopCombat();
+
+            enabled = true;
+        }
 
         private void Update()
         {

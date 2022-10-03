@@ -72,7 +72,11 @@ namespace DiasGames.Controller
 
             // subscribe for death event
             if (_health != null)
+            {
                 _health.OnDead += Die;
+            }
+
+            
         }
 
         private void OnDisable()
@@ -116,6 +120,19 @@ namespace DiasGames.Controller
 
             // activate root motion
             _mover.ApplyRootMotion(Vector3.one);
+        }
+        private void restart()
+        {
+            _scheduler.ConScheduler();
+
+            // disable any movement
+            _mover.EnableGravity();
+
+            // disable main character collision
+            _capsule.EnableCollision();
+
+            // activate root motion
+            _mover.ApplyRootMotion(Vector3.zero);
         }
 
         private void CameraRotation()

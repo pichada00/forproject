@@ -11,6 +11,8 @@ TagManager:
   - CheckPoint
   - Monster
   - weapon
+  - FirstRespawn
+  - FirstRespawnAI
   layers:
   - Default
   - TransparentFX

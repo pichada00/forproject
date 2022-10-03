@@ -24,6 +24,8 @@ namespace DiasGames.Components
         public event Action OnHealthChanged;
         public event Action OnDead;
 
+        public event Action onRestart;
+
         //add
         public LighterSystem lighter;
         public invisibleAI invisible;
