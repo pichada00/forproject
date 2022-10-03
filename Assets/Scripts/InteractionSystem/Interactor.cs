@@ -61,7 +61,7 @@ using UnityEngine.InputSystem;
                                _weaponMask);
         }
 
-        if (_numFound > 0)
+            if (_numFound > 0)
         {
             var interactable = _colliders[0].GetComponent<IInteractable>();
             switch (interactable.interactsomething)
