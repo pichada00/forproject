@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6f382a34016a84daeea5901e91a2b0, type: 3}
   m_Name: sceneinfo
   m_EditorClassIdentifier: 
-  currentCheckPointOfStageOne: {x: 55.606846, y: 0.51999986, z: -16.194727}
-  currentCheckPointOfAI: {x: 55.606846, y: 0.51999986, z: -15.194727}
+  currentCheckPointOfStageOne: {x: 45, y: 1, z: -5}
+  currentCheckPointOfAI: {x: 37, y: 1, z: -5}

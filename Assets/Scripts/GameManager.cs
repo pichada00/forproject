@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     private static GameManager _instance;
     [SerializeField] private GameManager gameManager;
-    public bool firstplay = true;
-    public bool passStage2 = false;
-    public bool passStage3 = false;
-    public bool passStage4 = false;
-    public bool passStage5 = false;
+    public bool firstPlay = true;
+    public bool arriveStage2 = false;
+    public bool arriveStage3 = false;
+    public bool arriveStage4 = false;
+    public bool arriveStage5 = false;
     
     public Transform playerPosition;
     public Transform aiPosition;
@@ -56,22 +56,25 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void NewGame(string scenename)
+    public void NewGame(string sceneName)
     {
-        SceneManager.LoadScene(scenename);
+        SceneManager.LoadScene(sceneName);
     }
-    public void ChangeScene(string scenename)
+    public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(scenename);
-        switch (scenename)
+        SceneManager.LoadScene(sceneName);
+        switch (sceneName)
         {
             case "0":
                 break;
             case "1":
-                sceneInfostage1.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
+                sceneInfostage1.currentCheckPointOfStageOne = new Vector3(45, 1, -5);
                 break;
             case "2":
                 sceneInfostage2.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
+                break;
+            case "3":
+                sceneInfostage3.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
                 break;
         }
         

@@ -7,9 +7,13 @@ using UnityEngine;
 public class BoxCheckPoint : MonoBehaviour
 {
     public NewCheckPoint checkPoint;
+
+    [SerializeField] private List<GameObject> parentCheckPoint;
+
     public Transform cube;
-    private Health _playerHealth;
     
+    private Health _playerHealth;
+
     private void Awake()
     {
         checkPoint = GetComponent<NewCheckPoint>();
@@ -26,9 +30,11 @@ public class BoxCheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CheckPoint"))
         {
-            checkPoint.currentPlayerCheckPoint = this.gameObject.transform;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = this.gameObject.transform.position;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = this.gameObject.transform.position - Vector3.back;
+            var o = this.gameObject;
+            checkPoint.currentPlayerCheckPoint = o.transform;
+            var position = o.transform.position;
+            GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = position;
+            GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = position - Vector3.back;
             Destroy(other.gameObject);
         }
     }

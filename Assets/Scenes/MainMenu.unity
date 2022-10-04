@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 188519917}
   - component: {fileID: 188519916}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  firstpositionstage1: {fileID: 0}
   newCheckPoint: {fileID: 0}
   sceneInfostage1: {fileID: 11400000, guid: 313a262394679494db282f4f1fb2038d, type: 2}
   sceneInfostage2: {fileID: 11400000, guid: 1d41cec8c6e308146af6067a7715e57b, type: 2}
