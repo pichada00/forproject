@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 70110275}
   - component: {fileID: 70110277}
   - component: {fileID: 70110276}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_0_0_4af1b469-a4e2-4ac2-9ae1-a2b6d20138ee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3533,7 +3533,7 @@ GameObject:
   - component: {fileID: 263364686}
   - component: {fileID: 263364688}
   - component: {fileID: 263364687}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_(0.00, 0.00, 400.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7697,7 +7697,7 @@ GameObject:
   - component: {fileID: 835297340}
   - component: {fileID: 835297342}
   - component: {fileID: 835297341}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_(0.00, 0.00, 300.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12891,13 +12891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a895f4d0c98b5d498fe7ed45cc4554c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1342518307}
-  ai: {fileID: 0}
-  checkPoint:
-  - {fileID: 0}
-  delayToRestartLevel: 3
-  currentCheckPoint: {fileID: 0}
-  newCheckPoint: {fileID: 0}
 --- !u!54 &1342518310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13623,7 +13616,7 @@ GameObject:
   - component: {fileID: 1351559538}
   - component: {fileID: 1351559540}
   - component: {fileID: 1351559539}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_(100.00, 0.00, 400.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15016,7 +15009,7 @@ GameObject:
   - component: {fileID: 1571632281}
   - component: {fileID: 1571632283}
   - component: {fileID: 1571632282}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_(0.00, 0.00, 200.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18604,7 +18597,7 @@ GameObject:
   - component: {fileID: 2084839561}
   - component: {fileID: 2084839563}
   - component: {fileID: 2084839562}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain_(0.00, 0.00, 100.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
