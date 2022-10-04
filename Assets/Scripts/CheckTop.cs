@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace StarterAssets
+public class CheckTop : MonoBehaviour
 {
-    public class CheckTop : MonoBehaviour
+    public Rotationsolve rotationsolve;
+
+    public void OnEnable()
     {
-        /*private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "checkhang")
-            {
-                //ThirdPersonController.Instance._ladderYZ = false;
-                Debug.Log(ThirdPersonController.Instance._ladderYZ);
-                ThirdPersonController.Instance._animator.SetFloat(ThirdPersonController.Instance._animIDisClimbup, 0.111f);//playanimation climb to stand
-                ThirdPersonController.Instance._verticalVelocity = -2f;
-                //ThirdPersonController.Instance.transform.Translate(Vector3.forward * 2);
-                //ThirdPersonController.Instance.ClimFromledge();
-            }
-        }*/
+        gameObject.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        gameObject.SetActive(false);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        rotationsolve.OnEnable();
+        OnDisable();
     }
 }

@@ -9,10 +9,13 @@ public class riseAI : MonoBehaviour
     public Transform transformbottom;
     public Transform player;
     public Transform transformTop;
+    public Transform aiwalkto;
 
     public Transform AI;
     public NavMeshAgent AIOnly;
     public Rigidbody AIrb;
+    public Rotationsolve rotationsolve;
+    public CheckTop checkTop;
 
     public bool AIclimb = false;
     public bool AIcanclimb = false;
@@ -23,10 +26,13 @@ public class riseAI : MonoBehaviour
     {
         transformbackplayer = GameObject.Find("pointtoclimbofAI").GetComponent<Transform>();
         transformbottom = transform.GetChild(1);
+        rotationsolve = gameObject.transform.GetChild(2).GetComponent<Rotationsolve>();
+        checkTop = gameObject.transform.GetChild(3).GetComponent<CheckTop>();
         player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
         AIOnly = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
         AI = GameObject.Find("AI").GetComponent<Transform>();
+        aiwalkto = GameObject.Find("aiwalkto").GetComponent<Transform>();
     }
     // Start is called before the first frame update
     void Start()
@@ -54,13 +60,20 @@ public class riseAI : MonoBehaviour
                 AIrb.isKinematic = false;
                 AIrb.useGravity = false;
                 AIclimb = true;
+                rotationsolve.OnDisable();
+                checkTop.OnEnable();
                 //AIOnly.Warp(transformbackplayer.position);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            AIclimb = false;
+            AIOnly.enabled = true;
         }
             
         if (AIclimb == true)
         {
-            AIOnly.Warp( new Vector3( player.position.x, player.position.y, player.position.z - 0.83f));
+            AIOnly.Warp(aiwalkto.position);
             AIOnly.enabled = false;
             
         }
@@ -89,6 +102,7 @@ public class riseAI : MonoBehaviour
             AIclimb = false;
             AIcanclimb = false;
             AIOnly.enabled = true;
+            rotationsolve.OnEnable();
             //Invoke("teleporttoTop", 3.0f);            
         }
     }
