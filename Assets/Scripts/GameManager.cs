@@ -8,26 +8,27 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     private static GameManager _instance;
     [SerializeField] private GameManager gameManager;
-    public bool firstPlay = true;
-    public bool arriveStage2 = false;
-    public bool arriveStage3 = false;
-    public bool arriveStage4 = false;
-    public bool arriveStage5 = false;
+    public bool firstPlay;
+    public bool arriveStage2;
+    public bool arriveStage3;
+    public bool arriveStage4;
+    public bool arriveStage5;
     
     public Transform playerPosition;
     public Transform aiPosition;
     public Transform currentPlayerCheckPoint;
     public Transform currentAICheckPoint;
 
-    //public Transform firstpositionstage1;
+    //public Transform first position stage1;
 
     public NewCheckPoint newCheckPoint;
 
-    [SerializeField] public SceneInfo sceneInfostage1;//scripts able object
-    [SerializeField] public SceneInfo sceneInfostage2;//scripts able object
-    [SerializeField] public SceneInfo sceneInfostage3;//scripts able object
-    [SerializeField] public SceneInfo sceneInfostage4;//scripts able object
-    [SerializeField] public SceneInfo sceneInfostage5;//scripts able object
+    [SerializeField] public SceneInfo sceneInfostage0;//scriptsAble object
+    [SerializeField] public SceneInfo sceneInfostage1;//scriptsAble object
+    [SerializeField] public SceneInfo sceneInfostage2;//scriptsAble object
+    [SerializeField] public SceneInfo sceneInfostage3;//scriptsAble object
+    [SerializeField] public SceneInfo sceneInfostage4;//scriptsAble object
+    [SerializeField] public SceneInfo sceneInfostage5;//scriptsAble object
 
     private void Start()
     {
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
         switch (sceneName)
         {
             case "0":
+                sceneInfostage0.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
                 break;
             case "1":
                 sceneInfostage1.currentCheckPointOfStageOne = new Vector3(45, 1, -5);
@@ -83,5 +85,10 @@ public class GameManager : MonoBehaviour
     public void RestartPlayerCheckpoint()
     {
         playerPosition.position = sceneInfostage1.currentCheckPointOfStageOne;
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
