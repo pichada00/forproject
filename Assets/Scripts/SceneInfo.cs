@@ -7,5 +7,10 @@ public class SceneInfo : ScriptableObject
 {
     public Vector3 currentCheckPointOfStageOne;
     public Vector3 currentCheckPointOfAI;
+    public bool handright;
+    public bool handleft;
+    public bool lamb;
+    public bool weapon;
+    public TypeMeleeWeapon typeMelee;
     
 }

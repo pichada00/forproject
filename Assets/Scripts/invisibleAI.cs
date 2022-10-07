@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class invisibleAI : MonoBehaviour
 {
-    public SkinnedMeshRenderer renderers;
+    public SkinnedMeshRenderer renderersBody;
+    public SkinnedMeshRenderer renderersEye;
     public NavMeshAgent AITraansform;
     public Transform PointbehindPlayer;
     public LighterSystem lighter;
@@ -22,7 +23,8 @@ public class invisibleAI : MonoBehaviour
     private void Awake()
     {
         //player = GameObject.Find("CS Character Controller").transform;
-        renderers = GameObject.Find("Armature_Mesh_AI").GetComponent<SkinnedMeshRenderer>();
+        renderersBody = GameObject.Find("Cube_AI").GetComponent<SkinnedMeshRenderer>();
+        renderersEye = GameObject.Find("Plane_AI").GetComponent<SkinnedMeshRenderer>();
         //collider = this.gameObject.GetComponent<Collider>();
         AITraansform = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
@@ -50,13 +52,12 @@ public class invisibleAI : MonoBehaviour
             if (lighter.openlamb == false)
             {
                 follow = false;
-                Material[] mats = renderers.materials;
+                Material[] mats = renderersBody.materials;
+                Material[] matsEye = renderersEye.materials;
                 mats[0].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
-                mats[1].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
-                mats[2].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
-                renderers.material = mats[0];
-                renderers.material = mats[1];
-                renderers.material = mats[2];
+                matsEye[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+                renderersBody.material = mats[0];
+                renderersEye.material = matsEye[0];
                 if (currentCutoff <= 0)
                 {
                     currentCutoff = 0f;
@@ -75,7 +76,8 @@ public class invisibleAI : MonoBehaviour
      
     public void increaseCutoff()
     {
-        Material[] mats = renderers.materials;
+        Material[] mats = renderersBody.materials;
+        Material[] matsEye = renderersEye.materials;
         if(currentCutoff >= 1f)
         {
             currentCutoff = 1f;
@@ -83,10 +85,8 @@ public class invisibleAI : MonoBehaviour
             aI.aifollow = false;
         }
         mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-        mats[1].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-        mats[2].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-        renderers.material = mats[0];
-        renderers.material = mats[1];
-        renderers.material = mats[2];
+        matsEye[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+        renderersBody.material = mats[0];
+        renderersEye.material = matsEye[0];
     }
 }

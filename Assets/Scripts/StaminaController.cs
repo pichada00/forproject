@@ -34,7 +34,7 @@ public class StaminaController : MonoBehaviour
     }
     private void Awake()
     {
-        lighter = GameObject.Find("Lamp").GetComponent<LighterSystem>();
+        lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
     }
 
     private void Update()

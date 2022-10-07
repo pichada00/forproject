@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum TypeMeleeWeapon { Wood, Iron }
+public enum TypeMeleeWeapon { Nothing, Wood, Iron }
 public class WoodForATK1 : MonoBehaviour, IInteractable
 {
     public Rigidbody rb;
@@ -16,13 +16,14 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     public interactsomething interactWood;
     public Interactor interactor;
     public Animator animator;
+    public GameObject weaponSpawn;
     public bool keeped = false;
     public bool AIkeeped = false;
     public bool right = false;
     public bool left = false;
     public bool shouldUse = false;
     public bool used = false;
-    private float _time = 2f;
+    private float _time = 1.25f;
     public interactsomething interactsomething => interactWood;
 
     public string InteractionPrompt => throw new System.NotImplementedException();
@@ -43,8 +44,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
         {
             if (right == true)
             {
-                gameObject.transform.position = PickUpPointR.position;
-                if (_time == 2 && used == false)
+                if (_time == 1.25f && used == false)
                 {
                     //Debug.Log(time);
                     UseItem(1);
@@ -68,8 +68,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
             }
             if (left == true)
             {
-                gameObject.transform.position = PickUpPointL.position;
-                if (_time == 2 && used == false)
+                if (_time == 1.25f && used == false)
                 {
                     //Debug.Log(time);
                     UseItem(0);
@@ -100,7 +99,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     public void ResetTime()
     {
         used = false;
-        _time = 2;
+        _time = 1.25f;
     }
 
     private void UseItem(int i)
@@ -111,11 +110,13 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
             switch (i)
             {
                 case 0:
+                    animator.applyRootMotion = true;
                     animator.CrossFadeInFixedTime("Melee Attack Downward left", 0.1f);
                     used = true;
                     Debug.Log("useItemleft");
                     break;
                 case 1:
+                    animator.applyRootMotion = true;
                     animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
                     used = true;
                     Debug.Log("useItemright");
@@ -142,27 +143,27 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
 
     public bool InteractL(Interactor interactor)
     {
-        PickUpPointL = interactor.PickUpPointL;
         interactor.handLeft = true;
-        rb.useGravity = false;
-        collider.enabled = false;
-        this.gameObject.transform.position = interactor.PickUpPointL.position;
-        this.transform.parent = GameObject.Find("Left_Hand").transform;
-        keeped = true;
-        left = true;
+        WoodForATK1 weapon = GameObject.Find("weaponL").GetComponent<WoodForATK1>();
+        MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+        meshweapon.enabled = true;
+        weapon.typeMeleeWeapon = typeMeleeWeapon;
+        weapon.keeped = true;
+        weapon.left = true;
+        Destroy(gameObject);
         return true;
     }
 
     public bool InteractR(Interactor interactor)
     {
-        PickUpPointR = interactor.PickUpPointR;
         interactor.handRight = true;
-        rb.useGravity = false;
-        collider.enabled = false;
-        this.gameObject.transform.position = interactor.PickUpPointR.position;
-        this.transform.parent = GameObject.Find("Right_Hand").transform;
-        keeped = true;
-        right = true;
+        WoodForATK1 weapon = GameObject.Find("weaponR").GetComponent<WoodForATK1>();
+        MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+        meshweapon.enabled = true;
+        weapon.typeMeleeWeapon = typeMeleeWeapon;
+        weapon.keeped = true;
+        weapon.right = true;
+        Destroy(gameObject);
         return true;
     }
 
@@ -170,11 +171,10 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         if (Input.GetKeyDown(KeyCode.E) && right == true)
         {
-            this.transform.parent = null;
-            Debug.Log("DropR");
+            Instantiate(weaponSpawn, this.gameObject.transform.position, Quaternion.identity);
+            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+            meshweapon.enabled = false;
             interactor.handRight = false;
-            rb.useGravity = true;
-            collider.enabled = true;
             keeped = false;
             ChangeBoolPick();
         }
@@ -185,11 +185,10 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         if (Input.GetKeyDown(KeyCode.Q) && left == true)
         {
-            this.transform.parent = null;
-            Debug.Log("DropL");
+            Instantiate(weaponSpawn, this.gameObject.transform.position, Quaternion.identity); 
+            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+            meshweapon.enabled = false;
             interactor.handLeft = false;
-            rb.useGravity = true;
-            collider.enabled = true;
             keeped = false;
             ChangeBoolPick();
         }

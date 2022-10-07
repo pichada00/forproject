@@ -57,16 +57,21 @@ using UnityEngine.InputSystem;
         else if (Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                              _weaponMask) >= 1)
         {
-            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius + 1.0f, _colliders,
+            _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
                                _weaponMask);
+        }else if(Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders,
+                             _weaponMask) == null)
+        {
+            _numFound = 0;
         }
 
             if (_numFound > 0)
         {
             var interactable = _colliders[0].GetComponent<IInteractable>();
+            
             switch (interactable.interactsomething)
             {
-                case interactsomething.handright:
+                case interactsomething.handright:                    
                     TypeInteract(1);
                     TypeInteract(2);
                     break;
@@ -84,7 +89,7 @@ using UnityEngine.InputSystem;
         }
     }
 
-        private void InteractBoth()
+    private void InteractBoth()
         {
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
             {
@@ -169,7 +174,7 @@ using UnityEngine.InputSystem;
                 var interactable = _colliders[0].GetComponent<IInteractable>();
                 if(mask == _weaponMask)
                 {
-                    box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                    box = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<BoxCollider>();
                 }
                 if (interactable != null)
                 {                    
@@ -201,7 +206,7 @@ using UnityEngine.InputSystem;
 
                     if (mask == _weaponMask)
                     {
-                        box = _colliders[0].gameObject.transform.GetChild(0).GetComponent<BoxCollider>();
+                        box = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<BoxCollider>();
                     }
                     if (interactable != null)
                         {
