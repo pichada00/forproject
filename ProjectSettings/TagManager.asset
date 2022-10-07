@@ -13,6 +13,8 @@ TagManager:
   - weapon
   - FirstRespawn
   - FirstRespawnAI
+  - weaponL
+  - weaponR
   layers:
   - Default
   - TransparentFX
