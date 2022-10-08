@@ -59,7 +59,7 @@ public class passiveAI : MonoBehaviour, IInteractable
             }*/
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (aI.aifollow == true)
             {
