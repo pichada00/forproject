@@ -59,11 +59,15 @@ public class passiveAI : MonoBehaviour, IInteractable
             }*/
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && aI.aifollow == true)
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
         {
-            aI.aifollow = false;
-            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
-            Interactor.handRight = false;
+            if (aI.aifollow == true)
+            {
+                aI.aifollow = false;
+                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+                Interactor.handRight = false;
+            }
+                
         }
         
     }

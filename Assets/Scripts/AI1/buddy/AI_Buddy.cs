@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
+[RequireComponent(typeof(AILinkMover))]
 public class AI_Buddy: MonoBehaviour
 {
     public NavMeshAgent agent;
@@ -13,8 +14,11 @@ public class AI_Buddy: MonoBehaviour
     public StaminaController stamina;
     public bool aifollow;
     public bool followwithtotem = false;
+    private AILinkMover linkMover;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
+
+    private const string Jump = "Air.Jump";
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +34,23 @@ public class AI_Buddy: MonoBehaviour
     private void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        linkMover = GetComponent<AILinkMover>();
         animator = GetComponent<Animator>();
         player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
         stamina = GameObject.Find("CS Character Controller").GetComponent<StaminaController>();
+
+        linkMover.OnLinkStart += HandleLinkStart;
+        linkMover.OnLinkEnd += HandleLinkEnd;
+    }
+
+    private void HandleLinkStart()
+    {
+        //animation jump
+        //animator.CrossFadeInFixedTime(Jump, 0.1f);
+    }
+    private void HandleLinkEnd()
+    {
+        //animation jump
     }
 
     // Update is called once per frame

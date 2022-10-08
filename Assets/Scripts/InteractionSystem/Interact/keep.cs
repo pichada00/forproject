@@ -127,10 +127,8 @@ public class keep : MonoBehaviour, IInteractable
     public bool InteractR(Interactor interactor)
     {
         interactor.handRight = true;
-        keep lamb = GameObject.Find("lamb position R").GetComponent<keep>();
-        MeshRenderer meshweapon = GameObject.Find("lamb position R").transform.GetChild(0).GetComponent<MeshRenderer>();
-        Debug.Log(meshweapon.enabled);
-        meshweapon.enabled = true;
+        keep lamb = GameObject.Find("lamb position R").GetComponent<keep>();        
+        meshLambR.enabled = true;
         Rig rig = GameObject.Find("openlamp hand R").GetComponent<Rig>();
         rig.weight = 1.0f;
         lamb.keeped = true;
@@ -143,11 +141,10 @@ public class keep : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.E) && right == true)
         {
             prefabGameObject.gameObject.GetComponent<keep>().right = true;
-            meshLambR.enabled = false;
             Rig rig = GameObject.Find("openlamp hand R").GetComponent<Rig>();
             rig.weight = 0.0f;
-            keeped = false;
             Instantiate(prefabGameObject, this.gameObject.transform.position, Quaternion.identity);
+            meshLambR.enabled = false;
             Invoke("ChangeBoolPick", 0.1f);
         }
         
@@ -157,7 +154,6 @@ public class keep : MonoBehaviour, IInteractable
     {
         if (Input.GetKeyDown(KeyCode.Q) && left == true)
         {
-
             prefabGameObject.gameObject.GetComponent<keep>().left = true;
             Rig rig = GameObject.Find("openlamp hand L").GetComponent<Rig>();
             rig.weight = 0.0f;
@@ -173,8 +169,11 @@ public class keep : MonoBehaviour, IInteractable
     {
         if (right == true)
         {
+
+            keeped = false;
             prefabGameObject.gameObject.GetComponent<keep>().right = false;
             Interactor.handRight = false;
+            Debug.Log(Interactor.handRight);
             right = false;
             return;
         }

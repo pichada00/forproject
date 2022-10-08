@@ -27,7 +27,8 @@ namespace DiasGames.Components
         public event Action onRestart;
 
         //add
-        public LighterSystem lighter;
+        public LighterSystem lighterL;
+        public LighterSystem lighterR;
         public invisibleAI invisible;
         public Transform aiBuddy;
 
@@ -43,7 +44,8 @@ namespace DiasGames.Components
 
         private void Awake()
         {
-            lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+            lighterR = GameObject.Find("lamb position R").GetComponent<LighterSystem>();
+            lighterL = GameObject.Find("lamb position L").GetComponent<LighterSystem>();
             invisible = GameObject.Find("AI").GetComponent<invisibleAI>();
             aiBuddy = GameObject.Find("AI").GetComponent<Transform>();
         }
@@ -111,7 +113,9 @@ namespace DiasGames.Components
         //add
         public void OverUesLamp()
         {
-            if ((lighter.openlamb == true && invisible.currentCutoff > 0) || invisible.neartotem == true)
+            if ((lighterR.openlamb == true && invisible.currentCutoff > 0) || 
+                (lighterL.openlamb == true && invisible.currentCutoff > 0) ||
+                invisible.neartotem == true)
             {
                 _currentHP -= healthDrain * Time.deltaTime;                
             }

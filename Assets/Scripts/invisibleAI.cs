@@ -9,7 +9,8 @@ public class invisibleAI : MonoBehaviour
     public SkinnedMeshRenderer renderersEye;
     public NavMeshAgent AITraansform;
     public Transform PointbehindPlayer;
-    public LighterSystem lighter;
+    public LighterSystem lighterL;
+    public LighterSystem lighterR;
     public Interactor interactor;
     public Collider collider;
     public AI_Buddy aI;
@@ -29,7 +30,8 @@ public class invisibleAI : MonoBehaviour
         AITraansform = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
         PointbehindPlayer = GameObject.Find("aiwalkto").GetComponent<Transform>();
-        lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+        lighterL = GameObject.Find("lamb position L").GetComponent<LighterSystem>();
+        lighterR = GameObject.Find("lamb position R").GetComponent<LighterSystem>();
         interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
     }
     // Start is called before the first frame update
@@ -42,14 +44,16 @@ public class invisibleAI : MonoBehaviour
     void Update()
     {
 
-        if ( (lighter.openlamb == true && follow == false) || neartotem == true)
+        if ((lighterR.openlamb == true && follow == false) ||
+            (lighterL.openlamb == true && follow == false) ||
+            neartotem == true)
         {            
             increaseCutoff();
         }      
         
         if(neartotem == false)
         {
-            if (lighter.openlamb == false)
+            if ((lighterL.openlamb == false) || (lighterR.openlamb == false))
             {
                 follow = false;
                 Material[] mats = renderersBody.materials;
