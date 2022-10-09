@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7860910577510747570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7860910577510747568}
+  - component: {fileID: 7860910577510747569}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7860910577510747568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860910577510747570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 608.5, y: 295, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7860910577510747569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860910577510747570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9be7b2eeeec4e4883c5fd21ba0c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 7860910577510747569}
+  firstPlay: 1
+  arriveStage2: 0
+  arriveStage3: 0
+  arriveStage4: 0
+  arriveStage5: 0
+  playerPosition: {fileID: 0}
+  aiPosition: {fileID: 0}
+  currentPlayerCheckPoint: {fileID: 0}
+  currentAICheckPoint: {fileID: 0}
+  newCheckPoint: {fileID: 0}
+  sceneInfostage0: {fileID: 0}
+  sceneInfostage1: {fileID: 11400000, guid: 313a262394679494db282f4f1fb2038d, type: 2}
+  sceneInfostage2: {fileID: 11400000, guid: 1d41cec8c6e308146af6067a7715e57b, type: 2}
+  sceneInfostage3: {fileID: 11400000, guid: 6bf708eb9fd32264db5ad4e28b7927c9, type: 2}
+  sceneInfostage4: {fileID: 11400000, guid: 8c763549d41ff9d45ad69b50d5a6e189, type: 2}
+  sceneInfostage5: {fileID: 11400000, guid: 2b33592bb493f8445af950c8c11d5c2c, type: 2}
+  playergameObject: {fileID: 0}
+  passstage0: 0
