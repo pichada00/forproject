@@ -58,13 +58,13 @@ public class invisibleAI : MonoBehaviour
                 follow = false;
                 Material[] mats = renderersBody.materials;
                 Material[] matsEye = renderersEye.materials;
-                mats[0].SetFloat("_Cutoff", currentCutoff -= 3.5f * Time.deltaTime);
-                matsEye[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+                mats[0].SetFloat("Dissolve", currentCutoff -= 3.5f * Time.deltaTime);
+                matsEye[0].SetFloat("Dissolve", currentCutoff += CutofFromLighter * Time.deltaTime);
                 renderersBody.material = mats[0];
                 renderersEye.material = matsEye[0];
-                if (currentCutoff <= 0)
+                if (currentCutoff <= -0.1f)
                 {
-                    currentCutoff = 0f;
+                    currentCutoff = -0.1f;
                 }
             }
         }
@@ -88,8 +88,8 @@ public class invisibleAI : MonoBehaviour
             follow = true;
             aI.aifollow = false;
         }
-        mats[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
-        matsEye[0].SetFloat("_Cutoff", currentCutoff += CutofFromLighter * Time.deltaTime);
+        mats[0].SetFloat("Dissolve", currentCutoff += CutofFromLighter * Time.deltaTime);
+        matsEye[0].SetFloat("Dissolve", currentCutoff += CutofFromLighter * Time.deltaTime);
         renderersBody.material = mats[0];
         renderersEye.material = matsEye[0];
     }

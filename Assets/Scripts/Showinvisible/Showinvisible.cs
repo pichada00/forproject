@@ -13,12 +13,13 @@ public class Showinvisible : MonoBehaviour
     public CheckMethod checkMethod;
     public float loadRange;
 
-    [SerializeField]private bool isLoaded;
+    [SerializeField] private bool isLoaded;
     [SerializeField] private bool shouldLoad;
 
     //add
     public MeshRenderer renderers;
-    public LighterSystem lighter;
+    public LighterSystem lighterL;
+    public LighterSystem lighterR;
     public Collider collider;
 
     public float t = 3f;
@@ -29,8 +30,8 @@ public class Showinvisible : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-                                            
+
+
     }
 
     private void Awake()
@@ -38,7 +39,8 @@ public class Showinvisible : MonoBehaviour
         player = GameObject.Find("CS Character Controller").transform;
         renderers = this.gameObject.GetComponent<MeshRenderer>();
         collider = this.gameObject.GetComponent<Collider>();
-        lighter = GameObject.FindGameObjectWithTag("Lamp").GetComponent<LighterSystem>();
+        lighterL = GameObject.Find("lamb position L").GetComponent<LighterSystem>();
+        lighterR = GameObject.Find("lamb position R").GetComponent<LighterSystem>();
         meshCollider = this.gameObject.GetComponent<MeshCollider>();
     }
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class Showinvisible : MonoBehaviour
     {
         //Material[] mats = renderers.materials;
 
-        if (lighter.openlamb == true)
+        if (lighterL.openlamb == true || lighterR.openlamb == true)
         {
             Debug.Log(Mathf.Sin(t * speed));
             collider.enabled = true;
@@ -63,15 +65,15 @@ public class Showinvisible : MonoBehaviour
         {
 
             Material[] mats = renderers.materials;
-            mats[0].SetFloat("_Cutoff", 1);
+            mats[0].SetFloat("Dissolve", 1);
             renderers.material = mats[0];
             collider.enabled = false;
             meshCollider.enabled = false;
         }
-        
+
     }
 
-    
+
 
     void DistanceCheck()
     {
@@ -83,7 +85,7 @@ public class Showinvisible : MonoBehaviour
                 LoadScene();
             }
         }
-        else 
+        else
         {
             UnLoadScene();
         }
@@ -107,38 +109,25 @@ public class Showinvisible : MonoBehaviour
             Debug.Log(Mathf.Sin(t * speed));
             Material[] mats = renderers.materials;
             //renderers.gameObject.SetActive(true);
-            mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
+            mats[0].SetFloat("Dissolve", Mathf.Sin(t * speed));
             t += Time.deltaTime;
-            if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("_Cutoff", 0); }
+            if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("Dissolve", 0); }
             renderers.material = mats[0];
             isLoaded = true;
             meshCollider.enabled = true;
 
-        } 
+        }
     }
 
     void UnLoadScene()
-    {     
-        if(shouldLoad == false)
+    {
+        if (shouldLoad == false)
         {
             Material[] mats = renderers.materials;
             mats[0].SetFloat("_Cutoff", 1);
             renderers.material = mats[0];
 
         }
-        /*{
-            Material[] mats = renderers.materials;
-        
-            mats[0].SetFloat("_Cutoff", Mathf.Sin(t * speed));
-            t += Time.deltaTime;
-            if (Mathf.Sin(t * speed) >= 0.9f) 
-            {
-                mats[0].SetFloat("_Cutoff", 1);
-                renderers.gameObject.SetActive(false);
-            }
-            renderers.material = mats[0];
-            isLoaded = false;
-        }*/
 
     }
 
@@ -155,7 +144,7 @@ public class Showinvisible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             shouldLoad = false;
-            
+
         }
     }
 }
