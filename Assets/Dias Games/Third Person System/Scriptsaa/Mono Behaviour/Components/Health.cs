@@ -70,9 +70,14 @@ namespace DiasGames.Components
             {
                 _currentHP = 0;
                 OnDead?.Invoke();
-                OnCharacterDeath.Invoke();
-                
-                
+                if(dead == false)
+                {
+
+                    testUnityevent();
+                }
+
+
+
             }
             if(Vector3.Distance(transform.position,aiBuddy.position) >= 13)
             {
@@ -108,7 +113,9 @@ namespace DiasGames.Components
 
         public void testUnityevent()
         {
-            Debug.Log("sdasdasd");
+            dead = true;
+            animator.SetBool(animtestDieState, true);
+            OnCharacterDeath.Invoke();
         }
         public void Damage(int damagePoints)
         {

@@ -2551,7 +2551,7 @@ GameObject:
   - component: {fileID: 2942379168574703601}
   m_Layer: 0
   m_Name: Gameplay - Climbing System (Character Controller)
-  m_TagString: Untagged
+  m_TagString: Controlcharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3307,14 +3307,42 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3993427023184859594}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f74bbf66dada34b86dcec48922db13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8704542643770580006}
+  parent: {fileID: 0}
   aI: {fileID: 0}
   delayToRestartLevel: 3
+  OnCharacterRestart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4394542397369879644}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5576205916372702697}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &4147636033303226565
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,13 +5025,18 @@ MonoBehaviour:
         m_CallState: 2
   healthDrain: 30
   healthRegen: 4.8
+  animtestDieState: Die
+  animtestReturnState: Ground.Idle
   _currentHP: 100
-  lighter: {fileID: 0}
+  lighterL: {fileID: 0}
+  lighterR: {fileID: 0}
   invisible: {fileID: 0}
   aiBuddy: {fileID: 0}
+  animator: {fileID: 0}
   blurdis: {fileID: 5606307041664423568}
   alphascore: 0
   distance: 0
+  dead: 0
 --- !u!114 &3919383874329207259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5120,8 +5153,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &9128051345287947559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7331,7 +7362,6 @@ GameObject:
   - component: {fileID: 6956339265289997679}
   - component: {fileID: 4949106901640713610}
   - component: {fileID: 8712637097122479442}
-  - component: {fileID: 2589766948422335407}
   - component: {fileID: 8895126641228038582}
   - component: {fileID: 7882263391316234283}
   - component: {fileID: 5714536199520150061}
@@ -7977,27 +8007,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5576205916372702697}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   healthDrain: 16.4
   healthRegen: 18.6
+  animtestDieState: Die
+  animtestReturnState: Ground.Idle
   _currentHP: 100
-  lighter: {fileID: 0}
+  lighterL: {fileID: 0}
+  lighterR: {fileID: 0}
   invisible: {fileID: 0}
   aiBuddy: {fileID: 0}
+  animator: {fileID: 0}
   blurdis: {fileID: 5606307041664423568}
   alphascore: 0
   distance: 0
---- !u!114 &2589766948422335407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704542643770580006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41a228cdd6826f41b3e09c16198993e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  dead: 0
 --- !u!114 &8895126641228038582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8089,7 +8124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704542643770580006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49388dda5ae94eb449fb3345a0ceff94, type: 3}
   m_Name: 
@@ -8102,8 +8137,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &7783415007992786716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8111,7 +8144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704542643770580006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2441925b0825d8a44a9659be699e3344, type: 3}
   m_Name: 
@@ -10366,8 +10399,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &1524883541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10470,6 +10501,10 @@ PrefabInstance:
     - target: {fileID: 174322488252578281, guid: 0ef8047326cf1604092abd6105259165, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 149.483
+      objectReference: {fileID: 0}
+    - target: {fileID: 174322488252578283, guid: 0ef8047326cf1604092abd6105259165, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 174322488252578286, guid: 0ef8047326cf1604092abd6105259165, type: 3}
       propertyPath: m_Name

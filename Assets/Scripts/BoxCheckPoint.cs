@@ -33,8 +33,8 @@ public class BoxCheckPoint : MonoBehaviour
             var o = this.gameObject;
             checkPoint.currentPlayerCheckPoint = o.transform;
             var position = o.transform.position;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = position;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = position - Vector3.back;
+            GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = checkPoint.currentPlayerCheckPoint.position;
+            GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = checkPoint.currentPlayerCheckPoint.position - Vector3.back;
             Destroy(other.gameObject);
         }
     }

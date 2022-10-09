@@ -13,7 +13,7 @@ namespace DiasGames.Controller
         [SerializeField] private GameObject player = null;
         [SerializeField] private GameObject parent = null;
         [SerializeField] private GameObject aI = null;
-        [SerializeField] private float delayToRestartLevel = 4f;
+        [SerializeField] private float delayToRestartLevel = 3f;
 
         [SerializeField] private UnityEvent OnCharacterRestart;
 
@@ -32,8 +32,8 @@ namespace DiasGames.Controller
         {
             _playerHealth = player.GetComponent<Health>();
             _newCheckPoint = GetComponent<NewCheckPoint>();
-            player.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne;
-            aI.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfAI;
+            //player.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne;
+            //aI.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfAI;
         }
         private void Awake()
         {
@@ -96,6 +96,7 @@ namespace DiasGames.Controller
 
 
             player.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne;
+            Debug.Log(GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne);
 
             _playerHealth.RestoreFullHealth();
 
@@ -108,10 +109,14 @@ namespace DiasGames.Controller
             _isRestartingLevel = false;
 
             _playerHealth.animator.SetBool(_playerHealth.animtestDieState, false);
-
+            Invoke("changebool", 1.0f);
             //Destroy(this.parent);
         }
 
-        
+        private void changebool()
+        {
+            _playerHealth.dead = false;
+            Debug.Log(GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne);
+        }
     }
 }
