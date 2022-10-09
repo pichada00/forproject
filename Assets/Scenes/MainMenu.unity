@@ -185,7 +185,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -433,11 +434,13 @@ MonoBehaviour:
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
   newCheckPoint: {fileID: 0}
+  sceneInfostage0: {fileID: 0}
   sceneInfostage1: {fileID: 11400000, guid: 313a262394679494db282f4f1fb2038d, type: 2}
   sceneInfostage2: {fileID: 11400000, guid: 1d41cec8c6e308146af6067a7715e57b, type: 2}
   sceneInfostage3: {fileID: 11400000, guid: 6bf708eb9fd32264db5ad4e28b7927c9, type: 2}
   sceneInfostage4: {fileID: 11400000, guid: 8c763549d41ff9d45ad69b50d5a6e189, type: 2}
   sceneInfostage5: {fileID: 11400000, guid: 2b33592bb493f8445af950c8c11d5c2c, type: 2}
+  playergameObject: {fileID: 0}
 --- !u!4 &188519917
 Transform:
   m_ObjectHideFlags: 0
@@ -515,7 +518,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -650,7 +654,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

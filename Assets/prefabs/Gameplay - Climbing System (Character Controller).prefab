@@ -868,8 +868,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6414569254973771887}
+  parent: {fileID: 0}
   aI: {fileID: 0}
   delayToRestartLevel: 3
+  OnCharacterRestart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1698314152599681304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5417,14 +5421,18 @@ MonoBehaviour:
         m_CallState: 2
   healthDrain: 16.4
   healthRegen: 18.6
+  animtestDieState: Die
+  animtestReturnState: Ground.Idle
   _currentHP: 100
   lighterL: {fileID: 0}
   lighterR: {fileID: 0}
   invisible: {fileID: 0}
   aiBuddy: {fileID: 0}
+  animator: {fileID: 0}
   blurdis: {fileID: 7783351721532070617}
   alphascore: 0
   distance: 0
+  dead: 0
 --- !u!114 &160208720716330982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5541,8 +5549,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &5606314253602480981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7417,14 +7423,18 @@ MonoBehaviour:
         m_CallState: 2
   healthDrain: 30
   healthRegen: 4.8
+  animtestDieState: Die
+  animtestReturnState: Ground.Idle
   _currentHP: 100
   lighterL: {fileID: 0}
   lighterR: {fileID: 0}
   invisible: {fileID: 0}
   aiBuddy: {fileID: 0}
+  animator: {fileID: 0}
   blurdis: {fileID: 7783351721532070617}
   alphascore: 0
   distance: 0
+  dead: 0
 --- !u!114 &1706280917325884818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7541,8 +7551,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &6873836617742674286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10452,6 +10460,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &656665632578521920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6257727077851360744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc288d27f23d494c9a6ab64bac77cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 2434652627907994277}
+  _interactionPointRadius: 0.54
+  box: {fileID: 0}
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _somethingbigMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _weaponMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  _AIMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _numFound: 0
+  PickUpPointR: {fileID: 3983927148205215781}
+  PickUpPointL: {fileID: 4576578691342410229}
+  hips: {fileID: 3270355077288832588}
+  handRight: 0
+  handLeft: 0
 --- !u!114 &2434652626648322927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10489,8 +10530,6 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  checkPointPlayer: {fileID: 0}
-  checkPointAI: {fileID: 0}
 --- !u!114 &2434652627289910300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10506,39 +10545,6 @@ MonoBehaviour:
   checkPoint: {fileID: 0}
   parentCheckPoint: []
   cube: {fileID: 0}
---- !u!114 &656665632578521920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6257727077851360744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc288d27f23d494c9a6ab64bac77cf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionPoint: {fileID: 2434652627907994277}
-  _interactionPointRadius: 0.54
-  box: {fileID: 0}
-  _interactableMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _somethingbigMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _weaponMask:
-    serializedVersion: 2
-    m_Bits: 8192
-  _AIMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _numFound: 0
-  PickUpPointR: {fileID: 3983927148205215781}
-  PickUpPointL: {fileID: 4576578691342410229}
-  hips: {fileID: 3270355077288832588}
-  handRight: 0
-  handLeft: 0
 --- !u!4 &6257727077851360745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3106411278232196493, guid: 2778ca67dd3296f4bbc08b63d7a8bd7e, type: 3}

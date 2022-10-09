@@ -86,6 +86,7 @@ MonoBehaviour:
   interactWood: 0
   interactor: {fileID: 0}
   animator: {fileID: 0}
+  weaponSpawn: {fileID: 0}
   keeped: 0
   AIkeeped: 0
   right: 0
@@ -212,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4336794538162112938, guid: 1ca83ec8f8f50cf4792257b961a7fcca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 4336794538162112940, guid: 1ca83ec8f8f50cf4792257b961a7fcca, type: 3}
       propertyPath: m_Enabled
       value: 0
