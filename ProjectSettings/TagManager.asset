@@ -15,6 +15,7 @@ TagManager:
   - FirstRespawnAI
   - weaponL
   - weaponR
+  - Controlcharacter
   layers:
   - Default
   - TransparentFX

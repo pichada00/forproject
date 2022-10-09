@@ -33,11 +33,15 @@ public class AI_Buddy: MonoBehaviour
     }
     private void Awake()
     {
+        if(player == null)
+        {
+            player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
+
+            stamina = GameObject.Find("CS Character Controller").GetComponent<StaminaController>();
+        }
         agent = this.GetComponent<NavMeshAgent>();
         linkMover = GetComponent<AILinkMover>();
         animator = GetComponent<Animator>();
-        player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
-        stamina = GameObject.Find("CS Character Controller").GetComponent<StaminaController>();
 
         linkMover.OnLinkStart += HandleLinkStart;
         linkMover.OnLinkEnd += HandleLinkEnd;

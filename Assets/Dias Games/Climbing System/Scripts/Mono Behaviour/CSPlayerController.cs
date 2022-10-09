@@ -86,7 +86,7 @@ namespace DiasGames.Controller
             _scheduler.OnUpdatedAbilities -= ResetActions;
 #endif
             // unsubscribe for death event
-            if (_health != null)
+             if (_health != null)
                 _health.OnDead -= Die;
         }
 
@@ -106,22 +106,22 @@ namespace DiasGames.Controller
         {
             CameraRotation();
         }
-
-        private void Die()
+        
+        public void Die()
         {
             _scheduler.StopScheduler();
 
             // disable any movement
-            _mover.DisableGravity();
-            _mover.StopMovement();
+            //_mover.DisableGravity();
+            //_mover.StopMovement();
 
             // disable main character collision
-            _capsule.DisableCollision();
+            //_capsule.DisableCollision();
 
             // activate root motion
-            _mover.ApplyRootMotion(Vector3.one);
+            //_mover.ApplyRootMotion(Vector3.one);
         }
-        private void restart()
+        /*public void restart()
         {
             _scheduler.ConScheduler();
 
@@ -133,7 +133,7 @@ namespace DiasGames.Controller
 
             // activate root motion
             _mover.ApplyRootMotion(Vector3.zero);
-        }
+        }*/
 
         private void CameraRotation()
         {

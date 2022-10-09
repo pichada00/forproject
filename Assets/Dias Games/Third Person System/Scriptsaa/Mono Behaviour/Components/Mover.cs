@@ -98,6 +98,8 @@ namespace DiasGames.Components
 		Vector3 UpDown;
 		float acceleration, speed;
 
+		private Health playerhp;
+
 		//add Stamina
 		[HideInInspector] public StaminaController _staminaController;
 
@@ -108,6 +110,7 @@ namespace DiasGames.Components
 			_controller = GetComponent<CharacterController>();
 			_initialCapsuleHeight = _controller.height;
 			_initialCapsuleRadius = _controller.radius;
+			playerhp = GetComponent<Health>();
 		}
 
         private void Start()
@@ -121,7 +124,8 @@ namespace DiasGames.Components
 			GravityControl();
 			GroundedCheck();
 
-            
+			
+			
 
 
 			if (Input.GetButtonDown("Sprint"))
@@ -610,6 +614,7 @@ namespace DiasGames.Components
 
         public void StopMovement()
         {
+			Debug.Log("ssda");
 			_velocity = Vector3.zero;
 			_speed = 0; 
 			

@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public SceneInfo sceneInfostage4;//scriptsAble object
     [SerializeField] public SceneInfo sceneInfostage5;//scriptsAble object
 
+
+    [SerializeField] public GameObject playergameObject;//scriptsAble object
+
     private void Start()
     {
         

@@ -15,6 +15,9 @@ namespace DiasGames.Components
         [Range(0, 50)] [SerializeField] private float healthDrain = 15f;
         [Range(0, 50)] [SerializeField] private float healthRegen = 15f;
 
+        [SerializeField] public string animtestDieState = "Die";
+        [SerializeField] public string animtestReturnState = "Ground.Idle";
+
         // internal vars
         [SerializeField] private float _currentHP = 175;
 
@@ -23,6 +26,7 @@ namespace DiasGames.Components
 
         public event Action OnHealthChanged;
         public event Action OnDead;
+        public event Action OnDead1;
 
         public event Action onRestart;
 
@@ -31,11 +35,13 @@ namespace DiasGames.Components
         public LighterSystem lighterR;
         public invisibleAI invisible;
         public Transform aiBuddy;
+        public Animator animator;
 
         [SerializeField] private RawImage blurdis;
         [SerializeField] private float alphascore;
         [SerializeField] private bool distance;
 
+        public bool dead=false;
         private void Start()
         {
             _currentHP = MaxHealthPoints;
@@ -48,6 +54,7 @@ namespace DiasGames.Components
             lighterL = GameObject.Find("lamb position L").GetComponent<LighterSystem>();
             invisible = GameObject.Find("AI").GetComponent<invisibleAI>();
             aiBuddy = GameObject.Find("AI").GetComponent<Transform>();
+            animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         }
         private void OnDrawGizmosSelected()
         {
@@ -64,6 +71,8 @@ namespace DiasGames.Components
                 _currentHP = 0;
                 OnDead?.Invoke();
                 OnCharacterDeath.Invoke();
+                
+                
             }
             if(Vector3.Distance(transform.position,aiBuddy.position) >= 13)
             {
@@ -88,15 +97,19 @@ namespace DiasGames.Components
 
             if (Vector3.Distance(transform.position, aiBuddy.position) >= 26)
             {
-                
-                Damage((int)MaxHP);
-                Debug.Log(_currentHP);
+
+                _currentHP-=MaxHP;
             }
             
             blurdis.color = new Color32(255, 255, 255, (byte)alphascore);
 
         }
 
+
+        public void testUnityevent()
+        {
+            Debug.Log("sdasdasd");
+        }
         public void Damage(int damagePoints)
         {
             _currentHP -= damagePoints;
