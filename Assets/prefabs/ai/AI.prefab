@@ -1700,6 +1700,8 @@ GameObject:
   - component: {fileID: 2948456760505245879}
   - component: {fileID: 2948456760505245878}
   - component: {fileID: 1619233950}
+  - component: {fileID: 1696949068941197646}
+  - component: {fileID: 8025627467688670044}
   m_Layer: 9
   m_Name: AI
   m_TagString: AIFriend
@@ -1739,7 +1741,7 @@ Animator:
   m_GameObject: {fileID: 3143296013110929995}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 067b069569113114387068beb431b3c9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2619dfba2d5925040b998b3b979af945, type: 2}
+  m_Controller: {fileID: 9100000, guid: b348291ad59236745b402a74233b3594, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1943,7 +1945,8 @@ MonoBehaviour:
   renderersEye: {fileID: 0}
   AITraansform: {fileID: 0}
   PointbehindPlayer: {fileID: 0}
-  lighter: {fileID: 0}
+  lighterL: {fileID: 0}
+  lighterR: {fileID: 0}
   interactor: {fileID: 0}
   collider: {fileID: 3143296013110929996}
   aI: {fileID: 8215110575148610350}
@@ -1979,6 +1982,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepAudioSource: {fileID: 9152141519745850260}
 --- !u!114 &1619233950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143296013110929995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0005882221592fc43abe507ca40aeb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 26
+  angle: 0
+--- !u!114 &1696949068941197646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143296013110929995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41331c73366dcb74a87066619efe02a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 2
+  m_curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.1132076
+      outSlope: 3.1132076
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05063354
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.028252449
+      outSlope: 0.028252449
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.9183817
+      outSlope: -4.9183817
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.067499004
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8025627467688670044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
