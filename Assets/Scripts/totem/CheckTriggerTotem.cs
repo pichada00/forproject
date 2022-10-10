@@ -29,6 +29,8 @@ public class CheckTriggerTotem : MonoBehaviour
             darkTotem.change = true;
             this.gameObject.SetActive(false);
             darkTotem.totem2.gameObject.SetActive(true);
+
+            GameManager.Instance.sceneInfostage1.counttotemdestroy++;
         }
 
         /*if (other.CompareTag("Player"))

@@ -16,6 +16,7 @@ TagManager:
   - weaponL
   - weaponR
   - Controlcharacter
+  - totemlight
   layers:
   - Default
   - TransparentFX

@@ -132,7 +132,7 @@ namespace DiasGames.Components
 			{
 				isRun = true;
             }
-			else if (Input.GetButtonUp("Sprint"))
+			else if (Input.GetButtonUp("Sprint") || playerhp.CurrentHP <= 0 )
             {
 				isRun = false;
 			}

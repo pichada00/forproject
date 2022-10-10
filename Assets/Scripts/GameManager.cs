@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     private static GameManager _instance;
     [SerializeField] private GameManager gameManager;
-    public bool firstPlay;
+    public bool firstPlay = true;
     public bool arriveStage2;
     public bool arriveStage3;
     public bool arriveStage4;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     //public Transform first position stage1;
 
-    public NewCheckPoint newCheckPoint;
+    //public NewCheckPoint newCheckPoint;
 
     [SerializeField] public SceneInfo sceneInfostage0;//scriptsAble object
     [SerializeField] public SceneInfo sceneInfostage1;//scriptsAble object
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] public GameObject playergameObject;//scriptsAble object
+
+    [SerializeField] public string _currentScene;//scriptsAble object
 
     private void Start()
     {
@@ -51,22 +53,28 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        newCheckPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<NewCheckPoint>();
-        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //newCheckPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<NewCheckPoint>();
+        //playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
     {
-        
+
     }
 
     public void NewGame(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        sceneInfostage1.counttotemdestroy = 0;
+        sceneInfostage2.counttotemdestroy = 0;
+        sceneInfostage3.counttotemdestroy = 0;
+        sceneInfostage4.counttotemdestroy = 0;
+        sceneInfostage5.counttotemdestroy = 0;
     }
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        _currentScene = sceneName;
         switch (sceneName)
         {
             case "0":
@@ -83,6 +91,14 @@ public class GameManager : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void continueGame()
+    {
+        if(firstPlay == false)
+        {
+            ChangeScene("Stage1Chapter1");
+        }
     }
 
     public void RestartPlayerCheckpoint()

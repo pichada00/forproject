@@ -13,9 +13,11 @@ namespace DiasGames.Controller
         [SerializeField] private GameObject player = null;
         [SerializeField] private GameObject parent = null;
         [SerializeField] private GameObject aI = null;
-        [SerializeField] private float delayToRestartLevel = 3f;
+        [SerializeField] private float delayToRestartLevel = 2f;
 
         [SerializeField] private UnityEvent OnCharacterRestart;
+        private AbilityScheduler _scheduler = null;
+        private Mover _mover = null;
 
         //public GameObject currentCheckPoint;
         private NewCheckPoint _newCheckPoint;
@@ -37,6 +39,8 @@ namespace DiasGames.Controller
         }
         private void Awake()
         {
+            _scheduler = GetComponent<AbilityScheduler>();
+            _mover = GameObject.FindGameObjectWithTag("Player").GetComponent<Mover>();
             if (player == null)
                 player = GameObject.FindGameObjectWithTag("Player");
 
@@ -96,26 +100,31 @@ namespace DiasGames.Controller
 
 
             player.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne;
+            aI.transform.position = player.transform.position + Vector3.left;
             Debug.Log(GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne);
 
             _playerHealth.RestoreFullHealth();
 
             
 
-            OnCharacterRestart.Invoke();
+            if(player.transform.position == GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne)
+            {
+                OnCharacterRestart.Invoke();
+            }
             //_playerHealth.onRestart += controller.restart;
             //_playerHealth.onRestart -= controller.Die;
 
             _isRestartingLevel = false;
 
             _playerHealth.animator.SetBool(_playerHealth.animtestDieState, false);
-            Invoke("changebool", 1.0f);
+            Invoke("changebool", 0.1f);
             //Destroy(this.parent);
         }
 
         private void changebool()
         {
             _playerHealth.dead = false;
+            _mover.enabled = true;
             Debug.Log(GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne);
         }
     }

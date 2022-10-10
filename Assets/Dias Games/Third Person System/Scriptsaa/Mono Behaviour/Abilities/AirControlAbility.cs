@@ -24,6 +24,7 @@ namespace DiasGames.Abilities
         [SerializeField] private UnityEvent OnLanded = null;
 
         private IMover _mover = null;
+        private Health health = null;
         private IDamage _damage;
         private CharacterAudioPlayer _audioPlayer;
 
@@ -43,6 +44,7 @@ namespace DiasGames.Abilities
         private void Awake()
         {
             _mover = GetComponent<IMover>();
+            health = GetComponent<Health>();
             _damage = GetComponent<IDamage>();
             _audioPlayer = GetComponent<CharacterAudioPlayer>();
             _camera = Camera.main.transform;
@@ -55,78 +57,86 @@ namespace DiasGames.Abilities
 
         public override void OnStartAbility()
         {
-            _startInput = _action.move;
-            _targetRotation = _camera.eulerAngles.y;
-
-            if (_action.jump && _mover.IsGrounded())
-                PerformJump();
-            else
+            if (health.CurrentHP > 0)
             {
-                SetAnimationState(animFallState, 0.25f);
-                _startSpeed = Vector3.Scale(_mover.GetVelocity(), new Vector3(1, 0, 1)).magnitude;
+                _startInput = _action.move;
+                _targetRotation = _camera.eulerAngles.y;
 
-                _startInput.x = Vector3.Dot(_camera.right, transform.forward);
-                _startInput.y = Vector3.Dot(Vector3.Scale(_camera.forward, new Vector3(1, 0, 1)), transform.forward);
+                if (_action.jump && _mover.IsGrounded())
+                    PerformJump();
+                else
+                {
+                    SetAnimationState(animFallState, 0.25f);
+                    _startSpeed = Vector3.Scale(_mover.GetVelocity(), new Vector3(1, 0, 1)).magnitude;
 
-                if (_startSpeed > 3.5f)
-                    _startSpeed = speedOnAir;
+                    _startInput.x = Vector3.Dot(_camera.right, transform.forward);
+                    _startInput.y = Vector3.Dot(Vector3.Scale(_camera.forward, new Vector3(1, 0, 1)), transform.forward);
+
+                    if (_startSpeed > 3.5f)
+                        _startSpeed = speedOnAir;
+                }
+
+                _highestPosition = transform.position.y;
+                _hardLanding = false;
             }
-
-            _highestPosition = transform.position.y;
-            _hardLanding = false;
+            
         }
 
         public override void UpdateAbility()
         {
-            if (_hardLanding)
+            if (health.CurrentHP > 0)
             {
-                // apply root motion
-                _mover.ApplyRootMotion(Vector3.one, false);
-
-                // wait animation finish
-                if (HasFinishedAnimation(animHardLandState))
-                    StopAbility();
-
-                return;
-            }
-
-            if (_mover.IsGrounded())
-            {
-                if (_highestPosition - transform.position.y >= heightForHardLand)
+                if (_hardLanding)
                 {
-                    _hardLanding = true;
-                    SetAnimationState(animHardLandState, 0.02f);
+                    // apply root motion
+                    _mover.ApplyRootMotion(Vector3.one, false);
 
-                    // call event
-                    OnLanded.Invoke();
-
-                    // call damage clip
-                    if (_audioPlayer)
-                        _audioPlayer.PlayVoice(hardLandClip);
-
-                    // cause damage
-                    if (_damage != null)
-                    {
-                        // calculate damage
-                        float currentHeight = _highestPosition - transform.position.y - heightForHardLand;
-                        float ratio = currentHeight / (heightForKillOnLand - heightForHardLand);
-
-                        _damage.Damage((int)(200 * ratio));
-                    }
+                    // wait animation finish
+                    if (HasFinishedAnimation(animHardLandState))
+                        StopAbility();
 
                     return;
                 }
 
-                StopAbility();
+                if (_mover.IsGrounded())
+                {
+                    if (_highestPosition - transform.position.y >= heightForHardLand)
+                    {
+                        _hardLanding = true;
+                        SetAnimationState(animHardLandState, 0.02f);
+
+                        // call event
+                        OnLanded.Invoke();
+
+                        // call damage clip
+                        if (_audioPlayer)
+                            _audioPlayer.PlayVoice(hardLandClip);
+
+                        // cause damage
+                        if (_damage != null)
+                        {
+                            // calculate damage
+                            float currentHeight = _highestPosition - transform.position.y - heightForHardLand;
+                            float ratio = currentHeight / (heightForKillOnLand - heightForHardLand);
+
+                            _damage.Damage((int)(200 * ratio));
+                        }
+
+                        return;
+                    }
+
+                    StopAbility();
+                }
+
+                if (transform.position.y > _highestPosition)
+                    _highestPosition = transform.position.y;
+
+                _startInput = Vector2.SmoothDamp(_startInput, _action.move, ref _inputVel, airControl);
+                _mover.Move(_startInput, _startSpeed, false);
+
+                RotateCharacter();
             }
-
-            if (transform.position.y > _highestPosition)
-                _highestPosition = transform.position.y;
-
-            _startInput = Vector2.SmoothDamp(_startInput, _action.move, ref _inputVel, airControl);
-            _mover.Move(_startInput, _startSpeed, false);
-
-            RotateCharacter();
+           
         }
 
         private void RotateCharacter()

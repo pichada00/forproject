@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DiasGames.Components;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoxCheckPoint : MonoBehaviour
 {
@@ -33,9 +34,19 @@ public class BoxCheckPoint : MonoBehaviour
             var o = this.gameObject;
             checkPoint.currentPlayerCheckPoint = o.transform;
             var position = o.transform.position;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = checkPoint.currentPlayerCheckPoint.position;
-            GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = checkPoint.currentPlayerCheckPoint.position - Vector3.back;
-            Destroy(other.gameObject);
+
+            switch (GameManager.Instance._currentScene)
+            {
+                case "Stage1Chapter1":
+                    
+                    GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = checkPoint.currentPlayerCheckPoint.position;
+                    GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = checkPoint.currentPlayerCheckPoint.position - Vector3.back;
+                    GameManager.Instance.sceneInfostage1.countcheckpointed++;
+                    break;
+            }
+
+            other.gameObject.SetActive(false);
+
         }
     }
 }
