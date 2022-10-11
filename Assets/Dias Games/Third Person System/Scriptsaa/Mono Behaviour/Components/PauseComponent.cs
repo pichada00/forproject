@@ -31,8 +31,8 @@ namespace DiasGames.Components
             if (pauseMenu)
                 pauseMenu.SetActive(_isPaused);
 
-            Cursor.visible = paused ? true : visible;
-            Cursor.lockState = paused ? CursorLockMode.None : lockMode;
+            //Cursor.visible = paused ? true : visible;
+            Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.None;
             
         }
 
