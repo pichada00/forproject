@@ -38,11 +38,16 @@ public class NewCheckPoint : MonoBehaviour
         aiPosition = GameObject.FindGameObjectWithTag("AIFriend").GetComponent<Transform>();
         //checkPointPlayer = GameObject.FindGameObjectWithTag("FirstRespawn").GetComponent<Transform>();
         //checkPointAI = GameObject.FindGameObjectWithTag("FirstRespawnAI").GetComponent<Transform>();
+        if(GameManager.Instance.continueGa == true)
+        {
+            Respawn();
+            GameManager.Instance.continueGa = false;
+        }
     }
 
     private void Respawn()
     {
         playerPosition.position = currentPlayerCheckPoint.position;
-        aiPosition.position = currentAICheckPoint.position;
+        aiPosition.position = playerPosition.position + Vector3.left;
     }
 }

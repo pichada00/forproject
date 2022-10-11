@@ -54,12 +54,11 @@ MonoBehaviour:
   aiPosition: {fileID: 0}
   currentPlayerCheckPoint: {fileID: 0}
   currentAICheckPoint: {fileID: 0}
-  newCheckPoint: {fileID: 0}
-  sceneInfostage0: {fileID: 0}
+  sceneInfostage0: {fileID: 11400000, guid: ec11570e79f3da04eaf024962fd85453, type: 2}
   sceneInfostage1: {fileID: 11400000, guid: 313a262394679494db282f4f1fb2038d, type: 2}
   sceneInfostage2: {fileID: 11400000, guid: 1d41cec8c6e308146af6067a7715e57b, type: 2}
   sceneInfostage3: {fileID: 11400000, guid: 6bf708eb9fd32264db5ad4e28b7927c9, type: 2}
   sceneInfostage4: {fileID: 11400000, guid: 8c763549d41ff9d45ad69b50d5a6e189, type: 2}
   sceneInfostage5: {fileID: 11400000, guid: 2b33592bb493f8445af950c8c11d5c2c, type: 2}
   playergameObject: {fileID: 0}
-  passstage0: 0
+  _currentScene: 

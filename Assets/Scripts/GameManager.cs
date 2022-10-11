@@ -31,9 +31,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public SceneInfo sceneInfostage5;//scriptsAble object
 
 
-    [SerializeField] public GameObject playergameObject;//scriptsAble object
+    [SerializeField] public GameObject playergameObject;
 
-    [SerializeField] public string _currentScene;//scriptsAble object
+    [SerializeField] public int coubtPassStage = 0;
+    [SerializeField] public bool continueGa = false;
+
+    [SerializeField] public string _currentScene;
 
     private void Start()
     {
@@ -59,7 +62,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        if (coubtPassStage >= 1)
+        {
+            firstPlay = false;
+        }
+        else
+        {
+            firstPlay = true;
+        }
     }
 
     public void NewGame(string sceneName)
@@ -75,10 +85,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
         _currentScene = sceneName;
+        Debug.Log(_currentScene);
         switch (sceneName)
         {
-            case "0":
-                sceneInfostage0.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
+            case "Stage1Chapter1":
+                sceneInfostage1.countcheckpointed = 0;
+                sceneInfostage1.counttotemdestroy = 0;
                 break;
             case "1":
                 sceneInfostage1.currentCheckPointOfStageOne = new Vector3(45, 1, -5);
@@ -95,15 +107,13 @@ public class GameManager : MonoBehaviour
 
     public void continueGame()
     {
-        if(firstPlay == false)
+        continueGa = true;
+        switch (coubtPassStage)
         {
-            ChangeScene("Stage1Chapter1");
+            case 1:
+                ChangeScene("Stage1Chapter1");
+                break;
         }
-    }
-
-    public void RestartPlayerCheckpoint()
-    {
-        playerPosition.position = sceneInfostage1.currentCheckPointOfStageOne;
     }
 
     public void Exit()

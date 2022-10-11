@@ -34,13 +34,16 @@ public class BoxCheckPoint : MonoBehaviour
             var o = this.gameObject;
             checkPoint.currentPlayerCheckPoint = o.transform;
             var position = o.transform.position;
+            Debug.Log(SceneManager.GetActiveScene().name);
 
-            switch (GameManager.Instance._currentScene)
+            switch (SceneManager.GetActiveScene().name)
             {
-                case "Stage1Chapter1":
-                    
+                case "Stage1Chapter1":                    
                     GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = checkPoint.currentPlayerCheckPoint.position;
-                    GameManager.Instance.sceneInfostage1.currentCheckPointOfAI = checkPoint.currentPlayerCheckPoint.position - Vector3.back;
+                    GameManager.Instance.sceneInfostage1.countcheckpointed++;
+                    break;
+                case "Stage1Chapter2":
+                    GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne = checkPoint.currentPlayerCheckPoint.position;
                     GameManager.Instance.sceneInfostage1.countcheckpointed++;
                     break;
             }

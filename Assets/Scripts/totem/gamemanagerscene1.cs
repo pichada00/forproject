@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class gamemanagerscene1 : MonoBehaviour
 {
+    public GameObject[] _totemLight;
+    public GameObject[] _checkpointed;
     private void Awake()
     {
-        GameManager.Instance.sceneInfostage1.totemDestroyed = GameObject.FindGameObjectsWithTag("totemlight");
+        _totemLight = GameObject.FindGameObjectsWithTag("totemlight");
 
-        GameManager.Instance.sceneInfostage1.checkpointed = GameObject.FindGameObjectsWithTag("CheckPoint");
+        _checkpointed = GameObject.FindGameObjectsWithTag("CheckPoint");
 
         for(int i = 0; i < GameManager.Instance.sceneInfostage1.counttotemdestroy; i++)
         {
-            GameManager.Instance.sceneInfostage1.totemDestroyed[i].SetActive(false);
+            _totemLight[i].SetActive(false);
         }
 
         for (int i = 0; i < GameManager.Instance.sceneInfostage1.countcheckpointed; i++)
         {
-            GameManager.Instance.sceneInfostage1.checkpointed[i].SetActive(false);
+            _checkpointed[i].SetActive(false);
         }
     }
 }
