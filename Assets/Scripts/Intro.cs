@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Intro : MonoBehaviour
 {
     [SerializeField] private float wait = 8;
+    [SerializeField] private string nameScene;
     private void Start()
     {
         StartCoroutine(StartingGame());
@@ -15,6 +16,6 @@ public class Intro : MonoBehaviour
     IEnumerator StartingGame()
     {
         yield return new WaitForSeconds(wait);
-        SceneManager.LoadScene("MainMenuUI 1");
+        SceneManager.LoadScene(nameScene);
     }
 }

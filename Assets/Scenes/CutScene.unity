@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wait: 8
-  nameScene: MainMenuUI 1
+  scene: Stage 0
 --- !u!114 &1911364676
 MonoBehaviour:
   m_ObjectHideFlags: 0
