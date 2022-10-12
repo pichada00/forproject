@@ -6,7 +6,7 @@ namespace DiasGames.Components
     public class PauseComponent : MonoBehaviour
     {
         [SerializeField] private GameObject pauseMenu;
-        private bool _isPaused;
+        [SerializeField] private bool _isPaused;
 
         CursorLockMode lockMode;
         bool visible;
@@ -15,6 +15,7 @@ namespace DiasGames.Components
         {
             visible = Cursor.visible;
             lockMode = Cursor.lockState;
+            Time.timeScale = _isPaused ? 0f : 1f;
         }
 
         private void OnPause(InputValue value)

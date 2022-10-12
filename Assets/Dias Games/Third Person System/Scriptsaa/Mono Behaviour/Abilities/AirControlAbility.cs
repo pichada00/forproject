@@ -103,8 +103,10 @@ namespace DiasGames.Abilities
                     if (_highestPosition - transform.position.y >= heightForHardLand)
                     {
                         _hardLanding = true;
-                        //SetAnimationState(animHardLandState, 0.02f);
-                        SetAnimationState("Die", 0.02f);
+                        if (health.CurrentHP > 0)
+                        {
+                            SetAnimationState(animHardLandState, 0.02f);
+                        }
 
                         // call event
                         OnLanded.Invoke();
@@ -121,6 +123,12 @@ namespace DiasGames.Abilities
                             float ratio = currentHeight / (heightForKillOnLand - heightForHardLand);
 
                             _damage.Damage((int)(200 * ratio));
+
+                            Debug.Log(200*ratio);
+                            if (200 * ratio >= health.MaxHP)
+                            {
+                                SetAnimationState("Die", 0.2f);
+                            }
                         }
 
                         return;

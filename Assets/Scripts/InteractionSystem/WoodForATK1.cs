@@ -123,13 +123,17 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
 
     public void AfterUseItem()
     {
-        gameObject.SetActive(false);
         if(right == true)
         {
             interactor.handRight = false;
-        }else if( left == true)
+            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+            meshweapon.enabled = false;
+        }
+        else if( left == true)
         {
-            interactor.handLeft = false;
+            interactor.handLeft = false; 
+            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+            meshweapon.enabled = false;
         }
         keeped = false;
         Invoke("ChangeBoolPick", 1.0f);

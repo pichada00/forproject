@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
                 sceneInfostage3.currentCheckPointOfStageOne = new Vector3(0, 0, 0);
                 break;
         }
-        
     }
 
     public void continueGame()
