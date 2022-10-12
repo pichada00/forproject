@@ -35,7 +35,7 @@ public class AI_Buddy: MonoBehaviour
     {
         if(player == null)
         {
-            player = GameObject.Find("CS Character Controller").GetComponent<Transform>();
+            player = GameObject.Find("character").GetComponent<Transform>();
 
             stamina = GameObject.Find("CS Character Controller").GetComponent<StaminaController>();
         }

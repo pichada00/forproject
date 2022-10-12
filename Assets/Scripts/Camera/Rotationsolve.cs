@@ -7,6 +7,7 @@ public class Rotationsolve : MonoBehaviour
     public Transform transform;
     public CheckTop checkTop;
     public riseAI rise;
+    public int i;
 
     public void OnEnable()
     {
@@ -25,7 +26,10 @@ public class Rotationsolve : MonoBehaviour
             Vector3 lookrotation = transform.position;
             other.transform.rotation = Quaternion.LookRotation(lookrotation);
             checkTop.OnEnable();
-            rise.AIclimb = true;
+            if(i == 1)
+            {
+                rise.AIclimb = true;
+            }
             OnDisable();
         }
         

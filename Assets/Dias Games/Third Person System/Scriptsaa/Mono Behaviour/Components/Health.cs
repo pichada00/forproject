@@ -79,7 +79,7 @@ namespace DiasGames.Components
 
 
             }
-            if(Vector3.Distance(transform.position,aiBuddy.position) >= 13)
+            if(Vector3.Distance(transform.position,aiBuddy.position) >= 9)
             {
                 alphascore += 100 * Time.deltaTime;
 

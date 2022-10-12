@@ -47,11 +47,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                 if (_time == 1.25f && used == false)
                 {
                     //Debug.Log(time);
-                    UseItem(1);
-                    if (shouldUse == true && typeMeleeWeapon == TypeMeleeWeapon.Wood)
-                    {
-                        Invoke("AfterUseItem", 2.5f);
-                    }
+                    UseItem(1);                    
                 }
 
                 if (used == true && _time > 0)
@@ -72,10 +68,6 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                 {
                     //Debug.Log(time);
                     UseItem(0);
-                    if (shouldUse == true && typeMeleeWeapon == TypeMeleeWeapon.Wood)
-                    {
-                        Invoke("AfterUseItem", 2.5f);
-                    }
                 }
 
                 if (used == true && _time > 0)
@@ -122,16 +114,23 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                     Debug.Log("useItemright");
                     break;
             }
+            if (typeMeleeWeapon == TypeMeleeWeapon.Wood)
+            {
+                Invoke("AfterUseItem", 1.5f);
+            }
         }
     }
 
     public void AfterUseItem()
     {
-        this.transform.parent = null;
-        Debug.Log("afteruseitem");
-        interactor.handRight = false;
-        rb.useGravity = true;
-        collider.enabled = true;
+        gameObject.SetActive(false);
+        if(right == true)
+        {
+            interactor.handRight = false;
+        }else if( left == true)
+        {
+            interactor.handLeft = false;
+        }
         keeped = false;
         Invoke("ChangeBoolPick", 1.0f);
     }

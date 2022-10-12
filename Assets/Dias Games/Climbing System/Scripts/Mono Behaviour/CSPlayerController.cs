@@ -152,7 +152,6 @@ namespace DiasGames.Controller
             _scheduler.characterActions.sprint = Sprint;
             _scheduler.characterActions.jump = Jump;
             _scheduler.characterActions.walk = Walk;
-            _scheduler.characterActions.roll = Roll;
             _scheduler.characterActions.crouch = Crouch;
             _scheduler.characterActions.interact = Interact;
             _scheduler.characterActions.crawl = Crawl;
@@ -170,7 +169,6 @@ namespace DiasGames.Controller
         public bool Jump = false;
         public bool Walk = false;
         public bool Sprint = false;//
-        public bool Roll = false;
         public bool Crouch = false;
         public bool Interact = false;
         public bool Crawl = false;
@@ -180,7 +178,6 @@ namespace DiasGames.Controller
         public void ResetActions()
         {
             Jump = false;
-            Roll = false;
             Crawl = false;
             Interact = false;
             Drop = false;
@@ -197,7 +194,6 @@ namespace DiasGames.Controller
             Walk = Input.GetButton("Walk");
             Sprint = Input.GetButton("Sprint");//
             Jump = Input.GetButtonDown("Jump");
-            Roll = Input.GetButtonDown("Roll");
             Crouch = Input.GetButton("Crouch");
             Crawl = Input.GetButtonDown("Crawl");
             Zoom = Input.GetButtonDown("Zoom");
@@ -233,10 +229,6 @@ namespace DiasGames.Controller
         public void OnSprint(bool value)
         {
             Sprint = value;
-        }
-        public void OnRoll(bool value)
-        {
-            Roll = value;
         }
         public void OnCrouch(bool value)
         {
@@ -286,10 +278,6 @@ namespace DiasGames.Controller
             OnSprint(value.isPressed);
         }
 
-        private void OnRoll(InputValue value)
-        {
-            OnRoll(value.isPressed);
-        }
 
         private void OnCrouch(InputValue value)
         {

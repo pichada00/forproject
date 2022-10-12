@@ -103,7 +103,8 @@ namespace DiasGames.Abilities
                     if (_highestPosition - transform.position.y >= heightForHardLand)
                     {
                         _hardLanding = true;
-                        SetAnimationState(animHardLandState, 0.02f);
+                        //SetAnimationState(animHardLandState, 0.02f);
+                        SetAnimationState("Die", 0.02f);
 
                         // call event
                         OnLanded.Invoke();

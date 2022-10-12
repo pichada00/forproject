@@ -8,6 +8,7 @@ public interface IInteractable
 {
     public interactsomething interactsomething { get; }
     public string InteractionPrompt { get; }
+
     public bool Interact(Interactor interactor);
     public bool InteractL(Interactor interactor);
     public bool InteractR(Interactor interactor);
