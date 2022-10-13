@@ -58,7 +58,6 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                     }
                 }
                 DropR();
-                return;
             }
             if (left == true)
             {
@@ -76,7 +75,6 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                     }
                 }
                 DropL();
-                return;
             }
 
 

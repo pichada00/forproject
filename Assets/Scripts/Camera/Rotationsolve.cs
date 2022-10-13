@@ -25,9 +25,9 @@ public class Rotationsolve : MonoBehaviour
         {
             Vector3 lookrotation = transform.position;
             other.transform.rotation = Quaternion.LookRotation(lookrotation);
-            checkTop.OnEnable();
             if(i == 1)
             {
+                checkTop.OnEnable();
                 rise.AIclimb = true;
             }
             OnDisable();

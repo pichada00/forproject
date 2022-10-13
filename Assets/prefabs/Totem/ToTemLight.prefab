@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 2370660997359934958}
   m_Layer: 0
   m_Name: ToTemLight
-  m_TagString: Untagged
+  m_TagString: totemlight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

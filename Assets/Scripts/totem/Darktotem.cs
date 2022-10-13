@@ -14,6 +14,8 @@ public class Darktotem : MonoBehaviour
     [SerializeField] private Collider totem;
     [SerializeField] public Collider totem2;
     [SerializeField] public Animator animator;
+    public Interactor interactor;
+    public WoodForATK1 woodForATK1;
     public typeTotem _typeTotem;
 
     private readonly Collider[] _colliders = new Collider[3];
@@ -60,6 +62,8 @@ public class Darktotem : MonoBehaviour
     }
     private void Awake()
     {
+        interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
+        woodForATK1 = GameObject.Find("weaponL").GetComponent<WoodForATK1>();
         i_Buddy = GameObject.Find("AI").GetComponent<AI_Buddy>();
         buddy = i_Buddy.gameObject;
         //gameObjecttotem = this.gameObject.GetComponent<GameObject>();
@@ -203,6 +207,7 @@ public class Darktotem : MonoBehaviour
             animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
             totem.enabled = false;
             Dome.SetActive(false);
+            woodForATK1.AfterUseItem();
             Invoke("solvebool", 0.5f);
             /*animator.GetLayerIndex("Base Layer");
             animator.SetBool("TotemLightDestroy", true);

@@ -86,7 +86,7 @@ MonoBehaviour:
   interactWood: 0
   interactor: {fileID: 0}
   animator: {fileID: 0}
-  weaponSpawn: {fileID: 7666660448041904373, guid: 5f0189d142f6a314ab231b6495992bd0, type: 3}
+  weaponSpawn: {fileID: 4342652449579617324, guid: 2b40fdf1b5f60f948b907235c59c0068, type: 3}
   keeped: 0
   AIkeeped: 0
   right: 0
@@ -111,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &560712754921203517
 Transform:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6713696567152371480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
