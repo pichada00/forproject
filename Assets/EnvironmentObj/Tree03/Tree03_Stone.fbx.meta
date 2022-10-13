@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: adc30cd6d411f8d48b169f1b2c893884
+guid: 855801c968f01fa44b173617fc5470d5
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,18 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Leaf_Tree03_Alpha.003
-    second: {fileID: 2100000, guid: 6bb2717df36319648be2b08ea91fa39d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leaf_Tree03_Alpha.004
-    second: {fileID: 2100000, guid: 54b219033a2ce5443bffa006b48fe4b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leaf_Tree03_Alpha.005
-    second: {fileID: 2100000, guid: 896799da8c9651d4893109a070980c35, type: 2}
+      name: Leaf_Tree03_Alpha
+    second: {fileID: 2100000, guid: 36965b04227841e4c8db3f2672da1f1d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
