@@ -8,10 +8,12 @@ public class Darktotem : MonoBehaviour
 {
     [SerializeField] private AI_Buddy i_Buddy;
     [SerializeField] private GameObject buddy;
+    public GameObject Dome;
     [SerializeField] private AI_leech[] aI_Leeches;
     private Darktotem darktotem;
     [SerializeField] private Collider totem;
     [SerializeField] public Collider totem2;
+    [SerializeField] public Animator animator;
     public typeTotem _typeTotem;
 
     private readonly Collider[] _colliders = new Collider[3];
@@ -61,9 +63,10 @@ public class Darktotem : MonoBehaviour
         i_Buddy = GameObject.Find("AI").GetComponent<AI_Buddy>();
         buddy = i_Buddy.gameObject;
         //gameObjecttotem = this.gameObject.GetComponent<GameObject>();
-        totem = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
+        totem = GetComponent<Collider>();
         totem2 = this.gameObject.transform.GetChild(1).GetComponent<Collider>();
         darktotem = GetComponent<Darktotem>();
+        animator = GetComponent<Animator>();
         //totem = 
     }
     // Update is called once per frame
@@ -165,5 +168,56 @@ public class Darktotem : MonoBehaviour
         Gizmos.color = Color.red;
      //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
      Gizmos.DrawWireSphere(transform.position, radius);
+    }
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "weapon")
+        {
+            Debug.Log("hitTrigger");
+            animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
+            animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
+            if (change = false)
+            {
+                
+            }
+            change = true;
+            Dome.SetActive(false);
+            /*animator.GetLayerIndex("Base Layer");
+            animator.SetBool("TotemLightDestroy", true);
+            animator.GetLayerIndex("small");
+            animator.SetBool("TotemLightDestroy_001", true);
+
+
+
+            GameManager.Instance.sceneInfostage1.counttotemdestroy++;
+        }
+    }*/
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("weapon"))
+        {
+            Debug.Log("hitTrigger");
+            animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
+            animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
+            totem.enabled = false;
+            Dome.SetActive(false);
+            Invoke("solvebool", 0.5f);
+            /*animator.GetLayerIndex("Base Layer");
+            animator.SetBool("TotemLightDestroy", true);
+            animator.GetLayerIndex("small");
+            animator.SetBool("TotemLightDestroy_001", true);*/
+            
+            
+
+            GameManager.Instance.sceneInfostage1.counttotemdestroy++;
+        }
+    }
+
+    public void solvebool()
+    {
+
+        change = true;
     }
 }

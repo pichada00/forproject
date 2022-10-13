@@ -46,14 +46,12 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
             {
                 if (_time == 1.25f && used == false)
                 {
-                    //Debug.Log(time);
                     UseItem(1);                    
                 }
 
                 if (used == true && _time > 0)
                 {
                     _time -= 1 * Time.deltaTime;
-                    //Debug.Log("time" + time);
                     if (_time <= 0)
                     {
                         ResetTime();
@@ -66,14 +64,12 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
             {
                 if (_time == 1.25f && used == false)
                 {
-                    //Debug.Log(time);
                     UseItem(0);
                 }
 
                 if (used == true && _time > 0)
                 {
                     _time -= 1 * Time.deltaTime;
-                    //Debug.Log("time" + time);
                     if (_time <= 0)
                     {
                         ResetTime();
@@ -114,29 +110,33 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                     Debug.Log("useItemright");
                     break;
             }
-            if (typeMeleeWeapon == TypeMeleeWeapon.Wood)
-            {
-                Invoke("AfterUseItem", 1.5f);
-            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "totemlight" && typeMeleeWeapon == TypeMeleeWeapon.Wood)
+        {
+            Invoke("AfterUseItem", 0.1f);
         }
     }
 
     public void AfterUseItem()
     {
-        if(right == true)
+        if (right == true)
         {
             interactor.handRight = false;
-            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshRenderer>();
             meshweapon.enabled = false;
         }
-        else if( left == true)
+        else if (left == true)
         {
-            interactor.handLeft = false; 
-            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+            interactor.handLeft = false;
+            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshRenderer>();
             meshweapon.enabled = false;
         }
         keeped = false;
         Invoke("ChangeBoolPick", 1.0f);
+               
     }
 
     public bool Interact(Interactor interactor)
@@ -148,7 +148,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         interactor.handLeft = true;
         WoodForATK1 weapon = GameObject.Find("weaponL").GetComponent<WoodForATK1>();
-        MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+        MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshRenderer>();
         meshweapon.enabled = true;
         weapon.typeMeleeWeapon = typeMeleeWeapon;
         weapon.keeped = true;
@@ -161,7 +161,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         interactor.handRight = true;
         WoodForATK1 weapon = GameObject.Find("weaponR").GetComponent<WoodForATK1>();
-        MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+        MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshRenderer>();
         meshweapon.enabled = true;
         weapon.typeMeleeWeapon = typeMeleeWeapon;
         weapon.keeped = true;
@@ -175,7 +175,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.E) && right == true)
         {
             Instantiate(weaponSpawn, this.gameObject.transform.position, Quaternion.identity);
-            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(1).GetComponent<MeshRenderer>();
+            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshRenderer>();
             meshweapon.enabled = false;
             interactor.handRight = false;
             keeped = false;
@@ -189,7 +189,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.Q) && left == true)
         {
             Instantiate(weaponSpawn, this.gameObject.transform.position, Quaternion.identity); 
-            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(1).GetComponent<MeshRenderer>();
+            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshRenderer>();
             meshweapon.enabled = false;
             interactor.handLeft = false;
             keeped = false;
