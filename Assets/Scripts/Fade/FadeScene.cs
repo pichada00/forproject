@@ -17,13 +17,18 @@ public class FadeScene : MonoBehaviour
 
     public void FadeToNextLevel()
     {
-        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        animator.SetBool("fadeout",true);
+        Invoke("FadeAgain", 1.5f);
+    }
+    public void FadeAgain()
+    {
+        Debug.Log("fadein");
+        animator.SetBool("fadeout", false);
     }
 
     public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
