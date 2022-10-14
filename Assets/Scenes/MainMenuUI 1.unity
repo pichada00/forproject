@@ -218,6 +218,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2469468713068467240}
+        m_TargetAssemblyTypeName: FadeScene, Assembly-CSharp
+        m_MethodName: FadeToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &42754549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -600,6 +612,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Stage1Chapter1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2469468713068467240}
+        m_TargetAssemblyTypeName: FadeScene, Assembly-CSharp
+        m_MethodName: FadeToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &68830067
@@ -6341,6 +6365,18 @@ MonoBehaviour:
           m_StringArgument: Stage 0
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2469468713068467240}
+        m_TargetAssemblyTypeName: FadeScene, Assembly-CSharp
+        m_MethodName: FadeToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1437297758
 GameObject:
   m_ObjectHideFlags: 0
@@ -7644,6 +7680,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Stage 0
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2469468713068467240}
+        m_TargetAssemblyTypeName: FadeScene, Assembly-CSharp
+        m_MethodName: FadeToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &1674918590
@@ -9325,10 +9373,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2469468711630501866, guid: f67e23104048cc642bfc3a8e6bd63488, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f67e23104048cc642bfc3a8e6bd63488, type: 3}
+--- !u!114 &2469468713068467240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2469468711630501864, guid: f67e23104048cc642bfc3a8e6bd63488, type: 3}
+  m_PrefabInstance: {fileID: 2469468713068467239}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31c60ab03959f74d81d42db0efe6081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4473348315036275076
 PrefabInstance:
   m_ObjectHideFlags: 0

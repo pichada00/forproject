@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public enum TypeMeleeWeapon { Nothing, Wood, Iron }
 public class WoodForATK1 : MonoBehaviour, IInteractable
 {
@@ -25,6 +27,8 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     public bool used = false;
     private float _time = 1.25f;
     public interactsomething interactsomething => interactWood;
+
+    public UnityEvent hit;
 
     public string InteractionPrompt => throw new System.NotImplementedException();
 
@@ -112,12 +116,21 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "totemlight" && typeMeleeWeapon == TypeMeleeWeapon.Wood)
+        if(other.tag == "totemlight")
         {
-            Invoke("AfterUseItem", 0.1f);
+            Debug.Log(hit);
+            StartCoroutine(InvokeCoroutine());
+            if (typeMeleeWeapon == TypeMeleeWeapon.Wood)
+            {
+                Invoke("AfterUseItem", 0.1f);
+            }
         }
     }
-
+    IEnumerator InvokeCoroutine()
+    {
+        yield return null;
+        hit.Invoke();
+    }
     public void AfterUseItem()
     {
         if (right == true)
