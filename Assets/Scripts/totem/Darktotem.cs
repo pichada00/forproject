@@ -32,6 +32,7 @@ public class Darktotem : MonoBehaviour
     public int indexarray = 0;
     public int indexAIBuddy = 0;
 
+
     private void Start()
     {
         switch (_typeTotem)
@@ -203,6 +204,8 @@ public class Darktotem : MonoBehaviour
         if (other.CompareTag("weapon"))
         {
             Debug.Log("hitTrigger");
+            AudioManager.Instance.PlaySFX("hit");
+            AudioManager.Instance.PlaySFX("totemdestroy");
             animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
             animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
             totem.enabled = false;

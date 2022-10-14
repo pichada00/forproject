@@ -635,6 +635,7 @@ namespace DiasGames.Components
 			return isRun;
         }
 
+		
         /*bool IMover.Inwater()
         {
 			return Inwater;

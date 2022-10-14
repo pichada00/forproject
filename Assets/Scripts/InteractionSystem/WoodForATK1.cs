@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public enum TypeMeleeWeapon { Nothing, Wood, Iron }
 public class WoodForATK1 : MonoBehaviour, IInteractable
@@ -28,8 +27,7 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     private float _time = 1.25f;
     public interactsomething interactsomething => interactWood;
 
-    public UnityEvent hit;
-
+    public AudioSource audio;
     public string InteractionPrompt => throw new System.NotImplementedException();
 
     private void Awake()
@@ -104,12 +102,14 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
                     animator.CrossFadeInFixedTime("Melee Attack Downward left", 0.1f);
                     used = true;
                     Debug.Log("useItemleft");
+                    audio.Play();
                     break;
                 case 1:
                     animator.applyRootMotion = true;
                     animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
                     used = true;
                     Debug.Log("useItemright");
+                    audio.Play();
                     break;
             }
         }
@@ -118,19 +118,13 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         if(other.tag == "totemlight")
         {
-            Debug.Log(hit);
-            StartCoroutine(InvokeCoroutine());
             if (typeMeleeWeapon == TypeMeleeWeapon.Wood)
             {
                 Invoke("AfterUseItem", 0.1f);
             }
         }
     }
-    IEnumerator InvokeCoroutine()
-    {
-        yield return null;
-        hit.Invoke();
-    }
+    
     public void AfterUseItem()
     {
         if (right == true)

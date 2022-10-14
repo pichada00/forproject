@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         switch (sceneName)
         {
             case "Stage1Chapter1":
+                AudioManager.Instance.PlayMusic("stage1");
                 sceneInfostage1.countcheckpointed = 0;
                 sceneInfostage1.counttotemdestroy = 0;
                 break;

@@ -52,6 +52,7 @@ public class LighterSystem : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && openlamb == false )
                 {
+                    AudioManager.Instance.PlaySFX("openlamp");
                     light.range = 20.00f;
                     openlamb = true;
                     //particleLight.gameObject.SetActive(true);
@@ -60,6 +61,7 @@ public class LighterSystem : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(0) && openlamb == true)
                 {
+                    AudioManager.Instance.PlaySFX("closelamp");
                     light.range = 0.00f;
                     openlamb = false;
                     //particleLight.gameObject.SetActive(false);
@@ -71,6 +73,7 @@ public class LighterSystem : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1) && openlamb == false )
                 {
+                    AudioManager.Instance.PlaySFX("openlamp");
                     light.range = 20.00f;
                     openlamb = true;
                     //particleLight.gameObject.SetActive(true);
@@ -80,6 +83,7 @@ public class LighterSystem : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(1) && openlamb == true)
                 {
+                    AudioManager.Instance.PlaySFX("closelamp");
                     light.range = 0.00f;
                     openlamb = false;
                     //particleLight.gameObject.SetActive(false);
