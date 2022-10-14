@@ -171,6 +171,7 @@ using UnityEngine.InputSystem;
                        mask);
             if (_numFound > 0)
             {
+                AudioManager.Instance.PlaySFX("interact");
                 var interactable = _colliders[0].GetComponent<IInteractable>();
                 if(mask == _weaponMask)
                 {
@@ -202,7 +203,8 @@ using UnityEngine.InputSystem;
                                mask);
                     if (_numFound > 0)
                     {
-                        var interactable = _colliders[0].GetComponent<IInteractable>();
+                    AudioManager.Instance.PlaySFX("interact");
+                    var interactable = _colliders[0].GetComponent<IInteractable>();
 
                     if (mask == _weaponMask)
                     {

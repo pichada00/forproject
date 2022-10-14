@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.clip = sound.clip;
             musicSource.Play();
+            
         }
     }
 
@@ -53,11 +54,18 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            sfxSource.PlayOneShot(sound.clip);
+            //sfxSource.PlayOneShot(sound.clip);
+            sfxSource.clip = sound.clip;
+            sfxSource.Play();
+            Invoke("stopsfxsource", 0.1f);
             
         }
     }
 
+    public void stopsfxsource()
+    {
+        sfxSource.Stop();
+    }
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
