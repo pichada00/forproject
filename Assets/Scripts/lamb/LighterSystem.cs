@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
 
 public class LighterSystem : MonoBehaviour
 {
@@ -21,9 +22,14 @@ public class LighterSystem : MonoBehaviour
     public float radius;
     public int indexAIBuddy = 0;
 
+    public Rig rigL;
+    public Rig rigR;
+
     private void Awake()
     {
-      //  lighterSystem = this;
+        rigR = GameObject.Find("openlamp hand R (1)").GetComponent<Rig>();
+        rigL = GameObject.Find("openlamp hand L (1)").GetComponent<Rig>();
+        //  lighterSystem = this;
     }
     void Start()
     {
@@ -49,6 +55,7 @@ public class LighterSystem : MonoBehaviour
                     light.range = 20.00f;
                     openlamb = true;
                     //particleLight.gameObject.SetActive(true);
+                    rigL.weight = 1.0f;
                     return;                    
                 }
                 if (Input.GetMouseButtonDown(0) && openlamb == true)
@@ -56,6 +63,7 @@ public class LighterSystem : MonoBehaviour
                     light.range = 0.00f;
                     openlamb = false;
                     //particleLight.gameObject.SetActive(false);
+                    rigL.weight = 0.0f;
                     return;
                     
                 }
@@ -66,6 +74,7 @@ public class LighterSystem : MonoBehaviour
                     light.range = 20.00f;
                     openlamb = true;
                     //particleLight.gameObject.SetActive(true);
+                    rigR.weight = 1.0f;
                     return;
                     
                 }
@@ -74,6 +83,7 @@ public class LighterSystem : MonoBehaviour
                     light.range = 0.00f;
                     openlamb = false;
                     //particleLight.gameObject.SetActive(false);
+                    rigR.weight = 0.0f;
                     return;
                     
                 }
@@ -84,6 +94,8 @@ public class LighterSystem : MonoBehaviour
         {
             openlamb = false;
             light.range = 0.00f;
+            rigL.weight = 0.0f;
+            rigR.weight = 0.0f;
         }
         if(openlamb == true)
         {

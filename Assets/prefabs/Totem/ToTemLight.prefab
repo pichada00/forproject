@@ -569,6 +569,8 @@ MonoBehaviour:
   totem: {fileID: 0}
   totem2: {fileID: 0}
   animator: {fileID: 0}
+  interactor: {fileID: 0}
+  woodForATK1: {fileID: 0}
   _typeTotem: 1
   indexTotem: 0
   player:
@@ -580,7 +582,7 @@ MonoBehaviour:
   aiBuddy:
     serializedVersion: 2
     m_Bits: 512
-  radius: 1
+  radius: 13
   change: 0
   indexmonster: 0
   indexarray: 0

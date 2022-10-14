@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   collider: {fileID: 0}
-  prefabGameObject: {fileID: 0}
+  prefabGameObject: {fileID: 7021170752483530334}
   PickUpPointR: {fileID: 0}
   PickUpPointL: {fileID: 0}
   meshLambR: {fileID: 0}

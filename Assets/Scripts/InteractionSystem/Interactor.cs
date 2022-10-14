@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 
         [SerializeField] private Transform _interactionPoint;
         [SerializeField] private float _interactionPointRadius = 0.5f;
-        [SerializeField] private MeshCollider box;
+        [SerializeField] private Collider box;
         [SerializeField] private LayerMask _interactableMask;
         [SerializeField] private LayerMask _somethingbigMask;
         [SerializeField] private LayerMask _weaponMask;
@@ -174,7 +174,7 @@ using UnityEngine.InputSystem;
                 var interactable = _colliders[0].GetComponent<IInteractable>();
                 if(mask == _weaponMask)
                 {
-                    box = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshCollider>();
+                    box = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<Collider>();
                 }
                 if (interactable != null)
                 {                    
@@ -206,7 +206,7 @@ using UnityEngine.InputSystem;
 
                     if (mask == _weaponMask)
                     {
-                        box = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshCollider>();
+                        box = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<Collider>();
                     }
                     if (interactable != null)
                         {

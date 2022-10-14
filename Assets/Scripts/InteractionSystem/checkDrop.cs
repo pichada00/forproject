@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class checkDrop : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    public float speed = 10f;
+    public float time = 3f;
+    private void Update()
     {
-        if (other.name == "check")
-        {
 
-        }
     }
 }

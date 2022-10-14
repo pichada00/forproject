@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2454003671587690464}
   - component: {fileID: 1288298483537046705}
-  - component: {fileID: 6389868629160093456}
-  - component: {fileID: 2641923075265464180}
   - component: {fileID: 7535553895063203533}
   - component: {fileID: 1176229819404501851}
+  - component: {fileID: -917601716945110549}
   m_Layer: 7
   m_Name: lamb position R
   m_TagString: Lamp
@@ -62,35 +61,6 @@ MonoBehaviour:
   AIkeeped: 0
   right: 0
   left: 0
---- !u!65 &6389868629160093456
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2973941437026880858}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.21, y: 0.36021948, z: 0.22842407}
-  m_Center: {x: 0, y: 0.03510976, z: 0}
---- !u!54 &2641923075265464180
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2973941437026880858}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &7535553895063203533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +145,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-917601716945110549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973941437026880858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &6724601767827812379
 GameObject:
   m_ObjectHideFlags: 0
