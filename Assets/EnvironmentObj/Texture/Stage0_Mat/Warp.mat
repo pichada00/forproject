@@ -10,6 +10,7 @@ Material:
   m_Name: Warp
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _EMISSION
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
@@ -83,7 +84,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 2
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -98,6 +99,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -107,12 +109,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
+    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.1619558, g: 0.028657887, b: 0.26415092, a: 1}
-    - _Color: {r: 0.1619558, g: 0.028657887, b: 0.26415092, a: 1}
-    - _EmissionColor: {r: 0.022173883, g: 0.002124689, b: 0.056128494, a: 1}
+    - _BaseColor: {r: 0.6393082, g: 0.5377359, b: 0.7169812, a: 1}
+    - _Color: {r: 0.6393082, g: 0.5377359, b: 0.7169812, a: 1}
+    - _EmissionColor: {r: 0.26666668, g: 0.047058824, b: 0.61960787, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2166886504872815070
