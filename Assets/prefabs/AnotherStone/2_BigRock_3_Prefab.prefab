@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 823084374323879078}
   - component: {fileID: 3209054055677503596}
   - component: {fileID: 1287786569578761099}
+  - component: {fileID: -3017348406381843959}
   m_Layer: 0
   m_Name: 2_BigRock_3_Prefab
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed3fe6e4fea460240b10882104074d36, type: 2}
+  - {fileID: 2100000, guid: 1650437bd2dc826488de9bc4867664c9, type: 2}
   - {fileID: 2100000, guid: e7dc1f56d9a62b741a8136a06c016e1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -99,3 +100,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -870708966941533855, guid: 2fe53c47199a241a1b09db8aea39ad9d, type: 3}
+--- !u!114 &-3017348406381843959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001489884920449465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6851e4db96eafc74a86fb196941b773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 1650437bd2dc826488de9bc4867664c9, type: 2}
+  instanceMaterial: 0
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 1
+  raycastFadeSpeed: 10
