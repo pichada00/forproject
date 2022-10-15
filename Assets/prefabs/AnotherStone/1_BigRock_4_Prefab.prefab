@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 483831348830908956}
   - component: {fileID: 2401013736557201110}
   - component: {fileID: 5181580270214295002}
+  - component: {fileID: 5847476498175895467}
   m_Layer: 0
   m_Name: 1_BigRock_4_Prefab
   m_TagString: Untagged
@@ -98,3 +99,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 848828291434388238, guid: 03e6d2192f81540a3876da105c48110e, type: 3}
+--- !u!114 &5847476498175895467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202669022237222659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6851e4db96eafc74a86fb196941b773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 0354fe0a54547a743b294cb58c212d4c, type: 2}
+  instanceMaterial: 0
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 1
+  raycastFadeSpeed: 10
