@@ -166,6 +166,8 @@ MonoBehaviour:
     m_Bits: 512
   radius: 13
   indexAIBuddy: 0
+  rigL: {fileID: 0}
+  rigR: {fileID: 0}
 --- !u!108 &5385804542046041743
 Light:
   m_ObjectHideFlags: 0
@@ -212,12 +214,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

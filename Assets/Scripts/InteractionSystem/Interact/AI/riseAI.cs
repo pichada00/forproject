@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.AI;
 
 public class riseAI : MonoBehaviour
@@ -12,10 +13,13 @@ public class riseAI : MonoBehaviour
     public Transform aiwalkto;
 
     public Transform AI;
+    public Animator animator;
     public NavMeshAgent AIOnly;
     public Rigidbody AIrb;
     public Rotationsolve rotationsolve;
     public CheckTop checkTop;
+    public Rig[] rigs;
+
 
     public bool AIclimb = false;
     public bool AIcanclimb = false;
@@ -32,6 +36,7 @@ public class riseAI : MonoBehaviour
         AIOnly = GameObject.Find("AI").GetComponent<NavMeshAgent>();
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
         AI = GameObject.Find("AI").GetComponent<Transform>();
+        animator = GameObject.Find("AI").GetComponent<Animator>();
         aiwalkto = GameObject.Find("aiwalkto").GetComponent<Transform>();
     }
     // Start is called before the first frame update
@@ -69,12 +74,22 @@ public class riseAI : MonoBehaviour
         {
             AIclimb = false;
             AIOnly.enabled = true;
+            rigs[0].weight = 0;
+            rigs[1].weight = 0;
+            rigs[2].weight = 0;
         }
             
         if (AIclimb == true)
         {
             AIOnly.Warp(aiwalkto.position);
             AIOnly.enabled = false;
+            rigs[0].weight = 1;
+            rigs[1].weight = 1;
+            rigs[2].weight = 1;
+
+        }
+        else
+        {
             
         }
     }
@@ -103,6 +118,9 @@ public class riseAI : MonoBehaviour
             AIcanclimb = false;
             AIOnly.enabled = true;
             rotationsolve.OnEnable();
+            rigs[0].weight = 0;
+            rigs[1].weight = 0;
+            rigs[2].weight = 0;
             //Invoke("teleporttoTop", 3.0f);            
         }
     }

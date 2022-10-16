@@ -8786,6 +8786,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6892093645160839000, guid: c9704a5da26444246b5ca87ef4e2411e, type: 3}
+      propertyPath: musicSound.Array.data[0].name
+      value: stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892093645160839000, guid: c9704a5da26444246b5ca87ef4e2411e, type: 3}
+      propertyPath: musicSound.Array.data[1].name
+      value: Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 6892093645160839013, guid: c9704a5da26444246b5ca87ef4e2411e, type: 3}
       propertyPath: m_Name
       value: AudioManager

@@ -34,13 +34,7 @@ public class maskpullAI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && canpull == true)
-        {
-            jump.SetActive(true);
-            aI.aifollow = true;
-            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
-
-        }
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -55,7 +49,15 @@ public class maskpullAI : MonoBehaviour
             {
                 canpull = false;
             }
-            
+
+            if (Input.GetKeyDown(KeyCode.Q) && canpull == true)
+            {
+                jump.SetActive(true);
+                aI.aifollow = true;
+                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+
+            }
+
         }
     }
 
