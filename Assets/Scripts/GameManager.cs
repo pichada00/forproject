@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameObject playergameObject;
 
-    [SerializeField] public int coubtPassStage = 0;
+    [SerializeField] public int coubtPassStage;
     [SerializeField] public bool continueGa = false;
 
     [SerializeField] public string _currentScene;
@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
     public void NewGame(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        coubtPassStage = 0;
+        sceneInfostage0.stagepass = false;
+        sceneInfostage1.countcheckpointed = 0;
         sceneInfostage1.counttotemdestroy = 0;
         sceneInfostage2.counttotemdestroy = 0;
         sceneInfostage3.counttotemdestroy = 0;
@@ -108,11 +111,9 @@ public class GameManager : MonoBehaviour
     public void continueGame()
     {
         continueGa = true;
-        switch (coubtPassStage)
+        if (sceneInfostage0.stagepass)
         {
-            case 1:
-                ChangeScene("Stage1Chapter1");
-                break;
+            ChangeScene("Stage1Chapter1");
         }
     }
 

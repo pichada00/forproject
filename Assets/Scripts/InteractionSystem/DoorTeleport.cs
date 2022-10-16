@@ -12,6 +12,7 @@ public class DoorTeleport : MonoBehaviour
         if(other.tag == "Player")
         {
             unityEvent.Invoke();
+            GameManager.Instance.sceneInfostage0.stagepass = true;
         }
     }
 }

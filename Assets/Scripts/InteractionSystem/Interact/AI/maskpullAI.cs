@@ -7,6 +7,7 @@ public class maskpullAI : MonoBehaviour
 {
     public Transform transformBottom;
     public Transform transformTop;
+    public GameObject discuss = null;
 
     public Animator animator;
     public Animator animatorplayer;
@@ -59,6 +60,14 @@ public class maskpullAI : MonoBehaviour
             }
 
         }
+        if (discuss != null)
+        {
+            if (other.gameObject.tag == "AIFriend")
+            {
+                discuss.SetActive(false);
+            }
+        }
+        
     }
 
     private void aniamtiona()
