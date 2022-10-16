@@ -31,6 +31,7 @@ public class Darktotem : MonoBehaviour
     public int indexmonster = 0;
     public int indexarray = 0;
     public int indexAIBuddy = 0;
+    public Light light;
 
 
     private void Start()
@@ -107,6 +108,21 @@ public class Darktotem : MonoBehaviour
         }
 
         checkAI();
+
+        if(change == false)
+        {
+            if(light.range < 30)
+            {
+                light.range += 10f * Time.deltaTime;
+            }
+            if(light.range >= 30)
+            {
+                Dome.SetActive(true);
+            }else
+            {
+                return;
+            }
+        }
     }
 
     public void hitDestroyingame()
@@ -208,6 +224,8 @@ public class Darktotem : MonoBehaviour
             AudioManager.Instance.PlaySFX("totemdestroy");
             animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
             animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
+            light.enabled = false;
+            light.range = 0;
             totem.enabled = false;
             Dome.SetActive(false);
             woodForATK1.AfterUseItem();
@@ -223,9 +241,18 @@ public class Darktotem : MonoBehaviour
         }
     }
 
+    public void restoreTotemForPuzzle()
+    {
+        animator.CrossFadeInFixedTime("TotemLightStay", 5.0f, 0);
+        animator.CrossFadeInFixedTime("TotemLightStay_001", 5.0f, 1);
+        totem.enabled = true;
+        light.enabled = true;
+        Dome.SetActive(true);
+        change = false;
+        
+    }
     public void solvebool()
     {
-
         change = true;
     }
 }

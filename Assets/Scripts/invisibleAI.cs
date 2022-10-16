@@ -21,6 +21,9 @@ public class invisibleAI : MonoBehaviour
     public float currentCutoff = 0f;
     public float CutofFromLighter = 0f;
 
+
+    
+
     private void Awake()
     {
         //player = GameObject.Find("CS Character Controller").transform;
@@ -66,11 +69,20 @@ public class invisibleAI : MonoBehaviour
                 {
                     currentCutoff = -0.1f;
                 }
-            }
-        }
-        
 
-        if (currentCutoff >= 1f)
+            }
+            /*if(follow == true)
+            {
+                aI.aifollow = true;
+                aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
+                interactor.handRight = true;
+                Invoke("solve", 0.1f);
+            }*/
+            
+        }
+
+
+            if (currentCutoff >= 1f)
         {
             AITraansform.Warp(PointbehindPlayer.position);
             aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
@@ -92,5 +104,10 @@ public class invisibleAI : MonoBehaviour
         matsEye[0].SetFloat("Dissolve", currentCutoff += CutofFromLighter * Time.deltaTime);
         renderersBody.material = mats[0];
         renderersEye.material = matsEye[0];
+    }
+
+    public void solve()
+    {
+        follow = false;
     }
 }

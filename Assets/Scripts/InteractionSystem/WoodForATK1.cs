@@ -118,29 +118,30 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     {
         if(other.tag == "totemlight")
         {
-            if (typeMeleeWeapon == TypeMeleeWeapon.Wood)
-            {
-                Invoke("AfterUseItem", 0.1f);
-            }
+            
         }
     }
     
     public void AfterUseItem()
     {
-        if (right == true)
+        if (this.typeMeleeWeapon == TypeMeleeWeapon.Wood)
         {
-            interactor.handRight = false;
-            MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshRenderer>();
-            meshweapon.enabled = false;
+            if (right == true)
+            {
+                interactor.handRight = false;
+                MeshRenderer meshweapon = GameObject.Find("weaponR").transform.GetChild(0).GetComponent<MeshRenderer>();
+                meshweapon.enabled = false;
+            }
+            else if (left == true)
+            {
+                interactor.handLeft = false;
+                MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshRenderer>();
+                meshweapon.enabled = false;
+            }
+            keeped = false;
+            Invoke("ChangeBoolPick", 1.0f);
         }
-        else if (left == true)
-        {
-            interactor.handLeft = false;
-            MeshRenderer meshweapon = GameObject.Find("weaponL").transform.GetChild(0).GetComponent<MeshRenderer>();
-            meshweapon.enabled = false;
-        }
-        keeped = false;
-        Invoke("ChangeBoolPick", 1.0f);
+        
                
     }
 

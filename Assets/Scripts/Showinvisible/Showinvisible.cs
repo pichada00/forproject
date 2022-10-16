@@ -7,10 +7,17 @@ public enum CheckMethod
     Distance,
     Trigger
 }
+public enum goods
+{
+    bridge,
+    rock
+}
+
 public class Showinvisible : MonoBehaviour
 {
     public Transform player;
     public CheckMethod checkMethod;
+    public goods checkGoods;
     public float loadRange;
 
     [SerializeField] private bool isLoaded;
@@ -46,29 +53,50 @@ public class Showinvisible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Material[] mats = renderers.materials;
-
-        if (lighterL.openlamb == true || lighterR.openlamb == true)
+        switch (checkGoods)
         {
-            Debug.Log(Mathf.Sin(t * speed));
-            collider.enabled = true;
-            if (checkMethod == CheckMethod.Distance)
-            {
-                DistanceCheck();
-            }
-            else if (checkMethod == CheckMethod.Trigger)
-            {
-                TriggerCheck();
-            }
-        }
-        else
-        {
+            case goods.bridge:
+                if (lighterL.openlamb == true || lighterR.openlamb == true)
+                {
+                    Debug.Log(Mathf.Sin(t * speed));
+                    collider.enabled = true;
+                    if (checkMethod == CheckMethod.Distance)
+                    {
+                        DistanceCheck();
+                    }
+                    else if (checkMethod == CheckMethod.Trigger)
+                    {
+                        TriggerCheck();
+                    }
+                }
+                else
+                {
 
-            Material[] mats = renderers.materials;
-            mats[0].SetFloat("Dissolve", 1);
-            renderers.material = mats[0];
-            collider.enabled = false;
-            meshCollider.enabled = false;
+                    Material[] mats = renderers.materials;
+                    mats[0].SetFloat("Dissolve", 1);
+                    renderers.material = mats[0];
+                    collider.enabled = false;
+                    meshCollider.enabled = false;
+                }
+                break;
+            case goods.rock:
+                if (lighterL.openlamb == true || lighterR.openlamb == true)
+                {
+                    Debug.Log(Mathf.Sin(t * speed));
+                    collider.enabled = true;
+                    if (checkMethod == CheckMethod.Distance)
+                    {
+                        DistanceCheck();
+                    }
+                    else if (checkMethod == CheckMethod.Trigger)
+                    {
+                        TriggerCheck();
+                    }
+                }
+                else
+                {
+                }
+                break;
         }
 
     }
