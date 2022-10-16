@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(AILinkMover))]
 public class AI_Buddy: MonoBehaviour
@@ -17,6 +18,7 @@ public class AI_Buddy: MonoBehaviour
     private AILinkMover linkMover;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
+    RaycastHit hit;
 
     private const string Jump = "Air.Jump";
 
@@ -49,12 +51,11 @@ public class AI_Buddy: MonoBehaviour
 
     private void HandleLinkStart()
     {
-        //animation jump
-        //animator.CrossFadeInFixedTime(Jump, 0.1f);
+        animator.CrossFadeInFixedTime(Jump, 0.1f);
     }
     private void HandleLinkEnd()
     {
-        //animation jump
+        animator.CrossFadeInFixedTime("Grounded.Idle", 0.1f);
     }
 
     // Update is called once per frame
@@ -66,5 +67,13 @@ public class AI_Buddy: MonoBehaviour
                
         }
         //anim.SetInteger("Walk", 1);
+
+        //.
+        CheckGround();
+    }
+
+    private void CheckGround()
+    {
+        
     }
 }

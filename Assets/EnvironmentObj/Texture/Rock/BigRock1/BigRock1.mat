@@ -138,8 +138,8 @@ Material:
     - _Fresnel_Size: {r: 10, g: 0, b: 0, a: 0}
     - _Fresnel_angle: {r: -1, g: 0, b: 0, a: 0}
     - _Gloss_Intensity: {r: 14.92853, g: 14.92853, b: 14.92853, a: 0}
-    - _L1_color: {r: 0, g: 0, b: 0, a: 1}
-    - _L1_dir: {r: 0, g: 1, b: 0, a: 0}
+    - _L1_color: {r: 1.2470589, g: 0.8002306, b: 0.75294125, a: 0.99}
+    - _L1_dir: {r: 0.46490586, g: 0.6860538, b: 0.55963624, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3066955793179759131

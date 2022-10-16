@@ -17,6 +17,8 @@ public class maskpullAI : MonoBehaviour
     public Collider collider;
     public float range = 10.0f;
     public bool canpull = false;
+    public GameObject jump;
+    public AI_Buddy aI;
 
     private void Awake()
     {
@@ -25,20 +27,18 @@ public class maskpullAI : MonoBehaviour
         AIrb = GameObject.Find("AI").GetComponent<Rigidbody>();
         AI = GameObject.Find("AI").GetComponent<Transform>();
         animator = GameObject.Find("AI").GetComponent<Animator>();
+        aI = GameObject.Find("AI").GetComponent<AI_Buddy>();
         animatorplayer = GameObject.Find("CS Character Controller").GetComponent<Animator>();
         collider = GetComponent<Collider>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canpull == true)
+        if (Input.GetKeyDown(KeyCode.Q) && canpull == true)
         {
-            //playanimation
-            AIrb.isKinematic = false;
-            player.enabled = true;
-            AIOnly.SetDestination(transformBottom.position);
-            player.SetDestination(transformTop.position);
-            Invoke("aniamtiona", 2.0f);
+            jump.SetActive(true);
+            aI.aifollow = true;
+            aI.currentState = new Idle_Buddy(this.gameObject, aI.agent, aI.player, aI.animator, aI.aifollow, aI.stamina);
 
         }
     }
@@ -50,6 +50,10 @@ public class maskpullAI : MonoBehaviour
             if (Vector3.Distance(AIOnly.transform.position,transformBottom.position) <=range)
             {
                 canpull = true;
+            }
+            else
+            {
+                canpull = false;
             }
             
         }
