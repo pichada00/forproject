@@ -63,7 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcfec2915eab4cc4ab911e83997d331d, type: 2}
+  - {fileID: 2100000, guid: 1ea5db9e6710279408d2486cfea7cd85, type: 2}
+  - {fileID: 2100000, guid: e7dc1f56d9a62b741a8136a06c016e1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,11 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6851e4db96eafc74a86fb196941b773e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: bcfec2915eab4cc4ab911e83997d331d, type: 2}
+  material: {fileID: 2100000, guid: 1ea5db9e6710279408d2486cfea7cd85, type: 2}
   instanceMaterial: 0
   meshCenter: {x: 0, y: 0, z: 0}
   maxLights: 6
-  raycast: 1
+  raycast: 0
   raycastMask:
     serializedVersion: 2
     m_Bits: 1

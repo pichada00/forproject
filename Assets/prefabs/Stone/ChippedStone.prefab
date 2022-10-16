@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8297374965621458959}
   - component: {fileID: 4938734672530704298}
   - component: {fileID: 7164415899586917216}
+  - component: {fileID: 2359261181503338673}
+  - component: {fileID: 8357039735118989935}
   m_Layer: 0
   m_Name: ChippedStone
   m_TagString: Untagged
@@ -61,7 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d9a39a76493f764993003e1e9dbf303, type: 2}
+  - {fileID: 2100000, guid: 9fec2af62e6ee7848aa4cdd2dd8edb1a, type: 2}
+  - {fileID: 2100000, guid: e7dc1f56d9a62b741a8136a06c016e1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +86,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2359261181503338673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677840810657862325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.881501, z: 2}
+  m_Center: {x: 0, y: 0.05924949, z: 0}
+--- !u!114 &8357039735118989935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677840810657862325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6851e4db96eafc74a86fb196941b773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9fec2af62e6ee7848aa4cdd2dd8edb1a, type: 2}
+  instanceMaterial: 0
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10

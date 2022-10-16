@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1729451412169925789}
   - component: {fileID: 4604026462280831063}
   - component: {fileID: 7865784756740471014}
+  - component: {fileID: -6787059500827928347}
   m_Layer: 0
   m_Name: Stone2.2
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17dafbada714d05479c739f1dd1eaff7, type: 2}
+  - {fileID: 2100000, guid: 81173ceeaa91cee43be882c2199f97e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,3 +99,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: d39eb4448de586d448638a82dbbf345a, type: 3}
+--- !u!114 &-6787059500827928347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658308901917749634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6851e4db96eafc74a86fb196941b773e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 81173ceeaa91cee43be882c2199f97e7, type: 2}
+  instanceMaterial: 0
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
