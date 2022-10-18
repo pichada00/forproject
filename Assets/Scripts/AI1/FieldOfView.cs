@@ -50,9 +50,20 @@ public class FieldOfView : MonoBehaviour
                     canSeePlayer = true;
                 else
                     canSeePlayer = false;
+            }else if ((Vector3.Distance(transform.forward, directionToTarget) < radius/3))
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;
             }
             else
+            {
                 canSeePlayer = false;
+            }
+                
         }
         else if (canSeePlayer)
             canSeePlayer = false;

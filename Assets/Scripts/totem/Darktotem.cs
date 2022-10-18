@@ -16,6 +16,8 @@ public class Darktotem : MonoBehaviour
     [SerializeField] public Animator animator;
     public Interactor interactor;
     public WoodForATK1 woodForATK1;
+    public openLightTotem openLight = null;
+    public Light[] lightsOfTotemOpen = null;
     public typeTotem _typeTotem;
 
     private readonly Collider[] _colliders = new Collider[3];
@@ -39,7 +41,7 @@ public class Darktotem : MonoBehaviour
         switch (_typeTotem)
         {
             case typeTotem.Dark:
-                Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
+                /*Collider[] hitsMonster = Physics.OverlapSphere(transform.position, radius, monster, QueryTriggerInteraction.Ignore);
                 indexmonster = Physics.OverlapSphereNonAlloc(transform.position, radius, _colliders, monster);
                 foreach (Collider hit in hitsMonster)
                 {
@@ -50,12 +52,13 @@ public class Darktotem : MonoBehaviour
                         if (indexarray < indexmonster)
                         {
                             var arrayMons = _colliders[indexarray].GetComponent<AI_leech>();
+                            aI_Leeches
                             Debug.Log(_colliders[indexarray]);
                             indexarray++;
                         }
 
                     }
-                }
+                }*/
                 break;
             case typeTotem.Light:                
                     break;
@@ -217,28 +220,51 @@ public class Darktotem : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("weapon"))
+        switch (_typeTotem)
         {
-            Debug.Log("hitTrigger");
-            AudioManager.Instance.PlaySFX("hit");
-            AudioManager.Instance.PlaySFX("totemdestroy");
-            animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
-            animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
-            light.enabled = false;
-            light.range = 0;
-            totem.enabled = false;
-            Dome.SetActive(false);
-            woodForATK1.AfterUseItem();
-            Invoke("solvebool", 0.5f);
-            /*animator.GetLayerIndex("Base Layer");
-            animator.SetBool("TotemLightDestroy", true);
-            animator.GetLayerIndex("small");
-            animator.SetBool("TotemLightDestroy_001", true);*/
-            
-            
+            case typeTotem.Dark:
+                //animation
+                //afterdestroy event totem
+                openLight.countTotemdevilDestroy++;
+                for (int i = 0; i < openLight.countTotemdevilDestroy; i++)
+                {
+                    if (lightsOfTotemOpen[i].enabled == true)
+                        return;
 
-            GameManager.Instance.sceneInfostage1.counttotemdestroy++;
+                    lightsOfTotemOpen[i].enabled = true;
+                }
+                //afterdestroy event Monster
+                for (int i = 0; i < aI_Leeches.Length; i++)
+                {
+                    aI_Leeches[i].enabled = false;
+                }
+                break;
+            case typeTotem.Light:
+                if (other.CompareTag("weapon"))
+                {
+                    Debug.Log("hitTrigger");
+                    AudioManager.Instance.PlaySFX("hit");
+                    AudioManager.Instance.PlaySFX("totemdestroy");
+                    animator.CrossFadeInFixedTime("TotemLightDestroy", 0.1f, 0);
+                    animator.CrossFadeInFixedTime("TotemLightDestroy_001", 0.1f, 1);
+                    light.enabled = false;
+                    light.range = 0;
+                    totem.enabled = false;
+                    Dome.SetActive(false);
+                    woodForATK1.AfterUseItem();
+                    Invoke("solvebool", 0.5f);
+                    /*animator.GetLayerIndex("Base Layer");
+                    animator.SetBool("TotemLightDestroy", true);
+                    animator.GetLayerIndex("small");
+                    animator.SetBool("TotemLightDestroy_001", true);*/
+
+
+
+                    GameManager.Instance.sceneInfostage1.counttotemdestroy++;
+                }
+                break;
         }
+        
     }
 
     public void restoreTotemForPuzzle()
