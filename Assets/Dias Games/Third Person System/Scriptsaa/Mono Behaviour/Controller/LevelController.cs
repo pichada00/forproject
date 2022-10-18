@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 namespace DiasGames.Controller
 {
@@ -12,7 +13,7 @@ namespace DiasGames.Controller
     {
         [SerializeField] private GameObject player = null;
         [SerializeField] private GameObject parent = null;
-        [SerializeField] private GameObject aI = null;
+        [SerializeField] private NavMeshAgent aI = null;
         [SerializeField] private float delayToRestartLevel = 2f;
 
         [SerializeField] private UnityEvent OnCharacterRestart;
@@ -45,7 +46,7 @@ namespace DiasGames.Controller
                 player = GameObject.FindGameObjectWithTag("Player");
 
             if (aI == null)
-                aI = GameObject.FindGameObjectWithTag("AIFriend");
+                aI = GameObject.FindGameObjectWithTag("AIFriend").GetComponent<NavMeshAgent>();
             
             if(_playerHealth == null)
                 _playerHealth = player.GetComponent<Health>();
@@ -100,7 +101,7 @@ namespace DiasGames.Controller
 
 
             player.transform.position = GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne;
-            aI.transform.position = player.transform.position + Vector3.left;
+            aI.Warp(player.transform.position + Vector3.left);
             Debug.Log(GameManager.Instance.sceneInfostage1.currentCheckPointOfStageOne);
 
             _playerHealth.RestoreFullHealth();
