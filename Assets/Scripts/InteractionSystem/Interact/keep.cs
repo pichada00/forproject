@@ -12,8 +12,8 @@ public class keep : MonoBehaviour, IInteractable
     public Collider collider;
     public GameObject prefabGameObject;
 
-    [SerializeField]private Transform PickUpPointR = null;
-    [SerializeField]private Transform PickUpPointL = null;
+    //[SerializeField]private Transform PickUpPointR = null;
+    //[SerializeField]private Transform PickUpPointL = null;
     public MeshRenderer meshLambR;
     public MeshRenderer meshLambL;
     public interactsomething interactsomethingonITEM;
@@ -58,7 +58,7 @@ public class keep : MonoBehaviour, IInteractable
 
         if(AIkeeped == true)
         {
-            gameObject.transform.position = PickUpPointL.position;
+            //gameObject.transform.position = PickUpPointL.position;
             DropFromAI();
         }
         

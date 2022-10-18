@@ -11,7 +11,7 @@ public class bigkeep : MonoBehaviour, IInteractable
     public GameObject gameObject;
     public Interactor interactor;
 
-    [SerializeField] private Transform hip = null;
+    //[SerializeField] private Transform hip = null;
     public interactsomething interactsomethingonITEM;
     public bool keeped = false;
     public bool right = false;

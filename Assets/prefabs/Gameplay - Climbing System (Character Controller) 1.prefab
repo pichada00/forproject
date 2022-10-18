@@ -4572,23 +4572,15 @@ MonoBehaviour:
   UseGravity: 1
   Gravity: -15
   isRun: 0
-  Gravityinwater: -5
   chestT: {fileID: 0}
   submergenceOffset: 0.5
-  buoyancy: 1
   submergenceRange: 1
-  waterDrag: 1
   swimThreshold: 0.5
   waterMask:
     serializedVersion: 2
     m_Bits: 64
   speedSwim: 1.2
-  maxAcceleration: 10
-  maxAirAcceleration: 1
-  maxSwimAcceleration: 5
-  maxSpeed: 10
-  maxClimbSpeed: 4
-  maxSwimSpeed: 5
+  _speed: 0
   _staminaController: {fileID: 0}
 --- !u!114 &1148304282053477302
 MonoBehaviour:
@@ -8219,41 +8211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8658462287654579118 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3573248657811366978, guid: 80042c9004a29ba4a8fd411ea8dfd38f, type: 3}
-  m_PrefabInstance: {fileID: 5314163085038620652}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5411590187476372372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8658462287654579118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CollideAgainst:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_IgnoreTag: AIFriend
-  m_TransparentLayers:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_MinimumDistanceFromTarget: 0.1
-  m_AvoidObstacles: 1
-  m_DistanceLimit: 0
-  m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
-  m_Strategy: 1
-  m_MaximumEffort: 4
-  m_SmoothingTime: 0
-  m_Damping: 0
-  m_DampingWhenOccluded: 0
-  m_OptimalTargetDistance: 0
 --- !u!4 &8658462287654579152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3573248657811366972, guid: 80042c9004a29ba4a8fd411ea8dfd38f, type: 3}

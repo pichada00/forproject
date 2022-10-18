@@ -7,7 +7,7 @@ using TMPro;
 public class Pursue_leech : State_leech
 {
     //private GameObject[] waypoints => WPManager.Instance.getWPPosition();
-    int currentIndex = 0;
+    //int currentIndex = 0;
     public Pursue_leech(TypeMonster type, RangeMonster range, FieldOfView fieldOf, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, fieldOf, npc, agent, player, totem, animator)
     {
         name = StateStatus.Pursue;

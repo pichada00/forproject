@@ -26,9 +26,9 @@ namespace DiasGames.Components
 
         public event Action OnHealthChanged;
         public event Action OnDead;
-        public event Action OnDead1;
+        //public event Action OnDead1;
 
-        public event Action onRestart;
+        //public event Action onRestart;
 
         //add
         public LighterSystem lighterL;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PullAIAlly : AbstractAbility
 {
     [SerializeField] private LayerMask pullMask;
-    [SerializeField] private float globalRadiusDetection = 0.5f;
+    //[SerializeField] private float globalRadiusDetection = 0.5f;
     [SerializeField] private Vector2 offsetOnLedge;
 
     [Header("Debug")]
@@ -26,15 +26,4 @@ public class PullAIAlly : AbstractAbility
         throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

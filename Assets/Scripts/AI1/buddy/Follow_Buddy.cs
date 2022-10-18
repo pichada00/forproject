@@ -8,7 +8,7 @@ public class Follow_Buddy : State_Buddy
 {
     //private GameObject[] waypoints => WPManager.Instance.getWPPosition();
     
-    int currentIndex = 0;
+    //int currentIndex = 0;
     public Follow_Buddy(GameObject npc, NavMeshAgent agent,Transform player,Animator animator,bool aifollow,StaminaController stamina) :base(npc,agent,player,animator,aifollow,stamina)
     {
         name = StateStatus.Follow;

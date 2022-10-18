@@ -37,28 +37,28 @@ namespace DiasGames.Components
 		float submergence;
 		[SerializeField] private bool Inwater => submergence > 0f;
 		[SerializeField] private bool Swimming => submergence >= swimThreshold;
-		[SerializeField] private float Gravityinwater = -5f;
+		//[SerializeField] private float Gravityinwater = -5f;
 		[SerializeField] private Transform chestT;
 		[SerializeField]
 		float submergenceOffset = 0.5f;
 		[SerializeField, Min(0f)]
-		float buoyancy = 1f;
+		//float buoyancy = 1f;
 
-		[SerializeField, Min(0.1f)]
+		//[SerializeField, Min(0.1f)]
 		float submergenceRange = 1f;
 		[SerializeField, Range(0f, 10f)]
-		float waterDrag = 1f;
-		[SerializeField, Range(0.01f, 1f)]
+		//float waterDrag = 1f;
+		//[SerializeField, Range(0.01f, 1f)]
 		float swimThreshold = 0.5f;
 		RaycastHit hitinfo;
 		public LayerMask waterMask;
 		[SerializeField] private float speedSwim = 1.2f;
 		[SerializeField, Range(0f, 100f)]
-		float
-		maxAcceleration = 10f,
-		maxAirAcceleration = 1f,maxSwimAcceleration = 5f;
-		[SerializeField, Range(0f, 100f)]
-		float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;
+		//float
+		//maxAcceleration = 10f,
+		//maxAirAcceleration = 1f,maxSwimAcceleration = 5f;
+		//[SerializeField, Range(0f, 100f)]
+		//float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;
 
 		// player
 		private float _speed;

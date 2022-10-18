@@ -7,8 +7,8 @@ namespace DiasGames.Abilities
     public class Swim : AbstractAbility
     {
         [Header("swim parameters")]
-        [SerializeField] private float speedSwim = 1.2f;
-        [SerializeField] private bool Inwater = false;
+        //[SerializeField] private float speedSwim = 1.2f;
+        //[SerializeField] private bool Inwater = false;
         [SerializeField] private Transform origin;
 
         private IMover _mover = null;
@@ -41,16 +41,5 @@ namespace DiasGames.Abilities
 
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     } 
 }

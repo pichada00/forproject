@@ -14,8 +14,8 @@ namespace DiasGames.Abilities
         private Mover mover;
 
         [SerializeField] private LayerMask obstaclesMask;
-        [SerializeField] private float speed = 5f;
-        private bool shouldRun = false;
+        //[SerializeField] private float speed = 5f;
+        //private bool shouldRun = false;
 
         private void Awake()
         {

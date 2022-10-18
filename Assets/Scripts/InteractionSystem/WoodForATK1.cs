@@ -10,8 +10,8 @@ public class WoodForATK1 : MonoBehaviour, IInteractable
     public Collider collider;
     //public GameObject gameObject;
 
-    [SerializeField] private Transform PickUpPointR = null;
-    [SerializeField] private Transform PickUpPointL = null;
+    //[SerializeField] private Transform PickUpPointR = null;
+    //[SerializeField] private Transform PickUpPointL = null;
     [SerializeField] private Collider boxCollider = null;
     public TypeMeleeWeapon typeMeleeWeapon;
     public interactsomething interactWood;
