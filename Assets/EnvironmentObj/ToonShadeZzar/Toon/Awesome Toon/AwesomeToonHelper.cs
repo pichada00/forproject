@@ -45,9 +45,10 @@ namespace AwesomeToon {
         SkinnedMeshRenderer skinRenderer;
         MeshRenderer meshRenderer;
 
-        void Start() {
+        void Start() {            
             Init();
             GetLights();
+            StartCoroutine("UpdateMaterials");
         }
 
         void OnValidate() {
@@ -105,7 +106,61 @@ namespace AwesomeToon {
                 GetLights();
             }
 
-            UpdateMaterial();
+            //UpdateMaterial();
+        }
+
+        IEnumerator UpdateMaterials()
+        {
+
+            //if (!material) return;
+            yield return new WaitForSeconds(0.1f);
+
+            // Refresh light data
+            List<LightSet> sortedLights = new List<LightSet>();
+            if (lightSets != null)
+            {
+                foreach (LightSet lightSet in lightSets.Values)
+                {
+                    sortedLights.Add(CalcLight(lightSet));
+                }
+            }
+
+            // Sort lights by brightness
+            sortedLights.Sort((x, y) => {
+                float yBrightness = y.color.grayscale * y.atten;
+                float xBrightness = x.color.grayscale * x.atten;
+                return yBrightness.CompareTo(xBrightness);
+            });
+
+            // Apply lighting
+            int i = 1;
+            foreach (LightSet lightSet in sortedLights)
+            {
+                if (i > maxLights) break;
+                if (lightSet.atten <= Mathf.Epsilon) break;
+
+                // Use color Alpha to pass attenuation data
+                Color color = lightSet.color;
+                color.a = Mathf.Clamp(lightSet.atten, 0.01f, 0.99f); // UV might wrap around if attenuation is >1 or 0<
+
+                materialInstance.SetVector($"_L{i}_dir", lightSet.dir.normalized);
+                materialInstance.SetColor($"_L{i}_color", color);
+                i++;
+            }
+
+            // Turn off the remaining light slots
+            while (i <= maxLights)
+            {
+                materialInstance.SetVector($"_L{i}_dir", Vector3.up);
+                materialInstance.SetColor($"_L{i}_color", Color.black);
+                i++;
+            }
+
+            // Store updated light data
+            foreach (LightSet lightSet in sortedLights)
+            {
+                lightSets[lightSet.id] = lightSet;
+            }
         }
 
         void UpdateMaterial() {
