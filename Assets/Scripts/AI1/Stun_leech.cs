@@ -11,7 +11,7 @@ public class Stun_leech : State_leech
     {
         name = StateStatus.Stun;
         //agent.speed = 12;
-        agent.isStopped = false;
+        agent.isStopped = true;
         //agent.ResetPath();
     }
 
@@ -19,6 +19,7 @@ public class Stun_leech : State_leech
     {
         //txtStatus.text = "Idle";
         animator.SetFloat("Speed", 0f);
+        animator.CrossFadeInFixedTime("stun", 0.1f);
         timestun = 2f;
         base.Enter();
     }
@@ -26,15 +27,21 @@ public class Stun_leech : State_leech
     public override void Update()
     {
         //playanimation or stun
-        if (timestun >= 0)
+        if (timestun > 0)
         {
-            timestun -= 0.5f;
+            timestun -= 0.5f*Time.deltaTime;
             return;
         }
 
         nextState = new Idle_leech(type, range, fieldOf, npc, agent, player, totem, animator);
         stage = EventState.Exit;
         
+    }
+
+    public override void Exit()
+    {
+        animator.CrossFadeInFixedTime("Grounded.Idle", 0.1f);
+        base.Exit();
     }
 
     /*public void Hide()

@@ -8,13 +8,14 @@ public class Darktotem : MonoBehaviour
 {
     [SerializeField] private AI_Buddy i_Buddy;
     [SerializeField] private GameObject buddy;
-    public GameObject Dome;
+    public GameObject Dome = null;
     [SerializeField] private AI_leech[] aI_Leeches;
     private Darktotem darktotem;
     [SerializeField] private Collider totem;
     [SerializeField] public Collider totem2;
     [SerializeField] public Animator animator;
     public Interactor interactor;
+    public GameObject mainCinemachine;
     public WoodForATK1 woodForATK1;
     public openLightTotem openLight = null;
     public Light[] lightsOfTotemOpen = null;
@@ -112,7 +113,7 @@ public class Darktotem : MonoBehaviour
 
         checkAI();
 
-        if(change == false)
+        if(change == false && _typeTotem == typeTotem.Light)
         {
             if(light.range < 30)
             {
@@ -224,23 +225,29 @@ public class Darktotem : MonoBehaviour
         {
             case typeTotem.Dark:
                 //animation
-                //afterdestroy event totem
-                /*openLight.countTotemdevilDestroy++;
-                for (int i = 0; i < openLight.countTotemdevilDestroy; i++)
+                if(other.tag == "weapon")
                 {
-                    if (lightsOfTotemOpen[i].enabled == true)
-                        return;
+                    //afterdestroy event totem
+                    /*openLight.countTotemdevilDestroy++;
+                    for (int i = 0; i < openLight.countTotemdevilDestroy; i++)
+                    {
+                        if (lightsOfTotemOpen[i].enabled == true)
+                            return;
 
-                    lightsOfTotemOpen[i].enabled = true;
-                }*/
-                //afterdestroy event Monster
-                for (int i = 0; i < aI_Leeches.Length; i++)
-                {
-                    aI_Leeches[i].enabled = false;
+                        lightsOfTotemOpen[i].enabled = true;
+                    }*/
+                    //afterdestroy event Monster
+                    for (int i = 0; i < aI_Leeches.Length; i++)
+                    {
+                        aI_Leeches[i].enabled = false;
+                    }
+
+                    GameObject modek = gameObject.transform.GetChild(0).GetComponent<GameObject>();
+                    //modek.SetActive(false);
+                    mainCinemachine.SetActive(true);
+                    Invoke("returnMainCamera", 5.0f);
+                    gameObject.SetActive(false);
                 }
-
-                GameObject modek = gameObject.transform.GetChild(0).GetComponent<GameObject>();
-                modek.SetActive(false);
                 break;
             case typeTotem.Light:
                 if (other.CompareTag("weapon"))
@@ -283,5 +290,10 @@ public class Darktotem : MonoBehaviour
     public void solvebool()
     {
         change = true;
+    }
+
+    public void returnMainCamera()
+    {
+        mainCinemachine.SetActive(false);
     }
 }

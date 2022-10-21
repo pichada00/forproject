@@ -38,7 +38,17 @@ public class AI_leech : MonoBehaviour
     {
         currentState = currentState.Process();
         //anim.SetInteger("Walk", 1);
+       
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "weapon")
+        {
+            Debug.Log("hitmon");
+            currentState = new Stun_leech(type, range, fieldOf, this.gameObject, agent, player, totem, animator);
+        }
+    }
+
+
 }

@@ -14,7 +14,7 @@ public class Attack_leech : State_leech
         name = StateStatus.Attack;
         agent.speed = 0;
         agent.isStopped = false;
-        agent.stoppingDistance = 0;
+        agent.stoppingDistance = 1.0f;
         agent.ResetPath();
     }
 
@@ -43,7 +43,7 @@ public class Attack_leech : State_leech
 
     public override void Update()
     {
-        if (time < 30)
+        /*if (time < 30)
         {
             time += 1f * Time.deltaTime;
         }else if(time >= 30)
@@ -64,10 +64,12 @@ public class Attack_leech : State_leech
             agent.SetDestination(waypoints[currentIndex].transform.position);
 
         }*/
+        Debug.Log("Attack");
+        nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
+        stage = EventState.Exit;
         if (DistancePlayer() > 10)//add in state
         {
-            nextState = new Pursue_leech(type, range, fieldOf,npc, agent, player, totem, animator);
-            stage = EventState.Exit;
+            
         }
     }
 

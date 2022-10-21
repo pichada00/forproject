@@ -28,11 +28,16 @@ public class Idle_leech : State_leech
         
         
         //Hide();
-        if (fieldOf.canSeePlayer == true && DistanceTotem() < 13)
+        if (fieldOf.canSeePlayer == true && DistanceTotem() <= 13)
         {
             nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
             stage = EventState.Exit;
-        }
+        }/*
+        if(DistanceTotem() > 13)
+        {
+            agent.SetDestination(totem.position);
+        }*/
+
     }
 
     /*public void Hide()
