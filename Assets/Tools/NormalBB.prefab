@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2156350123232832258}
   - component: {fileID: 2156350123232832259}
   - component: {fileID: 6771778514241557325}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NormalBB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
