@@ -225,19 +225,22 @@ public class Darktotem : MonoBehaviour
             case typeTotem.Dark:
                 //animation
                 //afterdestroy event totem
-                openLight.countTotemdevilDestroy++;
+                /*openLight.countTotemdevilDestroy++;
                 for (int i = 0; i < openLight.countTotemdevilDestroy; i++)
                 {
                     if (lightsOfTotemOpen[i].enabled == true)
                         return;
 
                     lightsOfTotemOpen[i].enabled = true;
-                }
+                }*/
                 //afterdestroy event Monster
                 for (int i = 0; i < aI_Leeches.Length; i++)
                 {
                     aI_Leeches[i].enabled = false;
                 }
+
+                GameObject modek = gameObject.transform.GetChild(0).GetComponent<GameObject>();
+                modek.SetActive(false);
                 break;
             case typeTotem.Light:
                 if (other.CompareTag("weapon"))
