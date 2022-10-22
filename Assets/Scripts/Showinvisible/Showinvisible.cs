@@ -138,9 +138,11 @@ public class Showinvisible : MonoBehaviour
             Material[] mats = renderers.materials;
             //renderers.gameObject.SetActive(true);
             mats[0].SetFloat("Dissolve", Mathf.Sin(t * speed));
+            mats[1].SetFloat("Dissolve", Mathf.Sin(t * speed));
             t += Time.deltaTime;
             if (Mathf.Sin(t * speed) <= 0) { mats[0].SetFloat("Dissolve", 0); }
             renderers.material = mats[0];
+            renderers.material = mats[1];
             isLoaded = true;
             meshCollider.enabled = true;
 

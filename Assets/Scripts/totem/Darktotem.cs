@@ -36,6 +36,8 @@ public class Darktotem : MonoBehaviour
     public int indexAIBuddy = 0;
     public Light light;
 
+    public Animator animatorPlayer;
+
 
     private void Start()
     {
@@ -68,6 +70,7 @@ public class Darktotem : MonoBehaviour
     }
     private void Awake()
     {
+        animatorPlayer = GameObject.Find("CS Character Controller").GetComponent<Animator>();
         interactor = GameObject.Find("CS Character Controller").GetComponent<Interactor>();
         woodForATK1 = GameObject.Find("weaponL").GetComponent<WoodForATK1>();
         i_Buddy = GameObject.Find("AI").GetComponent<AI_Buddy>();
@@ -246,8 +249,9 @@ public class Darktotem : MonoBehaviour
                     }
 
                     GameObject modek = gameObject.transform.GetChild(0).GetComponent<GameObject>();
+                    animatorPlayer.SetBool("Event", true);
                     //modek.SetActive(false);
-                    mainCinemachine.SetActive(true);
+                    //mainCinemachine.SetActive(true);
                     Invoke("returnMainCamera", 5.0f);
                     gameObject.SetActive(false);
                 }
@@ -296,7 +300,7 @@ public class Darktotem : MonoBehaviour
     }
 
     public void returnMainCamera()
-    {
-        mainCinemachine.SetActive(false);
+    {        
+        animatorPlayer.SetBool("Event", false);
     }
 }
