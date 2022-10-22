@@ -19,7 +19,6 @@ public class Pursue_leech : State_leech
 
     public override void Enter()
     {
-        animator.SetFloat("Speed", 2.1f);
         //txtStatus.text = "pursue";
 
         /*float lastDist = Mathf.Infinity;
@@ -39,13 +38,16 @@ public class Pursue_leech : State_leech
 
     public override void Update()
     {
-        
-        agent.SetDestination(player.position);
-        if(DistanceTotem() >= 10)
+        if (DistancePlayer() >= 1f)
+        {
+            animator.SetFloat("Speed", 2.1f);
+            agent.SetDestination(player.position);
+        }
+        /*if(DistanceTotem() >= 10)
         {
             nextState = new Idle_leech(type, range, fieldOf, npc, agent, player, totem, animator);
             stage = EventState.Exit;
-        }
+        }*/
 
         /////
         switch (type)

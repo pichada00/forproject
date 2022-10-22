@@ -14,13 +14,20 @@ public class Attack_leech : State_leech
         name = StateStatus.Attack;
         agent.speed = 0;
         agent.isStopped = false;
-        agent.stoppingDistance = 1.0f;
-        agent.ResetPath();
+        if(range == RangeMonster.longdistance)
+        {
+            agent.stoppingDistance = 5.0f;
+        }else
+        {
+            agent.stoppingDistance = 1.0f;
+        }
+        //agent.ResetPath();
     }
 
     public override void Enter()
     {
         time = 0;
+        agent.transform.LookAt(player);
         //txtStatus.text = "Attack";
 
         //playanimation
@@ -43,33 +50,21 @@ public class Attack_leech : State_leech
 
     public override void Update()
     {
-        /*if (time < 30)
+        switch (range)
         {
-            time += 1f * Time.deltaTime;
-        }else if(time >= 30)
-        {
-            nextState = new Idle_leech(type, range, fieldOf, npc, agent, player, totem, animator);
-            stage = EventState.Exit;
+            case RangeMonster.longdistance:
+                animator.CrossFadeInFixedTime("rangeattack", 0.1f);
+                break;
+            case RangeMonster.melee:
+                animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
+                break;
         }
-        /*if(agent.remainingDistance < 1)
-        {
-            if(currentIndex>=waypoints.Length - 1)
-            {
-                currentIndex = 0;
-            }
-            else
-            {
-                currentIndex++;
-            }
-            agent.SetDestination(waypoints[currentIndex].transform.position);
-
-        }*/
         Debug.Log("Attack");
-        nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
-        stage = EventState.Exit;
-        if (DistancePlayer() > 10)//add in state
+        time += 1.0f * Time.deltaTime;
+        if (((time > 4.5f) && range == RangeMonster.longdistance) || ((time > 1.25f) && range == RangeMonster.melee))//add in state
         {
-            
+            nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
+            stage = EventState.Exit;
         }
     }
 

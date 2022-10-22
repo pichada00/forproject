@@ -13,6 +13,8 @@ public class AI_leech : MonoBehaviour
     public Transform player;
     public Animator animator;
     public State_leech currentState;
+    public GameObject projectile;
+    public GameObject positionShot;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
 
@@ -50,5 +52,24 @@ public class AI_leech : MonoBehaviour
         }
     }
 
+    public void monsterRangeAttack()
+    {
+        Debug.Log("RangeAttack");
+        Rigidbody rigidbody = Instantiate(projectile, positionShot.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
+        rigidbody.AddForce(agent.transform.forward * 32f, ForceMode.Impulse);
+        rigidbody.AddForce(agent.transform.up * 8f, ForceMode.Impulse);
+    }
+
+    public void monsterMeleeAttackStart()
+    {
+        //enable collider
+        Debug.Log("meleeAttack");
+    }
+
+    public void monsterMeleeAttackEnd()
+    {
+        //disable collider
+        Debug.Log("endmeleeAttack");
+    }
 }
