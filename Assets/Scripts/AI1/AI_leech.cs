@@ -6,6 +6,12 @@ using TMPro;
 
 public class AI_leech : MonoBehaviour
 {
+    public SkinnedMeshRenderer renderersBody;
+    public SkinnedMeshRenderer renderersEye;
+    public float currentCutoff = 0f;
+    public float CutofFromLighter = 0f;
+
+
     public TypeMonster type;
     public RangeMonster range;
     public Transform totem;
@@ -15,6 +21,7 @@ public class AI_leech : MonoBehaviour
     public State_leech currentState;
     public GameObject projectile;
     public GameObject positionShot;
+    public bool died = false;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
 
@@ -40,7 +47,20 @@ public class AI_leech : MonoBehaviour
     {
         currentState = currentState.Process();
         //anim.SetInteger("Walk", 1);
-       
+        if (died == true)
+        {
+            Material[] mats = renderersBody.materials;
+            Material[] matsEye = renderersEye.materials;
+            if (currentCutoff >= 1f)
+            {
+                currentCutoff = 1f;
+                gameObject.SetActive(false);
+            }
+            mats[0].SetFloat("Dissolve", currentCutoff += 0.02f * Time.deltaTime);
+            matsEye[0].SetFloat("Dissolve", currentCutoff += 0.02f * Time.deltaTime);
+            renderersBody.material = mats[0];
+            renderersEye.material = matsEye[0];
+        }
     }
 
     private void OnTriggerEnter(Collider other)

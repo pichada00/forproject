@@ -12,6 +12,7 @@ public class LighterSystem : MonoBehaviour
     //public Slider StaminaSlider;
     public Light light;
     public bool openlamb = false;
+    public bool nearTotemcurse = false;
     public keep keepcode;
     //private StarterAssetsInputs _input;
     //public GameObject particleLight;

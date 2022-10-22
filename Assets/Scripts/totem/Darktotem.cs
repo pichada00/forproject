@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum typeTotem { Dark, Light}
+public enum typeTotem { Dark, Light, Curse}
 
 public class Darktotem : MonoBehaviour
 {
@@ -239,7 +239,10 @@ public class Darktotem : MonoBehaviour
                     //afterdestroy event Monster
                     for (int i = 0; i < aI_Leeches.Length; i++)
                     {
-                        aI_Leeches[i].enabled = false;
+                        aI_Leeches[i].currentState = new Died_leech(aI_Leeches[i].type, aI_Leeches[i].range, 
+                            aI_Leeches[i].fieldOf, aI_Leeches[i].gameObject, aI_Leeches[i].agent, aI_Leeches[i].player, 
+                            aI_Leeches[i].totem, aI_Leeches[i].animator);
+                        aI_Leeches[i].died = true;
                     }
 
                     GameObject modek = gameObject.transform.GetChild(0).GetComponent<GameObject>();

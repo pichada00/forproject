@@ -25,14 +25,27 @@ public class Idle_leech : State_leech
     public override void Update()
     {
         //playanimation or patrol
-        
-        
+
+
         //Hide();
-        if (fieldOf.canSeePlayer == true && DistanceTotem() <= 13)
+        switch (type)
         {
-            nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
-            stage = EventState.Exit;
-        }/*
+            case TypeMonster.normal:
+                if (fieldOf.canSeePlayer == true && DistanceTotem() <= 13)
+                {
+                    nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
+                    stage = EventState.Exit;
+                }
+                break;
+            case TypeMonster.evolve:
+                if (fieldOf.canSeePlayer == true)
+                {
+                    nextState = new Pursue_leech(type, range, fieldOf, npc, agent, player, totem, animator);
+                    stage = EventState.Exit;
+                }
+                break;
+        }
+        /*
         if(DistanceTotem() > 13)
         {
             agent.SetDestination(totem.position);
