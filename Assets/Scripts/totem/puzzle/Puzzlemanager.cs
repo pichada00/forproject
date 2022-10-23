@@ -18,7 +18,11 @@ public class Puzzlemanager : MonoBehaviour
             //animation
             //Material material = renderer.material;
             renderer.material.SetFloat("Dissolve", dissolve);
-
+            if (dissolve >= 1)
+            {
+                dissolve = 1.1f;
+                wall.SetActive(false);
+            }
             //wall.SetActive(false);
         }
     }

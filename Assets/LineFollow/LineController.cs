@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
-    [Header("Raycast Params")]
-    [SerializeField] private LayerMask tpNodeLayer = -1; //Cast only to this layer
-    [SerializeField] private Transform castPoint = null; //Cast from this point
-    [SerializeField] private float castDistance = 10.0f; //Cast this far
-
     [Header("Line Animation params")]
     [SerializeField] private LineRenderer castLine = null; // Actual line renderer
     [Space(10)]
@@ -17,19 +12,20 @@ public class LineController : MonoBehaviour
     [Space(10)]
     [SerializeField] private float curveActiveFollowSpeed = 20;
     [SerializeField] private float curveInActiveFollowSpeed = 100;
-    [SerializeField] private float curveHitPointOffset = 0.25f;
+    [SerializeField] private float curveHitPointOffset = 0f;
     [SerializeField] private Transform[] curvePoints = null;
     [SerializeField] private int numberOfPointsOnCurve = 25;
     private BezierCurve _curveGenerator = null;
-    private Vector3 _curvePointPosition = Vector3.zero;
+    private Vector3 _curvePointPosition;
     private bool _curveLocked = false;
 
     private bool _check = false;
 
     private Target _curNode = null;
+    private Target curSeenNode = null;
 
     public bool openLine = false;
-    
+
     /// Initialized Bezier Curve, and castline params
     private void Start()
     {
@@ -38,6 +34,11 @@ public class LineController : MonoBehaviour
         _curveLocked = false;
 
         ActivateCheck(true);
+    }
+
+    private void Awake()
+    {
+        curSeenNode = GameObject.Find("AI").GetComponentInParent<Target>();
     }
 
     void Update()
@@ -54,7 +55,11 @@ public class LineController : MonoBehaviour
                 curvePoints[2].position = Vector3.Lerp(curvePoints[2].position, curvePoints[1].position, curveInActiveFollowSpeed * Time.deltaTime);
             }
         }
-
+        if(openLine == true)
+        {
+            _curvePointPosition = curSeenNode.transform.position * curveHitPointOffset;
+        }
+        
         if (_curNode != null)
         {
             ActivateLine();
@@ -66,8 +71,8 @@ public class LineController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Target curSeenNode = GameObject.Find("AI").GetComponent<Target>();
 
+            openLine = true;
             if (curSeenNode != null)
             {
                 Debug.Log("activate");
@@ -77,8 +82,7 @@ public class LineController : MonoBehaviour
                     _curNode.OnHover();
                 }
 
-                //curvePointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z) + (hit.normal * curveHitPointOffset);
-                _curvePointPosition = curSeenNode.transform.position * curveHitPointOffset;
+                //_curvePointPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z) + (hit.normal * curveHitPointOffset);
             }
             else
             {
@@ -94,19 +98,19 @@ public class LineController : MonoBehaviour
                 DeActivateLine();
             }
         }
-        /*else
+        else if(Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("Reactivate 2 ");
-            curveLocked = false;
+            _curveLocked = false;
 
-            if (curNode != null)
+            if (_curNode != null)
             {
-                curNode.OnHoverLost();
-                curNode = null;
+                _curNode.OnHoverLost();
+                _curNode = null;
             }
                 
             DeActivateLine();
-        }*/
+        }
     }
     
     /// Helper method to enable the curve

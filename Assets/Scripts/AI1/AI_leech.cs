@@ -67,8 +67,18 @@ public class AI_leech : MonoBehaviour
     {
         if(other.tag == "weapon")
         {
-            Debug.Log("hitmon");
-            currentState = new Stun_leech(type, range, fieldOf, this.gameObject, agent, player, totem, animator);
+            switch (type)
+            {
+                case TypeMonster.normal:
+                    Debug.Log("hitmon Normal");
+                    currentState = new Stun_leech(type, range, fieldOf, this.gameObject, agent, player, totem, animator);
+                    break;
+                case TypeMonster.evolve:
+                    Debug.Log("hitmon Evolve");
+                    currentState = new Died_leech(type, range, fieldOf, this.gameObject, agent, player, totem, animator);
+                    break;
+            }
+            
         }
     }
 
