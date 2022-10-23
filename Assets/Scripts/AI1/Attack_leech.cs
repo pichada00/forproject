@@ -28,6 +28,15 @@ public class Attack_leech : State_leech
     {
         time = 0;
         agent.transform.LookAt(player);
+        switch (range)
+        {
+            case RangeMonster.longdistance:
+                animator.CrossFadeInFixedTime("rangeattack", 0.1f);
+                break;
+            case RangeMonster.melee:
+                animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
+                break;
+        }
         //txtStatus.text = "Attack";
 
         //playanimation
@@ -49,16 +58,7 @@ public class Attack_leech : State_leech
     }
 
     public override void Update()
-    {
-        switch (range)
-        {
-            case RangeMonster.longdistance:
-                animator.CrossFadeInFixedTime("rangeattack", 0.1f);
-                break;
-            case RangeMonster.melee:
-                animator.CrossFadeInFixedTime("Melee Attack Downward right", 0.1f);
-                break;
-        }
+    {        
         Debug.Log("Attack");
         time += 1.0f * Time.deltaTime;
         if (((time > 4.5f) && range == RangeMonster.longdistance) || ((time > 1.25f) && range == RangeMonster.melee))//add in state

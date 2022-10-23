@@ -66,7 +66,7 @@ public class LineController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Target curSeenNode = GameObject.Find("TPNode_0").GetComponentInParent<Target>();
+            Target curSeenNode = GameObject.Find("AI").GetComponent<Target>();
 
             if (curSeenNode != null)
             {

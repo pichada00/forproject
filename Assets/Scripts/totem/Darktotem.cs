@@ -253,6 +253,7 @@ public class Darktotem : MonoBehaviour
                     //modek.SetActive(false);
                     //mainCinemachine.SetActive(true);
                     Invoke("returnMainCamera", 5.0f);
+                    
                     gameObject.SetActive(false);
                 }
                 break;

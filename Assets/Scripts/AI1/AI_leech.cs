@@ -20,7 +20,7 @@ public class AI_leech : MonoBehaviour
     public Animator animator;
     public State_leech currentState;
     public GameObject projectile;
-    public GameObject positionShot;
+    public GameObject positionShot = null;
     public bool died = false;
     //TextMeshProUGUI txtStatus;
     //Animator anim;
