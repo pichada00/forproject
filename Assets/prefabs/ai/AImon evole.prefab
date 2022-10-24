@@ -1630,7 +1630,7 @@ GameObject:
   - component: {fileID: 2280040894776051670}
   - component: {fileID: 6381375810486533830}
   m_Layer: 0
-  m_Name: Cube_AI
+  m_Name: Cube_AIMonE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,7 +2050,7 @@ GameObject:
   - component: {fileID: 7507639501323313004}
   - component: {fileID: 5738298060633888459}
   m_Layer: 0
-  m_Name: Plane_AI
+  m_Name: Plane_AIMonE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

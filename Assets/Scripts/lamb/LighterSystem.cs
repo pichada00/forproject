@@ -24,12 +24,16 @@ public class LighterSystem : MonoBehaviour
     public int indexAIBuddy = 0;
 
     public Rig rigL;
+    public Rig rigLOld;
     public Rig rigR;
+    public Rig rigROld;
 
     private void Awake()
     {
         rigR = GameObject.Find("openlamp hand R (1)").GetComponent<Rig>();
+        rigROld = GameObject.Find("openlamp hand R").GetComponent<Rig>();
         rigL = GameObject.Find("openlamp hand L (1)").GetComponent<Rig>();
+        rigLOld = GameObject.Find("openlamp hand L").GetComponent<Rig>();
         //  lighterSystem = this;
     }
     void Start()
@@ -51,49 +55,12 @@ public class LighterSystem : MonoBehaviour
         {
             if(keepcode.left == true)
             {
-                if (Input.GetMouseButtonDown(0) && openlamb == false )
-                {
-                    AudioManager.Instance.PlaySFX("openlamp");
-                    light.range = 20.00f;
-                    openlamb = true;
-                    //particleLight.gameObject.SetActive(true);
-                    rigL.weight = 1.0f;
-                    return;                    
-                }
-                if (Input.GetMouseButtonDown(0) && openlamb == true)
-                {
-                    AudioManager.Instance.PlaySFX("closelamp");
-                    light.range = 0.00f;
-                    openlamb = false;
-                    //particleLight.gameObject.SetActive(false);
-                    rigL.weight = 0.0f;
-                    return;
-                    
-                }
-            }else if (keepcode.right)
-            {
-                if (Input.GetMouseButtonDown(1) && openlamb == false )
-                {
-                    AudioManager.Instance.PlaySFX("openlamp");
-                    light.range = 20.00f;
-                    openlamb = true;
-                    //particleLight.gameObject.SetActive(true);
-                    rigR.weight = 1.0f;
-                    return;
-                    
-                }
-                if (Input.GetMouseButtonDown(1) && openlamb == true)
-                {
-                    AudioManager.Instance.PlaySFX("closelamp");
-                    light.range = 0.00f;
-                    openlamb = false;
-                    //particleLight.gameObject.SetActive(false);
-                    rigR.weight = 0.0f;
-                    return;
-                    
-                }
+                openlamp("left");
             }
-            
+            else if (keepcode.right)
+            {
+                openlamp("right");                
+            }            
         }
         else
         {
@@ -106,9 +73,59 @@ public class LighterSystem : MonoBehaviour
         {
             checkAI();
         }
+    }
 
-        
-        
+    public void openlamp(string direction)
+    {
+        switch (direction)
+        {
+            case "left":
+                if (Input.GetMouseButtonDown(0) && openlamb == false)
+                {
+                    AudioManager.Instance.PlaySFX("openlamp");
+                    light.range = 20.00f;
+                    openlamb = true;
+                    //particleLight.gameObject.SetActive(true);
+                    rigLOld.weight = 0.0f;
+                    rigL.weight = 1.0f;
+                    return;
+                }
+                if (Input.GetMouseButtonDown(0) && openlamb == true)
+                {
+                    AudioManager.Instance.PlaySFX("closelamp");
+                    light.range = 0.00f;
+                    openlamb = false;
+                    //particleLight.gameObject.SetActive(false);
+                    rigL.weight = 0.0f;
+                    rigLOld.weight = 1.0f;
+                    return;
+
+                }
+                break;
+            case "right":
+                if (Input.GetMouseButtonDown(1) && openlamb == false)
+                {
+                    AudioManager.Instance.PlaySFX("openlamp");
+                    light.range = 20.00f;
+                    openlamb = true;
+                    //particleLight.gameObject.SetActive(true);
+                    rigR.weight = 1.0f;
+                    rigROld.weight = 0.0f;
+                    return;
+                }
+                if (Input.GetMouseButtonDown(1) && openlamb == true)
+                {
+                    AudioManager.Instance.PlaySFX("closelamp");
+                    light.range = 0.00f;
+                    openlamb = false;
+                    //particleLight.gameObject.SetActive(false);
+                    rigR.weight = 0.0f;
+                    rigROld.weight = 1.0f;
+                    return;
+
+                }
+                break;
+        }
     }
     private void OnDrawGizmosSelected()
     {

@@ -108,7 +108,7 @@ namespace DiasGames.Abilities
         // avoid climb the same ledge when droping
         private Collider _ledgeBlocked;
         private float _timeBlockStarted;
-        public Interactor interactor;
+        public Interactor interactor = null;
 
         #region State Machine Methods
 
