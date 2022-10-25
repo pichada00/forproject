@@ -11,7 +11,7 @@ public class Pursue_leech : State_leech
     public Pursue_leech(TypeMonster type, RangeMonster range, FieldOfView fieldOf, GameObject npc, NavMeshAgent agent, Transform player, Transform totem, Animator animator) : base(type, range, fieldOf, npc, agent, player, totem, animator)
     {
         name = StateStatus.Pursue;
-        agent.speed = 2;
+        agent.speed = 4;
         agent.isStopped = false;
         agent.stoppingDistance = 1.0f;
         agent.ResetPath();

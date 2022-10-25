@@ -12,7 +12,7 @@ public class Follow_Buddy : State_Buddy
     public Follow_Buddy(GameObject npc, NavMeshAgent agent,Transform player,Animator animator,bool aifollow,StaminaController stamina) :base(npc,agent,player,animator,aifollow,stamina)
     {
         name = StateStatus.Follow;
-        agent.speed = 2.6f;
+        agent.speed = 4f;
         agent.isStopped = false;
         agent.stoppingDistance = 1.0f;
         agent.ResetPath();
