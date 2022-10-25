@@ -30,8 +30,13 @@ public class Died_leech : State_leech
             nextState = new Hide_Cat (npc, agent, player, txtStatus);
             stage = EventState.Exit;
         }*/
+        agent.gameObject.SetActive(false);
     }
 
+    public void DestroygameObj()
+    {
+        
+    }
     /*public void Flee(Vector3 location)
     {
         agent.SetDestination((npc.transform.position - location + npc.transform.position));

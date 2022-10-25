@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 1382067146071949446}
   - component: {fileID: 5926857695154729391}
   - component: {fileID: 7290824176027058518}
+  - component: {fileID: 3170418835054141443}
   m_Layer: 12
   m_Name: AImon
   m_TagString: Monster
@@ -932,6 +933,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   canSeePlayer: 0
+--- !u!136 &3170418835054141443
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178298660488219259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3069458
+  m_Height: 1.8476028
+  m_Direction: 1
+  m_Center: {x: 0.0012817383, y: 0.8881569, z: 0}
 --- !u!1 &1284369950816916715
 GameObject:
   m_ObjectHideFlags: 0

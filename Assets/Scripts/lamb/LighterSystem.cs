@@ -127,6 +127,11 @@ public class LighterSystem : MonoBehaviour
                 break;
         }
     }
+
+    public void closelamp(string direction) 
+    {
+    
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
