@@ -22415,6 +22415,7 @@ PrefabInstance:
       propertyPath: m_ChildCameras.Array.size
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 8658462287654579153, guid: 42e409c8b6944184f979f6a0384474a8, type: 3}
       propertyPath: m_Instructions.Array.size
       value: 9
@@ -22785,7 +22786,8 @@ PrefabInstance:
       propertyPath: m_Instructions.Array.data[8].m_VirtualCamera
       value: 
       objectReference: {fileID: 1989542806}
-
+=======
+>>>>>>> parent of 168b687b (Update Stage1Chapter2.unity)
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e409c8b6944184f979f6a0384474a8, type: 3}
 --- !u!1001 &1498118976
@@ -26858,6 +26860,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8643890300494410007, guid: cce921071ceb94f49a1dca7936759420, type: 3}
   m_PrefabInstance: {fileID: 1813788711}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 --- !u!1 &1816236174
 GameObject:
@@ -26954,7 +26957,8 @@ Transform:
   m_PrefabInstance: {fileID: 1816042702}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> Stashed changes
-
+=======
+>>>>>>> parent of 168b687b (Update Stage1Chapter2.unity)
 --- !u!1001 &1833431401
 PrefabInstance:
   m_ObjectHideFlags: 0
