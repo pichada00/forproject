@@ -12,9 +12,15 @@ public class LoadingScene : MonoBehaviour
 
     public void LoadScene(string sceneId)
     {
-        if(sceneId == "Stage1Chapter1")
+        if (sceneId == "Stage 0")
+        {
+            //GameManager.Instance.coubtPassStage++;
+            //AudioManager.Instance.PlayMusic("stage1");
+        }
+        if (sceneId == "Stage1Chapter1")
         {
             GameManager.Instance.coubtPassStage++;
+            AudioManager.Instance.PlayMusic("stage1");
         }
         StartCoroutine(LoadSceneAsync(sceneId));
     }

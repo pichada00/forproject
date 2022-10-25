@@ -175,9 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSound:
-  - name: Theme
-    clip: {fileID: 8300000, guid: 966d56076a29ce24e98621e3f4b2650d, type: 3}
   - name: stage1
+    clip: {fileID: 8300000, guid: 966d56076a29ce24e98621e3f4b2650d, type: 3}
+  - name: Theme
     clip: {fileID: 8300000, guid: aa22dabac917a2b42a0f7cda734276d6, type: 3}
   sfxSounds:
   - name: Walk

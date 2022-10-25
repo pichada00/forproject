@@ -7,7 +7,7 @@ namespace DiasGames.UI {
     public class HealthBarUI : MonoBehaviour
     {
         [SerializeField] private Image healthBar;
-        [SerializeField] private Health characterHealth;
+        [SerializeField] private Health characterHealth = null;
 
         private void OnEnable()
         {

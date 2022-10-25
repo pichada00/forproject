@@ -114,8 +114,6 @@ namespace AwesomeToon {
 
             //if (!material) return;
             yield return new WaitForSeconds(0.1f);
-
-            // Refresh light data
             List<LightSet> sortedLights = new List<LightSet>();
             if (lightSets != null)
             {
@@ -161,6 +159,9 @@ namespace AwesomeToon {
             {
                 lightSets[lightSet.id] = lightSet;
             }
+            
+            // Refresh light data
+            
         }
 
         void UpdateMaterial() {
