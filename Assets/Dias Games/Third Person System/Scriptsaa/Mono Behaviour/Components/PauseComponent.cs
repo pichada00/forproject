@@ -36,6 +36,16 @@ namespace DiasGames.Components
             Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.None;
             
         }
+        public void OnPauseforchangeCutscene(bool paused)
+        {
+            _isPaused = paused;
+
+            Time.timeScale = _isPaused ? 0f : 1f;
+
+            Cursor.visible = paused ? true : visible;
+            Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.None;
+
+        }
 
         public void MobilePause(bool pressed)
         {

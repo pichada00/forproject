@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum typeTotem { Dark, Light, Curse}
 
@@ -15,7 +16,6 @@ public class Darktotem : MonoBehaviour
     [SerializeField] public Collider totem2;
     [SerializeField] public Animator animator;
     public Interactor interactor;
-    public GameObject mainCinemachine;
     public WoodForATK1 woodForATK1;
     public openLightTotem openLight = null;
     public Light[] lightsOfTotemOpen = null;
@@ -37,7 +37,9 @@ public class Darktotem : MonoBehaviour
     public Light light;
 
     public Animator animatorPlayer;
+    [SerializeField]private UnityEvent unityEvent;
 
+    public bool test;
 
     private void Start()
     {
@@ -129,6 +131,10 @@ public class Darktotem : MonoBehaviour
             {
                 return;
             }
+        }
+        if(test == true)
+        {
+            unityEvent.Invoke();
         }
     }
 
